@@ -5,15 +5,16 @@
         <div class="q-pa-xs">
           <q-toolbar inset class ="shadow-2 rounded-borders bg-blue-10 text-white ">
             <div class="mb-3 mb-md-5 mx-auto text-center">
-              <h5>Some Info Before Starting</h5>
+              <q-toolbar-title>{{$t('someInfo')}}</q-toolbar-title>
+
             </div>
 
             <q-space />
 
-            <q-btn flat round dense icon="kayaking" />
-            <q-btn flat round dense icon="password" />
-            <q-btn flat round dense icon="attach_email" />
-            <q-btn flat round dense icon="sentiment_satisfied_alt" />
+            <q-btn class="gt-sm" flat round dense icon="kayaking" />
+            <q-btn class="gt-sm" flat round dense icon="password" />
+            <q-btn class="gt-sm" flat round dense icon="attach_email" />
+            <q-btn class="gt-sm" flat round dense icon="sentiment_satisfied_alt" />
 
           </q-toolbar>
         </div>
@@ -35,7 +36,7 @@
 
             </div>
             <div class="q-pt-xl text-center">
-              <q-btn @click="() => { router.push({ name: 'email' }) }" color="blue-10" rounded :label="$t('pop_starting6')" />
+              <q-btn style="margin-bottom:10%;" @click="() => { router.push({ name: 'email' }) }" color="blue-10" rounded :label="$t('pop_starting6')" />
             </div>
           </div>
 
@@ -58,7 +59,7 @@ export default defineComponent({
     const router = useRouter()
     const autoplay = ref(2500)
     const store = useStore()
-    console.log( store.getters['userCharacteristic/isLoggedin'])
+    //console.log( store.getters['userCharacteristic/isLoggedin'])
 
 
     return {

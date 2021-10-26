@@ -27,7 +27,7 @@ export default {
         commit('auth_success', data.access);
         //this.$router.push({ name: 'home' })
       } catch (err) {
-        console.log(err)
+        //console.log(err)
       }
 
     },
@@ -46,7 +46,7 @@ export default {
         return data;
       } catch (err) {
         Notify.create({ type: 'negative', message: err.response.data.email ? err.response.data.email : err.response.data.password })
-        //  console.log(err)
+        //  //console.log(err)
       }
 
     },

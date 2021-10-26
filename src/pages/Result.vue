@@ -5,37 +5,68 @@
         <div class="q-pa-xs">
           <q-toolbar inset class ="shadow-2 rounded-borders bg-blue-10 text-white ">
             <div class="mb-3 mb-md-5 mx-auto text-center">
-              <h5>Test Results</h5>
+              <q-toolbar-title>{{$t('test_results')}}</q-toolbar-title>
             </div>
 
             <q-space />
 
-            <q-btn flat round dense icon="kayaking" />
-            <q-btn flat round dense icon="password" />
-            <q-btn flat round dense icon="attach_email" />
-            <q-btn flat round dense icon="sentiment_satisfied_alt" />
+            <q-btn class="gt-sm" flat round dense icon="kayaking" />
+            <q-btn class="gt-sm" flat round dense icon="password" />
+            <q-btn class="gt-sm" flat round dense icon="attach_email" />
+            <q-btn class="gt-sm" flat round dense icon="sentiment_satisfied_alt" />
 
           </q-toolbar>
         </div>
 
-        <div v-if="result[result.length - 1]" class="flex flex-center text-blue-grey-9 q-ma-sm">
-          <!-- <h5>You got {{result[result.length - 1].n_correct}}/10 right: </h5> -->
-          <h5>{{$t('score_is')}}</h5>
-        </div>
-        <div class="q-ml-xl q-mr-xl">
+    <div class="row">
+
+        <q-card class="col-6 col-md-4 col-xs-11 q-ma-md">
+          <q-card-section>
+            <h5 class="text-center center">{{$t('score_is')}}</h5>
+          </q-card-section>
+
+          <q-separator dark inset />
+
+        <q-card-section>
           <q-linear-progress stripe size="25px" :value="progress" >
             <div class="absolute-full flex flex-center">
               <q-badge color="white" text-color="black" :label="progressLabel" />
             </div>
           </q-linear-progress>
-        </div>
+        </q-card-section>
+        </q-card>
 
 
-        <div class="row q-mt-xl flex flex-center">
-          <!-- Number of Phishing Email -->
-          <div class="col-auto q-mr-xl">
+      <q-card class="col-2 col-md-3 col-xs-11 q-ma-md gt-sm">
+          <q-card-section>
+            <div class="col-auto q-ma-md">
+          <p class="text-center center">{{$t('level_of_awareness')}}</p><br><p style="font-weight: bold;font-size:130%" class="text-color-primary">{{awareness_phihsing}}</p>
+          </div>
 
+      </q-card-section>
+
+      <q-card-section>
+     </q-card-section>
+
+     <q-card-section>
+     </q-card-section>
+          <q-separator inset />
+     <q-card-section>
+      <q-card-actions align="evenly">
+        <q-btn flat label="Home page" class="text-white-10" color="orange-10" @click="start()" />
+        <q-btn flat :label="$t('repeat_test')" color="blue-10" @click="() => { router.push({ name: 'email' }) }"/>
+      </q-card-actions>
+    </q-card-section>
+  </q-card>
+
+
+
+
+      <q-card class="col-6 col-md-4 col-xs-11 q-ma-md">
+          <q-card-section>
+            <div class="col-auto">
             <q-knob
+            readonly
               :min="0"
               :max="10"
               v-model="n_phishing"
@@ -48,11 +79,12 @@
             />
             <b>{{$t('number_phishing_email')}}</b>
           </div>
-
-          <!-- AVG TIME of Answer in second -->
-          <div class="col-auto q-mt-md">
-
+          </q-card-section>
+          <q-separator dark inset />
+        <q-card-section>
+          <div class="col-auto ">
             <q-knob
+            readonly
               :min="0"
               :max="100"
               v-model="avg_answer_time"
@@ -64,25 +96,39 @@
               class="text-blue q-ma-md"
             />
             <b>{{$t('average_response_time')}}</b>
-          </div>
         </div>
+        </q-card-section>
+      </q-card>
 
-        <div class="row flex flex-center">
-          <h6>{{$t('level_of_awareness')}} {{awareness_phihsing}}</h6>
-        </div>
 
-        <div class="row">
-          <div class="col-4 q-mt-md">
+        <q-card class="col-2 col-md-3 col-xs-11 q-ma-md lt-md">
+          <q-card-section>
+            <div class="row">
+            <div class="col-auto q-ma-md">
+            <p class="text-center center">{{$t('level_of_awareness')}}</p>
           </div>
-          <div class="col-1 q-mt-md">
-          <q-btn label="Home page" class="text-white-10" color="orange-10" @click="start()" />
+            </div>
+
+      </q-card-section>
+
+      <q-card-section>
+         <div class="row">
+            <div class="col-auto q-ma-xl">
+              <p style="font-weight: bold;font-size:140%" class="color-primary">{{awareness_phihsing}}</p>
+            </div>
           </div>
-          <div class="col-1 q-mt-md">
-          </div>
-          <div class="col-2 q-mt-md">
-          <q-btn :label="$t('repeat_test')" color="blue-10" @click="() => { router.push({ name: 'email' }) }"/>
-          </div>
-        </div>
+      </q-card-section>
+
+     <q-card-section>
+      <q-card-actions align="evenly">
+        <q-btn flat label="Home page" class="text-white-10" color="orange-10" @click="start()" />
+        <q-btn flat :label="$t('repeat_test')" color="blue-10" @click="() => { router.push({ name: 'email' }) }"/>
+      </q-card-actions>
+    </q-card-section>
+  </q-card>
+
+    </div>
+
       </q-page>
     </q-page-indexainer>
   </q-layout>
@@ -92,12 +138,14 @@
 import { defineComponent, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
+import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
   setup () {
     const store = useStore()
     const router = useRouter()
     const result = computed(() => store.getters['email/result'])
+    const { locale } = useI18n({ useScope: 'global' })
     const progress = computed(() => {
       if(result.value[result.value.length - 1]){
         return (result.value[result.value.length - 1].n_correct)/10
@@ -126,22 +174,39 @@ export default defineComponent({
     const awareness_phihsing = computed(() => {
       if(result.value[result.value.length - 1]){
         if(result.value[result.value.length - 1].n_correct < 5){
+            if (locale.value == "en-US"){
+              return 'Negative'
+            }else if (locale.value == "it"){
+              return 'Scarso'
+            }
 
-          return 'negative'
 
-        } else if(result.value[result.value.length - 1].n_correct === 5){
 
-          return 'basic'
-        } else if(result.value[result.value.length - 1].n_correct > 5 && result.value[result.value.length - 1].n_correct < 7){
+        }else if(result.value[result.value.length - 1].n_correct === 5){
+          if (locale.value == "en-US"){
+              return 'Basic'
+          }else if (locale.value == "it"){
+              return 'Sufficiente'
+          }
 
-          return 'intermediate'
-        }
-        else if(result.value[result.value.length - 1].n_correct > 7 ){
 
-          return 'excellent'
+        }else if(result.value[result.value.length - 1].n_correct > 5 && result.value[result.value.length - 1].n_correct < 7){
+
+          if (locale.value == "en-US"){
+              return 'Intermediate'
+          }else if (locale.value == "it"){
+              return 'Buono'
+          }
+
+        }else if(result.value[result.value.length - 1].n_correct > 7 ){
+
+          if (locale.value == "en-US"){
+              return 'Excellent'
+          }else if (locale.value == "it"){
+             return 'Eccellente'
         }
       }
-
+    }
       return ''
     })
     const progressLabel = computed(() => (progress.value * 100).toFixed(2) + '%')

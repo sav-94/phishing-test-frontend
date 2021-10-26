@@ -1,6 +1,8 @@
 import { boot } from 'quasar/wrappers'
 import axios from 'axios'
 
+
+
 const baseURL = 'http://127.0.0.1:8000/'
 //const baseURL = 'http://143.225.28.84:8080/'
 

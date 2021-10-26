@@ -2,10 +2,10 @@
   <q-layout>
     <q-page-container>
       <q-page>
-        <div class="q-pa-md">
-          <div class="row shadow-2">
-          <q-toolbar class ="shadow-2 rounded-borders bg-blue-10 text-white">
-            <q-toolbar-title>Spamley</q-toolbar-title>
+        <div >
+          <div class="row">
+          <q-toolbar class ="bg-white-10 text-blue-10">
+            <q-toolbar-title class="q-ma-md">Spamley</q-toolbar-title>
             <div class="customTextColor">
             <q-select
               v-model="locale"
@@ -26,14 +26,14 @@
               style="min-width:150px;color:white;"
               />
             </div>
-          <q-btn class="gt-sm" flat round dense icon="kayaking" />
-            <q-btn class="gt-sm" flat round dense icon="password" />
-            <q-btn class="gt-sm" flat round dense icon="attach_email" />
-            <q-btn class="gt-sm" flat round dense icon="sentiment_satisfied_alt" />
+          <q-btn class="gt-sm" flat round dense icon="kayaking"/>
+            <q-btn class="gt-sm" flat round dense icon="password"/>
+            <q-btn class="gt-sm" flat round dense icon="attach_email"/>
+            <q-btn class="gt-sm" flat round dense icon="sentiment_satisfied_alt"/>
           </q-toolbar>
         </div>
         </div>
-
+        <q-separator inset color="primary" />
         <div class="row">
 
           <div class="col-md-5 col-xs-12 q-pt-lg q-pl-xl q-pr-xl gt-sm">
@@ -80,15 +80,23 @@
           </div>
 
           <div class="col-md-7 col-xs-12 q-pt-lg q-pl-xl q-pr-xl">
+            <q-card>
+            <q-card-section>
             <div class="text-blue-grey-9 text-center text-justify q-m-lg">
               <p style="font-size: 125%;">{{$t('intro1')}}</p><p style="font-size: 125%;">{{$t('intro2')}}</p><p style="font-size: 125%;">{{$t('intro3')}}</p><p style="font-size: 125%;">{{$t('intro4')}}</p><p style="font-size: 125%;">{{$t('intro5')}}</p><p style="font-size: 125%;">{{$t('intro6')}}</p>
             </div>
-            <div class="q-pt-xl text-center">
-              <q-btn @click="start()" style="margin-bottom:25%;" color="blue-10" rounded :label="$t('btn1')"/>
-            </div>
-          </div>
+            </q-card-section>
+            <q-card-actions>
+              <q-btn @click="start()" flat color="blue-10" :label="$t('btn1')"/>
+            </q-card-actions>
+            </q-card>
 
+          </div>
         </div>
+
+
+
+
 
 
       </q-page>

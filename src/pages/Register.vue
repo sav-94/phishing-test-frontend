@@ -5,22 +5,22 @@
         <div class="q-pa-xs">
           <q-toolbar inset class ="shadow-2 rounded-borders bg-blue-10 text-white ">
             <div class="mb-3 mb-md-5 mx-auto text-center">
-              <h5>{{$t('registerPage')}}</h5>
+              <q-toolbar-title>{{$t('registerPage')}}</q-toolbar-title>
             </div>
 
             <q-space />
 
-            <q-btn flat round dense icon="kayaking" />
-            <q-btn flat round dense icon="password" />
-            <q-btn flat round dense icon="attach_email" />
-            <q-btn flat round dense icon="sentiment_satisfied_alt" />
+            <q-btn class="gt-sm" flat round dense icon="kayaking" />
+            <q-btn class="gt-sm" flat round dense icon="password" />
+            <q-btn class="gt-sm" flat round dense icon="attach_email" />
+            <q-btn class="gt-sm" flat round dense icon="sentiment_satisfied_alt" />
 
           </q-toolbar>
         </div>
 
         <!-- ALERT -->
         <q-dialog v-model="persistent" persistent transition-show="scale" transition-hide="scale">
-          <q-card class="bg-blue-10 text-white" style="width: 300px">
+          <q-card class="bg-white-10 text-primary" style="width: 300px">
             <q-card-section>
               <div class="text-h6">{{$t('alertNotice')}}</div>
             </q-card-section>
@@ -28,8 +28,8 @@
             <q-card-section class="q-pt-none">
               {{$t('alertCard')}}</q-card-section>
 
-            <q-card-actions align="right" class="bg-white text-blue-10">
-              <q-btn flat label="OK" @click="startRegister()"/>
+            <q-card-actions align="right" class="bg-white-10">
+              <q-btn  flat label="OK" @click="startRegister()"/>
             </q-card-actions>
           </q-card>
         </q-dialog>
@@ -40,6 +40,7 @@
         <q-stepper
           v-model="step"
           vertical
+          header-nav
           color="primary"
           animated
         >
@@ -59,37 +60,46 @@
         <q-space></q-space>
         <div class="row">
               <div class="col-md-2 col-sm-3 col-xs-12" style="margin-top:1%;">
-                <q-select outlined :dense="true" v-model="ageModel" :options="ageOptions" :label="$t('age')" />
+                <q-select  :dense="true" v-model="ageModel" :options="ageOptions" :label="$t('age')" />
               </div>
               <div class="col-md-1 col-sm-12 col-xs-12" style="margin-top:1%;">
               </div>
               <div class="col-md-2 col-sm-3 col-xs-12" style="margin-top:1%;">
-                <q-select outlined :dense="true" v-model="genderModel" :options="genderOptions" :label="$t('genre')"/>
+                <q-select  :dense="true" v-model="genderModel" :options="genderOptions" :label="$t('genre')"/>
               </div>
               <div class="col-md-1 col-sm-12 col-xs-12" style="margin-top:1%;">
               </div>
               <div class="col-md-2 col-sm-3 col-xs-12" style="margin-top:1%;">
                 <q-select
-                  outlined
                   :dense="true"
                   v-model="natModel"
-                  :options="natOptions"
+                  use-input
+                  input-debounce="0"
+                  :options="nat_options"
                   option-value="id"
+                  @filter="filterFn"
                   option-label="name"
                   :label="$t('nat')"
-                />
+                >
+                <template v-slot:no-option>
+          <q-item>
+            <q-item-section class="text-grey">
+              No results
+            </q-item-section>
+          </q-item>
+        </template>
+      </q-select>
               </div>
               <div class="col-md-1 col-sm-12 col-xs-12" style="margin-top:1%;">
               </div>
               <div class="col-md-2 col-sm-3 col-xs-12" style="margin-top:1%;">
                 <q-select
-                  outlined
                   :dense="true"
                   v-model="lanModel"
                   :options="lanOptions"
                   option-value="id"
                   option-label="name"
-                  :label="$t('lang')"
+                  :label="$t('language')"
                 />
               </div>
               <div class="col-md-1 col-sm-1 col-xs-12" style="margin-top:1%;">
@@ -106,7 +116,6 @@
           :title="$t('eduTitle')"
           icon="school"
           :done="step > 2"
-
         >
 
       <p style="color: grey;"> {{$t('eduDisclaimer')}}</p>
@@ -185,16 +194,38 @@
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <div class="col-md-3 col-sm-3 col-xs-12">
                 <q-select
-
                   v-model="hobbyModel"
                   multiple
                   :options="hobbyOptions"
                   option-value="id"
                   option-label="name"
+                  :hint="$t('one_or_more')"
                   counter
                   :label="$t('mailboxUsage')"
                 />
               </div>
+        </div>
+        <div class="row q-mt-lg">
+
+
+            <div class="col-4 col-md-4 col-sm-12 col-xs-12">
+              <q-badge flex flex-center color="yellow-9"  style="height: 19px;margin-bottom:4%;margin-left:-0.5%;">
+                {{$t('workingHours')}} {{ workHoursPriorTestModel }}
+              </q-badge>
+
+              <q-slider
+                color="yellow-9"
+                v-model="workHoursPriorTestModel"
+                label
+                :step="1"
+                :min="0"
+                :max="10"
+              />
+              <p style="color: grey;"> {{$t('value10')}}</p>
+            </div>
+
+            <div class="col-3 col-md-1 col-sm-12 col-xs-12">
+            </div>
         </div>
 
         <q-stepper-navigation>
@@ -202,10 +233,6 @@
           <q-btn flat @click="step = 2" color="primary" :label="$t('go_back')" class="q-ml-sm" />
         </q-stepper-navigation>
       </q-step>
-
-
-
-
 
 
 
@@ -220,12 +247,14 @@
 
         <div class="row q-mt-lg">
               <div class="col-5 col-md-5 col-sm-12 col-xs-12">
+
               <q-badge color="blue-10" style="height: 18px;margin-bottom:4%;" >
-                {{$t('computerScienceSkill')}} {{ computerScienceknowledgeModel }} (0 to 5)
+                {{$t('computerScienceSkill')}} {{ computerScienceknowledgeModel }}
               </q-badge>
               <div>
 
               </div>
+
               <q-slider
                 v-model="computerScienceknowledgeModel"
                 label
@@ -233,33 +262,37 @@
                 :min="0"
                 :max="5"
               />
+              <p style="color: grey;"> {{$t('value5')}}</p>
             </div>
 
             <div class="col-1 col-md-1 col-sm-12 col-xs-12">
             </div>
 
             <div class="col-5 col-md-5 col-sm-12 col-xs-12">
-              <q-badge color="yellow-9"  style="height: 18px;margin-bottom:4%;">
-                {{$t('workingHours')}} {{ workHoursPriorTestModel }} (0 to 10 hrs)
-              </q-badge>
+                <q-badge color="green-9"  style="height: 18px;margin-bottom:4%;" >
+                  {{$t('selfConfidence')}} {{ selfConfidenceModel }}
+                </q-badge>
 
-              <q-slider
-                color="yellow-9"
-                v-model="workHoursPriorTestModel"
-                label
-                :step="1"
-                :min="0"
-                :max="10"
-              />
-            </div>
+                <q-slider
+                  v-model="selfConfidenceModel"
+                  label
+                  :step="1"
+                  color="green-9"
+                  :min="0"
+                  :max="5"
+                />
+                <p style="color: grey;"> {{$t('value5')}}</p>
+              </div>
+
+
         </div>
 
 
 
-        <div class="row q-mt-lg">
+        <div  class="row q-mt-lg">
               <div class="col-5 col-md-5 col-sm-12 col-xs-12">
                 <q-badge color="red-10"  style="height: 18px;margin-bottom:4%;">
-                  {{$t('timespentonInternet')}} {{ timeModel }} (0 to 15 hrs)
+                  {{$t('timespentonInternet')}} {{ timeModel }}
                 </q-badge>
 
                 <q-slider
@@ -271,6 +304,7 @@
                   label
 
                 />
+              <p style="color: grey;"> {{$t('value15')}}</p>
               </div>
 
               <div class="col-1 col-md-1 col-sm-12 col-xs-12">
@@ -278,20 +312,7 @@
 
 
 
-              <div class="col-5 col-md-5 col-sm-12 col-xs-12">
-                <q-badge color="green-9"  style="height: 18px;margin-bottom:4%;" >
-                  {{$t('selfConfidence')}} {{ selfConfidenceModel }} (0 to 5)
-                </q-badge>
 
-                <q-slider
-                  v-model="selfConfidenceModel"
-                  label
-                  :step="1"
-                  color="green-9"
-                  :min="0"
-                  :max="5"
-                />
-              </div>
             </div>
 
         <q-stepper-navigation>
@@ -308,21 +329,31 @@
         :title="$t('phishingAwareness')"
         icon="workspaces"
         :done="step > 5"
-
       >
 
         <div class="row q-mt-lg">
-              <div class="col-auto">
+          <div class="col-auto">
                 <q-toggle
-                  :label="$t('anti_phishing_course')"
-                  v-model="antiPhisCourseModel"
+                  :label="$t('antiphishing_course_ever')"
+                  v-model="antiPhisCourseEverModel"
                 />
               </div>
+
               <div class="col-auto">
                 <q-toggle
                   color="green"
                   :label="$t('previous_victim')"
                   v-model="victimModel"
+
+                />
+              </div>
+            </div>
+            <div class="row q-mt-lg" v-if="antiPhisCourseEverModel">
+              <div class="col-auto">
+                <q-toggle
+                  :label="$t('anti_phishing_course')"
+                  v-model="antiPhisCourseModel"
+                  v-if="antiPhisCourseEverModel"
                 />
               </div>
             </div>
@@ -351,7 +382,7 @@
                 <q-card class="my-card bg-yellow-9" style="margin-bottom:4%;">
                     <q-card-section>
                         <div class="text-h6 text-white">
-                          {{$t('impulsivity')}} {{ impulsivityModel }} (0 to 5):
+                          {{$t('impulsivity')}} {{ impulsivityModel }}
                         </div>
                         <div class="text-h8 bg-yellow-9 text-white">
                         {{$t('impulsivityString')}}
@@ -368,6 +399,7 @@
                   :min="0"
                   :max="5"
                 />
+                <p style="color: grey;"> {{$t('value5')}}</p>
               </div>
 
               <div class="col-1 col-md-1 col-sm-12 col-xs-12 q-mt-md">
@@ -377,7 +409,7 @@
                 <q-card class="my-card bg-blue-10" style="margin-bottom:4%;">
                     <q-card-section>
                       <div class="text-h6 text-white">
-                        {{$t('curiosity')}}  {{ curiosityModel }} (0 to 5):
+                        {{$t('curiosity')}}  {{ curiosityModel }}
                       </div>
                       <div class="text-h8 bg-blue-10 text-white">
                         {{$t('curiosityString')}}
@@ -394,6 +426,7 @@
                   :min="0"
                   :max="5"
                 />
+                <p style="color: grey;"> {{$t('value5')}}</p>
               </div>
 
               </div>
@@ -403,7 +436,7 @@
                 <q-card class="my-card bg-orange-10" style="margin-bottom:4%;">
                     <q-card-section>
                         <div class="text-h6 text-white">
-                           {{$t('risk_prop')}}  {{ riskPropensityModel }} (0 to 5):
+                           {{$t('risk_prop')}}  {{ riskPropensityModel }}
                         </div>
                         <div class="text-h8 bg-orange-10 text-white">
                         {{$t('risk_propensityString')}}
@@ -420,6 +453,7 @@
                   :min="0"
                   :max="5"
                 />
+                <p style="color: grey;"> {{$t('value5')}}</p>
               </div>
 
               <div class="col-1 col-md-1 col-sm-12 col-xs-12 q-mt-md">
@@ -429,7 +463,7 @@
                 <q-card class="my-card bg-red-10" style="margin-bottom:4%;">
                     <q-card-section>
                       <div class="text-h6 text-white">
-                        {{$t('risk_perc')}}  {{ riskPerceptionModel }} (0 to 5):
+                        {{$t('risk_perc')}}  {{ riskPerceptionModel }}
                       </div>
                       <div class="text-h8 bg-red-10 text-white">
                         {{$t('risk_perceptionString')}}
@@ -446,6 +480,7 @@
                   :min="0"
                   :max="5"
                 />
+                <p style="color: grey;"> {{$t('value5')}}</p>
               </div>
 
               </div>
@@ -455,7 +490,7 @@
                 <q-card class="my-card bg-green-9" style="margin-bottom:4%;">
                     <q-card-section>
                         <div class="text-h6 text-white">
-                          {{$t('privacy_data')}} {{ privacyDataModel }} (0 to 5):
+                          {{$t('privacy_data')}} {{ privacyDataModel }}
                         </div>
                         <div class="text-h8 bg-green-9 text-white">
                         {{$t('privacy_dataString')}}
@@ -472,6 +507,7 @@
                   :min="0"
                   :max="5"
                 />
+                <p style="color: grey;"> {{$t('value5')}}</p>
               </div>
               </div>
 
@@ -498,7 +534,7 @@
                 <q-card class="my-card bg-green-10" style="margin-bottom:4%;">
                     <q-card-section>
                       <div class="text-h6 text-white">
-                        {{$t('openness')}}  {{ opennessModel }} (0 to 5):
+                        {{$t('openness')}}  {{ opennessModel }}
                       </div>
                       <div class="text-h8 bg-green-10 text-white">
                         {{$t('opennessString')}}
@@ -514,6 +550,7 @@
                   :min="0"
                   :max="5"
                 />
+                <p style="color: grey;"> {{$t('value5')}}</p>
               </div>
 
 
@@ -526,7 +563,7 @@
                 <q-card class="my-card bg-blue-10" style="margin-bottom:4%;">
                     <q-card-section>
                       <div class="text-h6 text-white">
-                        {{$t('extrav')}}  {{ extraversionModel }} (0 to 5):
+                        {{$t('extrav')}}  {{ extraversionModel }}
                       </div>
                       <div class="text-h8 bg-blue-10 text-white">
                         {{$t('extraversionString')}}
@@ -542,6 +579,7 @@
                   :min="0"
                   :max="5"
                 />
+                <p style="color: grey;"> {{$t('value5')}}</p>
               </div>
 
               </div>
@@ -551,7 +589,7 @@
                 <q-card class="my-card bg-orange-10" style="margin-bottom:4%;">
                     <q-card-section>
                         <div class="text-h6 text-white">
-                          {{$t('agreableness')}}  {{ agreeablenessModel }} (0 to 5):
+                          {{$t('agreableness')}}  {{ agreeablenessModel }}
                         </div>
                         <div class="text-h8 bg-orange-10 text-white">
                         {{$t('agreeablenessString')}}
@@ -567,6 +605,7 @@
                   :min="0"
                   :max="5"
                 />
+                <p style="color: grey;"> {{$t('value5')}}</p>
               </div>
 
               <div class="col-1 col-md-1 col-sm-12 col-xs-12 q-mt-md">
@@ -576,7 +615,7 @@
                 <q-card class="my-card bg-red-10" style="margin-bottom:4%;">
                     <q-card-section>
                       <div class="text-h6 text-white">
-                        {{$t('conscientiousness')}}  {{ conscientiousnessModel }} (0 to 5):
+                        {{$t('conscientiousness')}}  {{ conscientiousnessModel }}
                       </div>
                       <div class="text-h8 bg-red-10 text-white">
                         {{$t('conscientiousnessString')}}
@@ -593,6 +632,7 @@
                   :min="0"
                   :max="5"
                 />
+                <p style="color: grey;"> {{$t('value5')}}</p>
               </div>
 
               </div>
@@ -604,7 +644,7 @@
                 <q-card class="my-card bg-yellow-10" style="margin-bottom:4%;">
                     <q-card-section>
                       <div class="text-h6 text-white">
-                        {{$t('emot_stability')}}  {{ emotionalStabilityModel }} (0 to 5):
+                        {{$t('emot_stability')}}  {{ emotionalStabilityModel }}
                       </div>
                       <div class="text-h8 bg-yellow-10 text-white">
                         {{$t('emotional_stabilityString')}}
@@ -620,6 +660,7 @@
                   :min="0"
                   :max="5"
                 />
+                <p style="color: grey;"> {{$t('value5')}}</p>
               </div>
               </div>
 
@@ -644,7 +685,7 @@
                 <q-card class="my-card bg-yellow-9" style="margin-bottom:4%;">
                     <q-card-section>
                         <div class="text-h6 text-white">
-                          {{$t('scarcity')}}  {{ scarcityModel }} (0 to 5):
+                          {{$t('scarcity')}}  {{ scarcityModel }}
                         </div>
                         <div class="text-h8 bg-yellow-9 text-white">
                         {{$t('scarcityString')}}
@@ -661,6 +702,7 @@
                   :min="0"
                   :max="5"
                 />
+                <p style="color: grey;"> {{$t('value5')}}</p>
               </div>
 
               <div class="col-1 col-md-1 col-sm-12 col-xs-12 q-mt-md">
@@ -670,7 +712,7 @@
                 <q-card class="my-card bg-green-10" style="margin-bottom:4%;">
                     <q-card-section>
                       <div class="text-h6 text-white">
-                        {{$t('consistency')}}  {{ consistencyModel }} (0 to 5):
+                        {{$t('consistency')}}  {{ consistencyModel }}
                       </div>
                       <div class="text-h8 bg-green-10 text-white">
                         {{$t('consistencyString')}}
@@ -686,6 +728,7 @@
                   :min="0"
                   :max="5"
                 />
+                <p style="color: grey;"> {{$t('value5')}}</p>
               </div>
 
               </div>
@@ -695,7 +738,7 @@
                 <q-card class="my-card bg-orange-10" style="margin-bottom:4%;">
                     <q-card-section>
                         <div class="text-h6 text-white">
-                          {{$t('social_proof')}}   {{ socialProofModel }} (0 to 5):
+                          {{$t('social_proof')}}   {{ socialProofModel }}
                         </div>
                         <div class="text-h8 bg-orange-10 text-white">
                         {{$t('social_proofString')}}
@@ -711,6 +754,7 @@
                   :min="0"
                   :max="5"
                 />
+                <p style="color: grey;"> {{$t('value5')}}</p>
               </div>
 
               <div class="col-1 col-md-1 col-sm-12 col-xs-12 q-mt-md">
@@ -720,7 +764,7 @@
                 <q-card class="my-card bg-red-10" style="margin-bottom:4%;">
                     <q-card-section>
                       <div class="text-h6 text-white">
-                        {{$t('gratitude')}}  {{ gratitudeModel }} (0 to 5):
+                        {{$t('gratitude')}}  {{ gratitudeModel }}
                       </div>
                       <div class="text-h8 bg-red-10 text-white">
                         {{$t('gratitudeString')}}
@@ -737,6 +781,7 @@
                   :min="0"
                   :max="5"
                 />
+                <p style="color: grey;"> {{$t('value5')}}</p>
               </div>
 
             <div class="row q-mt-lg">
@@ -744,7 +789,7 @@
                 <q-card class="my-card bg-blue-10" style="margin-bottom:4%;">
                     <q-card-section>
                       <div class="text-h6 text-white">
-                       {{$t('authority')}}  {{ authorityModel }} (0 to 5):
+                       {{$t('authority')}}  {{ authorityModel }}
                       </div>
                       <div class="text-h8 bg-blue-10 text-white">
                         {{$t('authorityString')}}
@@ -761,6 +806,7 @@
                   :min="0"
                   :max="5"
                 />
+                <p style="color: grey;"> {{$t('value5')}}</p>
               </div>
             </div>
               </div>
@@ -795,16 +841,27 @@ import { defineComponent, reactive, ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import { useQuasar } from 'quasar'
+import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
   setup () {
     const $q = useQuasar()
+    const { locale } = useI18n({ useScope: 'global' })
+    //const language_selected =this.$i18n.locale
+    //console.log(locale.value)
     const store = useStore()
     const step = ref(1)
     const ageModel = ref(null)
-    const ageOptions = reactive(Array.from({length: 83}, (_, i) => i + 18))
+    const ageOptions = reactive(Array.from({length: 89}, (_, i) => i + 12))
     const genderModel = ref(null)
-    const genderOptions = reactive(['Female', 'Male', 'Other'])
+    let genderOptions = ref(null)
+     if (locale.value == "en-US"){
+      genderOptions = reactive(['Female', 'Male', 'Other'])
+
+
+    }else if (locale.value == "it"){
+       genderOptions = reactive(['Donna', 'Uomo', 'Altro'])
+    }
     const eduLevelModel = ref(null)
     const eduLevelOptions = computed(() => store.getters['userCharacteristic/eduLevel'])
     const eduFieldModel = ref(null)
@@ -815,34 +872,259 @@ export default defineComponent({
     const emplTypeOptions = computed(() => store.getters['userCharacteristic/emplType'])
     const hobbyModel = ref(null)
     const hobbyOptions = computed(() => store.getters['userCharacteristic/hobby'])
-    const impulsivityString = 'Impulsivity is a personality dimension described as \“acting without thinking\". How impulsive are you in your decision?'
-    const curiosityString = 'The desire to learn or to know about anything.'+ '\n'+ 'Are you curious ?' +'\n' + 'How curious are you?' + '\n' + 'When you read an email are you curious to know what is behind the link?'
-    const emotional_stabilityString ='Emotional stability, which describes a person who is more likely to be calm. How stable do you think you are emotionally?'
-    const  conscientiousnessString = 'Conscientiousness describes a person who has the tendency to be responsible, organized, hardworking, goal-oriented and to adhere to norms and rules. It includes self-control, industriousness, responsibility and reliability. How well do you control your impulses which could affect your results?'
-    const  agreeablenessString ='Agreeableness describes a person who is usually warm, friendly, and tactful. They generally have an optimistic view of human nature and get along well with others. In this case, how agreeable are you?'
-    const  extraversionString ='Extraversion indicates how outgoing and social a person is. How outgoing are you?'
-    const  privacy_dataString ='Is defined as an individual\'s concern about possible loss of privacy due to voluntary or surreptitious information disclosure. How concerned are you about your digital privacy?'
-    const  risk_perceptionString = 'Risk perception is the subjective judgment that people make about the characteristics and severity of a risk. And you, what perception of risk do you have?'
-    const  risk_propensityString ='The degree an entity is prepared to take a chance with the risk of a loss. How much are you willing to risk?'
-    const opennessString = 'Openness indicates how open-minded a person is. Individuals with a high level of openness have a general appreciation for unusual ideas and art. They are usually imaginative, rather than practical. How open-minded are you?'
-    const scarcityString ='Tendency to assign more value to items and opportunities when their availability is limited, not to waste the opportunity. Are you willing to make the most of the opportunities of this moment?'
-    const consistencyString = 'Tendency to behave in a way consistent with past decisions and behaviours. Consistency is an adaptive behavior that has been very beneficial. Doing certain things the same way and making decisions according to the same values helps us survive in a complex world. Do you always behave the same way when you read an email?'
-    const  social_proofString = 'Tendency to reference the behaviour of others, by using the majority behaviour to guide their own actions. How much does your actions depend on the behavior of others?'
-    const  gratitudeString ='Tendency to feel obliged to repay favours from others.“I do something for you, you do something for me." Reciprocity is the impulse we feel to return the favor after we are helped by someone or given value. Are you grateful to people?'
-    const   authorityString ='Tendency to obey people in authoritative positions, following from the possibility of punishment for not complying with the authoritative requests. How do you obey authority?'
     const jobExpYearModel = ref(null)
     const jobExpYearOptions = reactive(Array.from(Array(41).keys()))
     const natModel = ref(null)
     const natOptions = reactive(
       [
-        'Italian',
-        'German',
-        'Spanish',
-        'French',
-        'English',
-        'Turkish',
-        'Dutch',
-        'Arabic'
+        'Afghan',
+'Åland Island',
+'Albanian',
+'Algerian',
+'American',
+'American Samoan',
+'Andorran',
+'Angolan',
+'Anguillan',
+'Antarctic',
+'Antiguan or Barbudan',
+'Argentine',
+'Armenian',
+'Aruban',
+'Australian',
+'Austrian',
+'Azero',
+'Bahamian',
+'Bahraini',
+'Bangladeshi',
+'Barbadian',
+'Barthélemois',
+'Basotho',
+'Belarusian',
+'Belgian',
+'Belizean',
+'Beninois',
+'Bermudan',
+'Bhutanese',
+'BIOT',
+'Bissau-Guinean',
+'Bolivian',
+'Bonaire',
+'Bosnian or Herzegovinian',
+'Bouvet Island',
+'Brazilian',
+'British',
+'British Virgin Island',
+'Bruneian',
+'Bulgarian',
+'Burkinabé',
+'Burmese',
+'Burundian',
+'Cabo Verdean',
+'Cambodian',
+'Cameroonian',
+'Canadian',
+'Caymanian',
+'Central African',
+'Chadian',
+'Channel Island',
+'Channel Island',
+'Chilean',
+'Chinese',
+'Taiwanese',
+'Christmas Island',
+'Cocos Island',
+'Colombian',
+'Comorian',
+'Congolese',
+'Congolese',
+'Cook Island',
+'Costa Rican',
+'Croatian',
+'Cuban',
+'Curaçaoan',
+'Cypriot',
+'Czech',
+'Danish',
+'Djiboutian',
+'Dominican',
+'Dominican',
+'Netherlandic',
+'Ecuadorian',
+'Egyptian',
+'Emirian',
+'Equatoguinean',
+'Eritrean',
+'Estonian',
+'Ethiopian',
+'Falkland Island',
+'Faroese',
+'Fijian',
+'Finnish',
+'French',
+'French Guianese',
+'French Polynesian',
+'French Southern Territories',
+'Gabonese',
+'Gambian',
+'Georgian',
+'German',
+'Ghanaian',
+'Gibraltar',
+'Greek',
+'Greenlandic',
+'Grenadian',
+'Guadeloupe',
+'Guamanian',
+'Guatemalan',
+'Guinean',
+'Guyanese',
+'Haitian',
+'Heard Island or McDonald Islands',
+'Honduran',
+'Hong Kongese',
+'Hungarian',
+'Icelandic',
+'I-Kiribati',
+'Indian',
+'Indonesian',
+'Iranian',
+'Iraqi',
+'Irish',
+'Israeli',
+'Italian',
+'Ivorian',
+'Jamaican',
+'Japanese',
+'Jordanian',
+'Kazakh',
+'Kenyan',
+'Kittitian or Nevisian',
+'Kuwaiti',
+'Kirghiz',
+'Laotian',
+'Latvian',
+'Lebanese',
+'Liberian',
+'Libyan',
+'Liechtenstein',
+'Lithuanian',
+'Luxembourgish',
+'Chinese',
+'Macedonian',
+'Mahoran',
+'Malagasy',
+'Malawian',
+'Malaysian',
+'Maldivian',
+'Malian',
+'Maltese',
+'Manx',
+'Marshallese',
+'Martinican',
+'Mauritanian',
+'Mauritian',
+'Mexican',
+'Micronesian',
+'Moldovan',
+'Monégasque',
+'Mongolian',
+'Montenegrin',
+'Montserratian',
+'Moroccan',
+'Botswanan',
+'Mozambican',
+'Namibian',
+'Nauruan',
+'Nepalese',
+'New Caledonian',
+'New Zealand',
+'Nicaraguan',
+'Nigerian',
+'Nigerien',
+'Niuean',
+'Vanuatuan',
+'Norfolk Island',
+'North Korean',
+'Northern Marianan',
+'Norwegian',
+'Omani',
+'Pakistani',
+'Palauan',
+'Palestinian',
+'Panamanian',
+'Papua New Guinean',
+'Paraguayan',
+'Peruvian',
+'Filipino',
+'Pitcairn Island',
+'Polish',
+'Portuguese',
+'Puerto Rican',
+'Qatari',
+'Réunionnais',
+'Romanian',
+'Russian',
+'Rwandan',
+'Sahrawian',
+'Saint Helenian',
+'Saint Lucian',
+'Saint Vincentian',
+'Saint-Martinoise',
+'Saint-Pierrais',
+'Sammarinese',
+'Samoan',
+'São Toméan',
+'Saudi',
+'Senegalese',
+'Serbian',
+'Seychellois',
+'Sierra Leonean',
+'Singaporean',
+'Sint Maarten',
+'Slovak',
+'Slovenian',
+'Solomon Island',
+'Somali',
+'South African',
+'South Georgia',
+'South Korean',
+'South Sudanese',
+'Spanish',
+'Sri Lankan',
+'Sudanese',
+'Surinamese',
+'Svalbard',
+'Swazi',
+'Swedish',
+'Swiss',
+'Syrian',
+'Tajikistani',
+'Tanzanian',
+'Thai',
+'Timorese',
+'Togolese',
+'Tokelauan',
+'Tongan',
+'Trinidadian',
+'Tunisian',
+'Turkish',
+'Turkmen',
+'Turks and Caicos Island',
+'Tuvaluan',
+'U.S. Virgin Island',
+'Ugandan',
+'Ukrainian',
+'Uruguayan',
+'Uzbek',
+'Vatican',
+'Venezuelan',
+'Vietnamese',
+'Wallisian or Futunan',
+'Yemeni',
+'Zambian',
+'Zimbabwean',
+'Other'
       ]
     )
     const lanModel = ref(null)
@@ -855,12 +1137,16 @@ export default defineComponent({
         'Chinese',
         'American',
         'Arabic',
-        'Japanese'
+        'Japanese',
+        'Portughese',
+        'Espanol',
+        'Other'
       ]
     )
 
     const computerScienceknowledgeModel = ref(0)
     const antiPhisCourseModel = ref(false)
+    const antiPhisCourseEverModel = ref(false)
     const victimModel = ref(false)
     const timeModel = ref(0)
     const selfConfidenceModel = ref(0)
@@ -888,6 +1174,7 @@ export default defineComponent({
       password: '',
     })
     const persistent = ref(true)
+    const nat_options = ref(null)
     const showImpulsivity = ref (false)
     const showCuriosity = ref(false)
     const showRiskProp = ref(false)
@@ -920,11 +1207,11 @@ export default defineComponent({
       showConsinstency.value  = false
       showSocialProof.value  = false
       showGratitude.value  = false
-      await store.dispatch('userCharacteristic/get_edu_field')
-      await store.dispatch('userCharacteristic/get_edu_level')
-      await store.dispatch('userCharacteristic/get_job_field')
-      await store.dispatch('userCharacteristic/get_empl_type')
-      await store.dispatch('userCharacteristic/get_hobby')
+      await store.dispatch('userCharacteristic/get_edu_field',locale.value)
+      await store.dispatch('userCharacteristic/get_edu_level',locale.value)
+      await store.dispatch('userCharacteristic/get_job_field',locale.value)
+      await store.dispatch('userCharacteristic/get_empl_type',locale.value)
+      await store.dispatch('userCharacteristic/get_hobby',locale.value)
     }
     const userRegister = async () => {
 
@@ -933,12 +1220,20 @@ export default defineComponent({
           || !emplTypeModel.value || jobExpYearModel.value == null || !hobbyModel.value
           || !natModel.value || !lanModel.value){
 
+
+      if (locale.value == "en-US"){
+
         $q.notify({
           type: 'negative',
-          message: 'Enter all required fields!'
+          message: "Enter all required fields!"
+        })
+      }else if(locale.value == "it"){
+        $q.notify({
+          type: 'negative',
+          message: "Compilare tutti i campi obbligatori!"
         })
       }
-      else{
+      }else{
 
         const hobbies = []
         for(let i=0; i<hobbyModel.value.length; i++){
@@ -954,6 +1249,7 @@ export default defineComponent({
             preferred_lang: lanModel.value,
             computer_science_knowledge: computerScienceknowledgeModel.value,
             antiPhishing_course: antiPhisCourseModel.value,
+            antiPhishing_course_ever: antiPhisCourseEverModel.value,
             phishing_attack: victimModel.value,
             time_on_internet: timeModel.value,
             educationLevel_id: eduLevelModel.value.id,
@@ -991,7 +1287,7 @@ export default defineComponent({
         }
 
         await store.dispatch('userCharacteristic/register', userInfo).then(()=>{
-          //console.log("dispatch con SUCCESSO")
+          ////console.log("dispatch con SUCCESSO")
           router.push({name : 'infoBeforeStart'})
         })
       }
@@ -1000,6 +1296,23 @@ export default defineComponent({
     return {
       ageModel,
       ageOptions,
+      nat_options,
+      filterFn (val, update) {
+        if (val === '') {
+          update(() => {
+            nat_options.value = natOptions
+
+            // here you have access to "ref" which
+            // is the Vue reference of the QSelect
+          })
+          return
+        }
+
+        update(() => {
+          const needle = val.toLowerCase()
+          nat_options.value = natOptions.filter(v => v.toLowerCase().indexOf(needle) > -1)
+        })
+      },
       genderModel,
       genderOptions,
       eduLevelModel,
@@ -1022,6 +1335,7 @@ export default defineComponent({
       lanOptions,
       computerScienceknowledgeModel,
       antiPhisCourseModel,
+      antiPhisCourseEverModel,
       victimModel,
       timeModel,
       selfConfidenceModel,
@@ -1044,21 +1358,6 @@ export default defineComponent({
       form,
       startRegister,
       userRegister,
-      impulsivityString,
-      curiosityString,
-      emotional_stabilityString,
-      conscientiousnessString,
-      agreeablenessString,
-      extraversionString,
-      privacy_dataString,
-      risk_perceptionString,
-      risk_propensityString,
-      opennessString,
-      scarcityString,
-      consistencyString,
-      social_proofString,
-      gratitudeString,
-      authorityString,
       showImpulsivity,
       showCuriosity,
       showRiskProp,

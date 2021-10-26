@@ -6,8 +6,8 @@ const routes = [
   { path: '/test_email', name: 'email', component: () => import('pages/Email.vue'), meta: { auth: false } },
   { path: '/beforeStarting', name: 'infoBeforeStart', component: () => import('pages/InfoBeforeStart.vue'), meta: { auth: false } },
   { path: '/results', name: 'result', component: () => import('pages/Result.vue'), meta: { auth: false } },
-
-
+  { path: '/test', name: 'testUi', component: () => import('pages/TestUi.vue'), meta: { auth: false } },
+  { path: '/testHome', name: 'home', component: () => import('pages/HomeNew.vue'), meta: { auth: false } },
   // Always leave this as last one,
   // but you can also remove it
   {
