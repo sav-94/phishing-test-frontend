@@ -20,12 +20,12 @@
 
         <!-- ALERT -->
         <q-dialog v-model="persistent" persistent transition-show="scale" transition-hide="scale">
-          <q-card class="bg-white-10 text-primary" style="width: 300px">
+          <q-card class="bg-white-10 text-primary text-center text-justify " style="width: 200%">
             <q-card-section>
-              <div class="text-h6">{{$t('alertNotice')}}</div>
+              <div class="text-h6 q-ml-sm">{{$t('alertNotice')}}</div>
             </q-card-section>
 
-            <q-card-section class="q-pt-none">
+            <q-card-section class="q-mr-md q-ml-sm">
               {{$t('alertCard')}}</q-card-section>
 
             <q-card-actions align="right" class="bg-white-10">
@@ -344,18 +344,20 @@
                       @click="expanded1 = !expanded1"
                     />
                         </div>
-
+                    <p style="color: grey;"> {{$t('impulsivityString1')}}</p>
                     </q-card-section>
-                    <q-separator inset />
+                    <q-separator inset style="margin-top:-3%;"/>
+
 
                     <q-slide-transition>
                       <div v-show="expanded1">
-                      <q-separator />
-                      <q-card-section class="text-subitle2">
+
+                      <q-card-section  class="text-subitle2">
                             {{$t('impulsivityString')}}
                       </q-card-section>
                     </div>
                   </q-slide-transition>
+
 
 
                     <q-card-section>
@@ -396,12 +398,13 @@
                     />
                         </div>
 
+                    <p style="color: grey;"> {{$t('curiosityString1')}}</p>
                     </q-card-section>
-                    <q-separator inset />
+                    <q-separator inset style="margin-top:-3%;" />
 
                     <q-slide-transition>
                       <div v-show="expanded2">
-                      <q-separator />
+
                       <q-card-section class="text-subitle2">
                             {{$t('curiosityString')}}
                       </q-card-section>
@@ -447,13 +450,13 @@
                       @click="expanded3 = !expanded3"
                     />
                         </div>
-
+                    <p style="color: grey;"> {{$t('risk_propensityString1')}}</p>
                     </q-card-section>
-                    <q-separator inset />
+                    <q-separator inset style="margin-top:-3%;"/>
 
                     <q-slide-transition>
                       <div v-show="expanded3">
-                      <q-separator />
+
                       <q-card-section class="text-subitle2">
                             {{$t('risk_propensityString')}}
                       </q-card-section>
@@ -498,13 +501,13 @@
                       @click="expanded4 = !expanded4"
                     />
                         </div>
-
+                    <p style="color: grey;"> {{$t('risk_perceptionString1')}}</p>
                     </q-card-section>
-                    <q-separator inset />
+                    <q-separator inset style="margin-top:-3%;" />
 
                     <q-slide-transition>
                       <div v-show="expanded4">
-                      <q-separator />
+
                       <q-card-section class="text-subitle2">
                             {{$t('risk_perceptionString')}}
                       </q-card-section>
@@ -549,13 +552,13 @@
                       @click="expanded5 = !expanded5"
                     />
                         </div>
-
+                    <p style="color: grey;"> {{$t('privacy_dataString1')}}</p>
                     </q-card-section>
-                    <q-separator inset />
+                    <q-separator inset style="margin-top:-3%;" />
 
                     <q-slide-transition>
                       <div v-show="expanded5">
-                      <q-separator />
+
                       <q-card-section class="text-subitle2">
                             {{$t('privacy_dataString')}}
                       </q-card-section>
@@ -618,13 +621,13 @@
                       @click="expanded6= !expanded6"
                     />
                         </div>
-
+                      <p style="color: grey;"> {{$t('opennessString1')}}</p>
                     </q-card-section>
-                    <q-separator inset />
+                    <q-separator inset style="margin-top:-3%;"/>
 
                     <q-slide-transition>
                       <div v-show="expanded6">
-                      <q-separator />
+
                       <q-card-section class="text-subitle2">
                             {{$t('opennessString')}}
                       </q-card-section>
@@ -668,13 +671,13 @@
                       @click="expanded7 = !expanded7"
                     />
                         </div>
-
+                    <p style="color: grey;"> {{$t('extraversionString1')}}</p>
                     </q-card-section>
-                    <q-separator inset />
+                    <q-separator inset style="margin-top:-3%;"/>
 
                     <q-slide-transition>
                       <div v-show="expanded7">
-                      <q-separator />
+
                       <q-card-section class="text-subitle2">
                             {{$t('extraversionString')}}
                       </q-card-section>
@@ -719,13 +722,13 @@
                       @click="expanded8 = !expanded8"
                     />
                         </div>
-
-                    </q-card-section>
-                    <q-separator inset />
+                      <p style="color: grey;"> {{$t('agreeablenessString1')}}</p>
+                     </q-card-section>
+                    <q-separator inset style="margin-top:-3%;"/>
 
                     <q-slide-transition>
                       <div v-show="expanded8">
-                      <q-separator />
+
                       <q-card-section class="text-subitle2">
                             {{$t('agreeablenessString')}}
                       </q-card-section>
@@ -769,13 +772,13 @@
                       @click="expanded9 = !expanded9"
                     />
                         </div>
-
+                    <p style="color: grey;"> {{$t('conscientiousnessString1')}}</p>
                     </q-card-section>
-                    <q-separator inset />
+                    <q-separator inset style="margin-top:-3%;"/>
 
                     <q-slide-transition>
                       <div v-show="expanded9">
-                      <q-separator />
+
                       <q-card-section class="text-subitle2">
                             {{$t('conscientiousnessString')}}
                       </q-card-section>
@@ -821,13 +824,13 @@
                       @click="expanded10 = !expanded10"
                     />
                         </div>
-
+                    <p style="color: grey;"> {{$t('emotional_stabilityString1')}}</p>
                     </q-card-section>
-                    <q-separator inset />
+                    <q-separator inset style="margin-top:-3%;"/>
 
                     <q-slide-transition>
                       <div v-show="expanded10">
-                      <q-separator />
+
                       <q-card-section class="text-subitle2">
                             {{$t('emotional_stabilityString')}}
                       </q-card-section>
@@ -888,13 +891,13 @@
                       @click="expanded11 = !expanded11"
                     />
                         </div>
-
+                    <p style="color: grey;"> {{$t('scarcityString1')}}</p>
                     </q-card-section>
-                    <q-separator inset />
+                    <q-separator inset style="margin-top:-3%;"/>
 
                     <q-slide-transition>
                       <div v-show="expanded11">
-                      <q-separator />
+
                       <q-card-section class="text-subitle2">
                             {{$t('scarcityString')}}
                       </q-card-section>
@@ -938,13 +941,13 @@
                       @click="expanded12 = !expanded12"
                     />
                         </div>
-
+                    <p style="color: grey;"> {{$t('consistencyString1')}}</p>
                     </q-card-section>
-                    <q-separator inset />
+                    <q-separator inset style="margin-top:-3%;"/>
 
                     <q-slide-transition>
                       <div v-show="expanded12">
-                      <q-separator />
+
                       <q-card-section class="text-subitle2">
                             {{$t('consistencyString')}}
                       </q-card-section>
@@ -988,13 +991,13 @@
                       @click="expanded13 = !expanded13"
                     />
                         </div>
-
+                    <p style="color: grey;"> {{$t('social_proofString1')}}</p>
                     </q-card-section>
-                    <q-separator inset />
+                    <q-separator inset style="margin-top:-3%;"/>
 
                     <q-slide-transition>
                       <div v-show="expanded13">
-                      <q-separator />
+
                       <q-card-section class="text-subitle2">
                             {{$t('social_proofString')}}
                       </q-card-section>
@@ -1037,13 +1040,13 @@
                       @click="expanded14 = !expanded14"
                     />
                         </div>
-
+                    <p style="color: grey;"> {{$t('gratitudeString1')}}</p>
                     </q-card-section>
-                    <q-separator inset />
+                    <q-separator inset style="margin-top:-3%;"/>
 
                     <q-slide-transition>
                       <div v-show="expanded14">
-                      <q-separator />
+
                       <q-card-section class="text-subitle2">
                             {{$t('gratitudeString')}}
                       </q-card-section>
@@ -1084,13 +1087,13 @@
                       @click="expanded15 = !expanded15"
                     />
                         </div>
-
+                    <p style="color: grey;"> {{$t('authorityString1')}}</p>
                     </q-card-section>
-                    <q-separator inset />
+                    <q-separator inset style="margin-top:-3%;"/>
 
                     <q-slide-transition>
                       <div v-show="expanded15">
-                      <q-separator />
+
                       <q-card-section class="text-subitle2">
                             {{$t('authorityString')}}
                       </q-card-section>
