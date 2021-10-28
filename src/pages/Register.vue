@@ -90,7 +90,7 @@
         </template>
       </q-select>
               </div>
-              <div class="col-md-1 col-sm-12 col-xs-12" style="margin-top:1%;">
+              <div class="col-md-1 col-sm-12 col-gt-xs" style="margin-top:1%;">
               </div>
               <div class="col-md-2 col-sm-3 col-xs-12" style="margin-top:1%;">
                 <q-select
@@ -121,9 +121,7 @@
       <p style="color: grey;"> {{$t('eduDisclaimer')}}</p>
 
         <div class="row">
-          <div class="col-md-1 col-sm-1 col-xs-12">
-          </div>
-              <div class="col-md-3 col-sm-5 col-xs-12">
+              <div class="col-md-4 col-sm-4 col-xs-12 q-ma-sm">
                 <q-select
                   v-model="eduLevelModel"
                   :options="eduLevelOptions"
@@ -132,9 +130,9 @@
                   :label="$t('education_level')"
                 />
               </div>
-              <div class="col-md-2 col-sm-1 col-xs-12">
-          </div>
-              <div class="col-md-3 col-sm-3 col-xs-12">
+              <div class="col-md-1 col-sm-1 col-gt-xs">
+              </div>
+              <div class="col-md-4 col-sm-4 col-xs-12 q-ma-sm">
                 <q-select
                   v-model="eduFieldModel"
                   :options="eduFieldOptions"
@@ -164,17 +162,8 @@
       <p style="color: grey;"> {{$t('workSub')}}</p>
 
         <div class="row">
-              <div class="col-md-2 col-sm-3 col-xs-12">
-                <q-select
-                  v-model="jobFieldModel"
-                  :options="jobFieldOptions"
-                  option-value="id"
-                  option-label="name"
-                  :label="$t('jobField')"
-                />
-              </div>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <div class="col-md-2 col-sm-3 col-xs-12">
+
+              <div class="col-md-4 col-sm-4 col-xs-12 q-ma-sm">
                 <q-select
                   v-model="emplTypeModel"
                   :options="emplTypeOptions"
@@ -183,16 +172,38 @@
                   :label="$t('employmentType')"
                 />
               </div>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <div class="col-md-3 col-sm-4 col-xs-12">
+              <div class="col-md-1 col-sm-1 col-gt-xs">
+                </div>
+
+              <div class="col-md-2 col-sm-3 col-xs-12 q-ma-sm">
+                <q-select
+                  v-model="jobFieldModel"
+                  :options="jobFieldOptions"
+                  option-value="id"
+                  option-label="name"
+                  :label="$t('jobField')"
+                />
+              </div>
+              <div class="col-md-1 col-sm-1 col-gt-xs">
+                </div>
+              <div class="col-md-3 col-sm-4 col-xs-12 q-ma-sm">
                 <q-select v-model="jobExpYearModel" :options="jobExpYearOptions" :label="$t('yearsofEx')" />
               </div>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
 
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <div class="col-md-3 col-sm-3 col-xs-12">
+        <div class="row q-mt-lg">
+
+
+          <div class="col-md-4 col-sm-4 col-xs-12 q-ma-sm">
+              <q-select v-model="workHoursPriorTestModel" :options="workHoursOptions" :label="$t('workingHours')" />
+          </div>
+
+
+         <div class="col-1 col-md-1 col-sm-1 col-gt-xs">
+         </div>
+
+              <div class="col-md-3 col-sm-3 col-xs-12 q-ma-sm">
                 <q-select
                   v-model="hobbyModel"
                   multiple
@@ -204,35 +215,22 @@
                   :label="$t('mailboxUsage')"
                 />
               </div>
+
         </div>
-        <div class="row q-mt-lg">
 
 
-            <div class="col-4 col-md-4 col-sm-12 col-xs-12">
-              <q-badge flex flex-center color="yellow-9"  style="height: 19px;margin-bottom:4%;margin-left:-0.5%;">
-                {{$t('workingHours')}} {{ workHoursPriorTestModel }}
-              </q-badge>
 
-              <q-slider
-                color="yellow-9"
-                v-model="workHoursPriorTestModel"
-                label
-                :step="1"
-                :min="0"
-                :max="10"
-              />
-              <p style="color: grey;"> {{$t('value10')}}</p>
-            </div>
 
-            <div class="col-3 col-md-1 col-sm-12 col-xs-12">
-            </div>
-        </div>
 
         <q-stepper-navigation>
           <q-btn @click="step = 4" color="primary" :label="$t('continue')" />
           <q-btn flat @click="step = 2" color="primary" :label="$t('go_back')" class="q-ml-sm" />
         </q-stepper-navigation>
       </q-step>
+
+
+
+
 
 
 
@@ -245,75 +243,27 @@
       >
 
 
+
+
         <div class="row q-mt-lg">
-              <div class="col-5 col-md-5 col-sm-12 col-xs-12">
 
-              <q-badge color="blue-10" style="height: 18px;margin-bottom:4%;" >
-                {{$t('computerScienceSkill')}} {{ computerScienceknowledgeModel }}
-              </q-badge>
-              <div>
-
-              </div>
-
-              <q-slider
-                v-model="computerScienceknowledgeModel"
-                label
-                :step="1"
-                :min="0"
-                :max="5"
-              />
-              <p style="color: grey;"> {{$t('value5')}}</p>
-            </div>
-
-            <div class="col-1 col-md-1 col-sm-12 col-xs-12">
-            </div>
-
-            <div class="col-5 col-md-5 col-sm-12 col-xs-12">
-                <q-badge color="green-9"  style="height: 18px;margin-bottom:4%;" >
-                  {{$t('selfConfidence')}} {{ selfConfidenceModel }}
-                </q-badge>
-
-                <q-slider
-                  v-model="selfConfidenceModel"
-                  label
-                  :step="1"
-                  color="green-9"
-                  :min="0"
-                  :max="5"
-                />
-                <p style="color: grey;"> {{$t('value5')}}</p>
+          <div class="col-md-3 col-sm-3 col-xs-12 q-ma-md">
+              <q-select v-model="computerScienceknowledgeModel" :options="zero_to_five" :label="$t('computerScienceSkill')" />
               </div>
 
 
+              <div class="col-md-3 col-sm-3 col-xs-12 q-ma-md">
+              <q-select v-model="timeModel" :options="zero_to_five" :label="$t('timespentonInternet')" />
+              </div>
+
+
+
+                <div class="col-md-4 col-sm-4 col-xs-12 q-ma-md">
+                <q-select v-model="selfConfidenceModel" :options="zero_to_five" :label="$t('selfConfidence')" />
+                </div>
         </div>
 
 
-
-        <div  class="row q-mt-lg">
-              <div class="col-5 col-md-5 col-sm-12 col-xs-12">
-                <q-badge color="red-10"  style="height: 18px;margin-bottom:4%;">
-                  {{$t('timespentonInternet')}} {{ timeModel }}
-                </q-badge>
-
-                <q-slider
-                  v-model="timeModel"
-                  color="red-10"
-                  :min="0"
-                  :max="15"
-                  :step="1"
-                  label
-
-                />
-              <p style="color: grey;"> {{$t('value15')}}</p>
-              </div>
-
-              <div class="col-1 col-md-1 col-sm-12 col-xs-12">
-              </div>
-
-
-
-
-            </div>
 
         <q-stepper-navigation>
           <q-btn @click="step = 5" color="primary" :label="$t('continue')" />
@@ -329,6 +279,7 @@
         :title="$t('phishingAwareness')"
         icon="workspaces"
         :done="step > 5"
+
       >
 
         <div class="row q-mt-lg">
@@ -379,136 +330,258 @@
         <div class="row q-mt-lg">
 
               <div class="col-5 col-md-5 col-sm-12 col-xs-12 q-mt-md">
-                <q-card class="my-card bg-yellow-9" style="margin-bottom:4%;">
+                <q-card class="my-card bg-white-9" flat bordered style="margin-bottom:4%;">
                     <q-card-section>
-                        <div class="text-h6 text-white">
-                          {{$t('impulsivity')}} {{ impulsivityModel }}
+                        <div class="text-h5 text-black">
+                          {{$t('impulsivity')}}
+
+                    <q-btn
+                      color="yellow-9"
+                      round
+                      flat
+                      dense
+                      :icon="expanded1 ? 'keyboard_arrow_up' : 'help'"
+                      @click="expanded1 = !expanded1"
+                    />
                         </div>
-                        <div class="text-h8 bg-yellow-9 text-white">
-                        {{$t('impulsivityString')}}
-                        </div>
+
+                    </q-card-section>
+                    <q-separator inset />
+
+                    <q-slide-transition>
+                      <div v-show="expanded1">
+                      <q-separator />
+                      <q-card-section class="text-subitle2">
+                            {{$t('impulsivityString')}}
+                      </q-card-section>
+                    </div>
+                  </q-slide-transition>
+
+
+                    <q-card-section>
+                          <q-slider class="q-mt-md"
+                            v-model="impulsivityModel"
+                            label-always
+                            dense
+                            label-text-color="white"
+                            :step="1"
+                            color="yellow-9"
+                            :min="0"
+                            :max="5"
+                            />
+                            <p class="q-mt-sm text-caption text-grey" > {{$t('value5')}}</p>
                     </q-card-section>
                 </q-card>
 
-                <q-slider
-                  v-model="impulsivityModel"
-                  label
 
-                  :step="1"
-                  color="yellow-9"
-                  :min="0"
-                  :max="5"
-                />
-                <p style="color: grey;"> {{$t('value5')}}</p>
               </div>
 
               <div class="col-1 col-md-1 col-sm-12 col-xs-12 q-mt-md">
               </div>
 
+
               <div class="col-5 col-md-5 col-sm-12 col-xs-12 q-mt-md">
-                <q-card class="my-card bg-blue-10" style="margin-bottom:4%;">
+                <q-card class="my-card bg-white-9" flat bordered style="margin-bottom:4%;">
                     <q-card-section>
-                      <div class="text-h6 text-white">
-                        {{$t('curiosity')}}  {{ curiosityModel }}
-                      </div>
-                      <div class="text-h8 bg-blue-10 text-white">
-                        {{$t('curiosityString')}}
-                      </div>
+                        <div class="text-h5 text-black">
+                          {{$t('curiosity')}}
+
+                    <q-btn
+                      color="blue-10"
+                      round
+                      flat
+                      dense
+                      :icon="expanded2 ? 'keyboard_arrow_up' : 'help'"
+                      @click="expanded2 = !expanded2"
+                    />
+                        </div>
+
+                    </q-card-section>
+                    <q-separator inset />
+
+                    <q-slide-transition>
+                      <div v-show="expanded2">
+                      <q-separator />
+                      <q-card-section class="text-subitle2">
+                            {{$t('curiosityString')}}
+                      </q-card-section>
+                    </div>
+                  </q-slide-transition>
+
+
+                    <q-card-section>
+                          <q-slider class="q-mt-md"
+                            v-model="curiosityModel"
+                            label-always
+                            dense
+                            label-text-color="white"
+                            :step="1"
+                            color="blue-10"
+                            :min="0"
+                            :max="5"
+                            />
+                            <p class="q-mt-sm text-caption text-grey" > {{$t('value5')}}</p>
                     </q-card-section>
                 </q-card>
 
-                <q-slider
-                  v-model="curiosityModel"
-                  label
-
-                  :step="1"
-                  color="blue-10"
-                  :min="0"
-                  :max="5"
-                />
-                <p style="color: grey;"> {{$t('value5')}}</p>
-              </div>
 
               </div>
 
-              <div class="row q-mt-lg">
+
+
+              </div>
+            <div class="row q-mt-lg">
+
               <div class="col-5 col-md-5 col-sm-12 col-xs-12 q-mt-md">
-                <q-card class="my-card bg-orange-10" style="margin-bottom:4%;">
+                <q-card class="my-card bg-white-9" flat bordered style="margin-bottom:4%;">
                     <q-card-section>
-                        <div class="text-h6 text-white">
-                           {{$t('risk_prop')}}  {{ riskPropensityModel }}
+                        <div class="text-h5 text-black">
+                          {{$t('risk_prop')}}
+
+                    <q-btn
+                      color="orange-10"
+                      round
+                      flat
+                      dense
+                      :icon="expanded3 ? 'keyboard_arrow_up' : 'help'"
+                      @click="expanded3 = !expanded3"
+                    />
                         </div>
-                        <div class="text-h8 bg-orange-10 text-white">
-                        {{$t('risk_propensityString')}}
-                        </div>
+
+                    </q-card-section>
+                    <q-separator inset />
+
+                    <q-slide-transition>
+                      <div v-show="expanded3">
+                      <q-separator />
+                      <q-card-section class="text-subitle2">
+                            {{$t('risk_propensityString')}}
+                      </q-card-section>
+                    </div>
+                  </q-slide-transition>
+
+
+                    <q-card-section>
+                          <q-slider class="q-mt-md"
+                            v-model="riskPropensityModel"
+                            label-always
+                            dense
+                            label-text-color="white"
+                            :step="1"
+                            color="orange-10"
+                            :min="0"
+                            :max="5"
+                            />
+                            <p class="q-mt-sm text-caption text-grey" > {{$t('value5')}}</p>
                     </q-card-section>
                 </q-card>
 
-                <q-slider
-                  v-model="riskPropensityModel"
-                  label
 
-                  :step="1"
-                  color="orange-10"
-                  :min="0"
-                  :max="5"
-                />
-                <p style="color: grey;"> {{$t('value5')}}</p>
               </div>
+
 
               <div class="col-1 col-md-1 col-sm-12 col-xs-12 q-mt-md">
               </div>
 
               <div class="col-5 col-md-5 col-sm-12 col-xs-12 q-mt-md">
-                <q-card class="my-card bg-red-10" style="margin-bottom:4%;">
+                <q-card class="my-card bg-white-9" flat bordered style="margin-bottom:4%;">
                     <q-card-section>
-                      <div class="text-h6 text-white">
-                        {{$t('risk_perc')}}  {{ riskPerceptionModel }}
-                      </div>
-                      <div class="text-h8 bg-red-10 text-white">
-                        {{$t('risk_perceptionString')}}
-                      </div>
+                        <div class="text-h5 text-black">
+                          {{$t('risk_perc')}}
+
+                    <q-btn
+                      color="red-10"
+                      round
+                      flat
+                      dense
+                      :icon="expanded4 ? 'keyboard_arrow_up' : 'help'"
+                      @click="expanded4 = !expanded4"
+                    />
+                        </div>
+
+                    </q-card-section>
+                    <q-separator inset />
+
+                    <q-slide-transition>
+                      <div v-show="expanded4">
+                      <q-separator />
+                      <q-card-section class="text-subitle2">
+                            {{$t('risk_perceptionString')}}
+                      </q-card-section>
+                    </div>
+                  </q-slide-transition>
+
+
+                    <q-card-section>
+                          <q-slider class="q-mt-md"
+                            v-model="riskPerceptionModel"
+                            label-always
+                            dense
+                            label-text-color="white"
+                            :step="1"
+                            color="red-10"
+                            :min="0"
+                            :max="5"
+                            />
+                            <p class="q-mt-sm text-caption text-grey" > {{$t('value5')}}</p>
                     </q-card-section>
                 </q-card>
-
-                <q-slider
-                  v-model="riskPerceptionModel"
-                  label
-
-                  :step="1"
-                  color="red-10"
-                  :min="0"
-                  :max="5"
-                />
-                <p style="color: grey;"> {{$t('value5')}}</p>
               </div>
 
               </div>
+
+
 
               <div class="row q-mt-lg">
+
                 <div class="col-5 col-md-5 col-sm-12 col-xs-12 q-mt-md">
-                <q-card class="my-card bg-green-9" style="margin-bottom:4%;">
+                <q-card class="my-card bg-white-9" flat bordered style="margin-bottom:4%;">
                     <q-card-section>
-                        <div class="text-h6 text-white">
-                          {{$t('privacy_data')}} {{ privacyDataModel }}
+                        <div class="text-h5 text-black">
+                          {{$t('privacy_data')}}
+
+                    <q-btn
+                      color="green-9"
+                      round
+                      flat
+                      dense
+                      :icon="expanded5 ? 'keyboard_arrow_up' : 'help'"
+                      @click="expanded5 = !expanded5"
+                    />
                         </div>
-                        <div class="text-h8 bg-green-9 text-white">
-                        {{$t('privacy_dataString')}}
-                        </div>
+
+                    </q-card-section>
+                    <q-separator inset />
+
+                    <q-slide-transition>
+                      <div v-show="expanded5">
+                      <q-separator />
+                      <q-card-section class="text-subitle2">
+                            {{$t('privacy_dataString')}}
+                      </q-card-section>
+                    </div>
+                  </q-slide-transition>
+
+
+                    <q-card-section>
+                          <q-slider class="q-mt-md"
+                            v-model="privacyDataModel"
+                            label-always
+                            dense
+                            label-text-color="white"
+                            :step="1"
+                            color="green-9"
+                            :min="0"
+                            :max="5"
+                            />
+                            <p class="q-mt-sm text-caption text-grey" > {{$t('value5')}}</p>
                     </q-card-section>
                 </q-card>
-
-                <q-slider
-                  v-model="privacyDataModel"
-                  label
-
-                  :step="1"
-                  color="green -9"
-                  :min="0"
-                  :max="5"
-                />
-                <p style="color: grey;"> {{$t('value5')}}</p>
               </div>
+
+
+
+
               </div>
 
         <q-stepper-navigation>
@@ -531,28 +604,150 @@
         <div class="row q-mt-lg">
 
         <div class="col-5 col-md-5 col-sm-12 col-xs-12 q-mt-md">
-                <q-card class="my-card bg-green-10" style="margin-bottom:4%;">
+                <q-card class="my-card bg-white-9" flat bordered style="margin-bottom:4%;">
                     <q-card-section>
-                      <div class="text-h6 text-white">
-                        {{$t('openness')}}  {{ opennessModel }}
-                      </div>
-                      <div class="text-h8 bg-green-10 text-white">
-                        {{$t('opennessString')}}
-                      </div>
+                        <div class="text-h5 text-black">
+                          {{$t('openness')}}
+
+                    <q-btn
+                      color="green-10"
+                      round
+                      flat
+                      dense
+                      :icon="expanded6 ? 'keyboard_arrow_up' : 'help'"
+                      @click="expanded6= !expanded6"
+                    />
+                        </div>
+
+                    </q-card-section>
+                    <q-separator inset />
+
+                    <q-slide-transition>
+                      <div v-show="expanded6">
+                      <q-separator />
+                      <q-card-section class="text-subitle2">
+                            {{$t('opennessString')}}
+                      </q-card-section>
+                    </div>
+                  </q-slide-transition>
+
+
+                    <q-card-section>
+                          <q-slider class="q-mt-md"
+                            v-model="opennessModel"
+                            label-always
+                            dense
+                            label-text-color="white"
+                            :step="1"
+                            color="green-10"
+                            :min="0"
+                            :max="5"
+                            />
+                            <p class="q-mt-sm text-caption text-grey" > {{$t('value5')}}</p>
                     </q-card-section>
                 </q-card>
-                <q-slider
-                  v-model="opennessModel"
-                  label
-
-                  :step="1"
-                  color="green-10"
-                  :min="0"
-                  :max="5"
-                />
-                <p style="color: grey;"> {{$t('value5')}}</p>
               </div>
 
+
+              <div class="col-1 col-md-1 col-sm-12 col-xs-12 q-mt-md">
+              </div>
+
+
+              <div class="col-5 col-md-5 col-sm-12 col-xs-12 q-mt-md">
+                <q-card class="my-card bg-white-9" flat bordered style="margin-bottom:4%;">
+                    <q-card-section>
+                        <div class="text-h5 text-black">
+                          {{$t('extrav')}}
+
+                    <q-btn
+                      color="blue-10"
+                      round
+                      flat
+                      dense
+                      :icon="expanded7 ? 'keyboard_arrow_up' : 'help'"
+                      @click="expanded7 = !expanded7"
+                    />
+                        </div>
+
+                    </q-card-section>
+                    <q-separator inset />
+
+                    <q-slide-transition>
+                      <div v-show="expanded7">
+                      <q-separator />
+                      <q-card-section class="text-subitle2">
+                            {{$t('extraversionString')}}
+                      </q-card-section>
+                    </div>
+                  </q-slide-transition>
+
+
+                    <q-card-section>
+                          <q-slider class="q-mt-md"
+                            v-model="extraversionModel"
+                            label-always
+                            dense
+                            label-text-color="white"
+                            :step="1"
+                            color="blue-10"
+                            :min="0"
+                            :max="5"
+                            />
+                            <p class="q-mt-sm text-caption text-grey" > {{$t('value5')}}</p>
+                    </q-card-section>
+                </q-card>
+              </div>
+
+
+              </div>
+
+
+              <div class="row q-mt-lg">
+
+              <div class="col-5 col-md-5 col-sm-12 col-xs-12 q-mt-md">
+                <q-card class="my-card bg-white-9" flat bordered style="margin-bottom:4%;">
+                    <q-card-section>
+                        <div class="text-h5 text-black">
+                          {{$t('agreableness')}}
+
+                    <q-btn
+                      color="orange-10"
+                      round
+                      flat
+                      dense
+                      :icon="expanded8 ? 'keyboard_arrow_up' : 'help'"
+                      @click="expanded8 = !expanded8"
+                    />
+                        </div>
+
+                    </q-card-section>
+                    <q-separator inset />
+
+                    <q-slide-transition>
+                      <div v-show="expanded8">
+                      <q-separator />
+                      <q-card-section class="text-subitle2">
+                            {{$t('agreeablenessString')}}
+                      </q-card-section>
+                    </div>
+                  </q-slide-transition>
+
+
+                    <q-card-section>
+                          <q-slider class="q-mt-md"
+                            v-model="agreeablenessModel"
+                            label-always
+                            dense
+                            label-text-color="white"
+                            :step="1"
+                            color="orange-10"
+                            :min="0"
+                            :max="5"
+                            />
+                            <p class="q-mt-sm text-caption text-grey" > {{$t('value5')}}</p>
+                    </q-card-section>
+                </q-card>
+              </div>
 
 
 
@@ -560,108 +755,104 @@
               </div>
 
               <div class="col-5 col-md-5 col-sm-12 col-xs-12 q-mt-md">
-                <q-card class="my-card bg-blue-10" style="margin-bottom:4%;">
+                <q-card class="my-card bg-white-9" flat bordered style="margin-bottom:4%;">
                     <q-card-section>
-                      <div class="text-h6 text-white">
-                        {{$t('extrav')}}  {{ extraversionModel }}
-                      </div>
-                      <div class="text-h8 bg-blue-10 text-white">
-                        {{$t('extraversionString')}}
-                      </div>
-                    </q-card-section>
-                </q-card>
+                        <div class="text-h5 text-black">
+                          {{$t('conscientiousness')}}
 
-                <q-slider
-                  v-model="extraversionModel"
-                  label
-                  :step="1"
-                  color="blue-10"
-                  :min="0"
-                  :max="5"
-                />
-                <p style="color: grey;"> {{$t('value5')}}</p>
-              </div>
-
-              </div>
-
-              <div class="row q-mt-lg">
-              <div class="col-5 col-md-5 col-sm-12 col-xs-12 q-mt-md">
-                <q-card class="my-card bg-orange-10" style="margin-bottom:4%;">
-                    <q-card-section>
-                        <div class="text-h6 text-white">
-                          {{$t('agreableness')}}  {{ agreeablenessModel }}
+                    <q-btn
+                      color="red-10"
+                      round
+                      flat
+                      dense
+                      :icon="expanded9 ? 'keyboard_arrow_up' : 'help'"
+                      @click="expanded9 = !expanded9"
+                    />
                         </div>
-                        <div class="text-h8 bg-orange-10 text-white">
-                        {{$t('agreeablenessString')}}
-                        </div>
+
                     </q-card-section>
-                </q-card>
+                    <q-separator inset />
 
-                <q-slider
-                  v-model="agreeablenessModel"
-                  label
-                  :step="1"
-                  color="orange-10"
-                  :min="0"
-                  :max="5"
-                />
-                <p style="color: grey;"> {{$t('value5')}}</p>
-              </div>
+                    <q-slide-transition>
+                      <div v-show="expanded9">
+                      <q-separator />
+                      <q-card-section class="text-subitle2">
+                            {{$t('conscientiousnessString')}}
+                      </q-card-section>
+                    </div>
+                  </q-slide-transition>
 
-              <div class="col-1 col-md-1 col-sm-12 col-xs-12 q-mt-md">
-              </div>
 
-              <div class="col-5 col-md-5 col-sm-12 col-xs-12 q-mt-md">
-                <q-card class="my-card bg-red-10" style="margin-bottom:4%;">
                     <q-card-section>
-                      <div class="text-h6 text-white">
-                        {{$t('conscientiousness')}}  {{ conscientiousnessModel }}
-                      </div>
-                      <div class="text-h8 bg-red-10 text-white">
-                        {{$t('conscientiousnessString')}}
-                      </div>
+                          <q-slider class="q-mt-md"
+                            v-model="conscientiousnessModel"
+                            label-always
+                            dense
+                            label-text-color="white"
+                            :step="1"
+                            color="red-10"
+                            :min="0"
+                            :max="5"
+                            />
+                            <p class="q-mt-sm text-caption text-grey" > {{$t('value5')}}</p>
                     </q-card-section>
                 </q-card>
-
-                <q-slider
-                  v-model="conscientiousnessModel"
-                  label
-
-                  :step="1"
-                  color="red-10"
-                  :min="0"
-                  :max="5"
-                />
-                <p style="color: grey;"> {{$t('value5')}}</p>
               </div>
+
 
               </div>
 
 
 
               <div class="row q-mt-lg">
+
               <div class="col-5 col-md-5 col-sm-12 col-xs-12 q-mt-md">
-                <q-card class="my-card bg-yellow-10" style="margin-bottom:4%;">
+                <q-card class="my-card bg-white-9" flat bordered style="margin-bottom:4%;">
                     <q-card-section>
-                      <div class="text-h6 text-white">
-                        {{$t('emot_stability')}}  {{ emotionalStabilityModel }}
-                      </div>
-                      <div class="text-h8 bg-yellow-10 text-white">
-                        {{$t('emotional_stabilityString')}}
-                      </div>
+                        <div class="text-h5 text-black">
+                          {{$t('emot_stability')}}
+
+                    <q-btn
+                      color="yellow-10"
+                      round
+                      flat
+                      dense
+                      :icon="expanded10 ? 'keyboard_arrow_up' : 'help'"
+                      @click="expanded10 = !expanded10"
+                    />
+                        </div>
+
+                    </q-card-section>
+                    <q-separator inset />
+
+                    <q-slide-transition>
+                      <div v-show="expanded10">
+                      <q-separator />
+                      <q-card-section class="text-subitle2">
+                            {{$t('emotional_stabilityString')}}
+                      </q-card-section>
+                    </div>
+                  </q-slide-transition>
+
+
+                    <q-card-section>
+                          <q-slider class="q-mt-md"
+                            v-model="emotionalStabilityModel"
+                            label-always
+                            dense
+                            label-text-color="white"
+                            :step="1"
+                            color="yellow-10"
+                            :min="0"
+                            :max="5"
+                            />
+                            <p class="q-mt-sm text-caption text-grey" > {{$t('value5')}}</p>
                     </q-card-section>
                 </q-card>
-                <q-slider
-                  v-model="emotionalStabilityModel"
-                  label
-
-                  :step="1"
-                  color="yellow-10"
-                  :min="0"
-                  :max="5"
-                />
-                <p style="color: grey;"> {{$t('value5')}}</p>
               </div>
+
+
+
               </div>
 
 
@@ -681,136 +872,248 @@
 
       <p style="color: grey;"> {{$t('info_Characterization')}} </p>
         <div class="row q-mt-lg">
-              <div class="col-5 col-md-5 col-sm-12 col-xs-12 q-mt-md">
-                <q-card class="my-card bg-yellow-9" style="margin-bottom:4%;">
+
+          <div class="col-5 col-md-5 col-sm-12 col-xs-12 q-mt-md">
+                <q-card class="my-card bg-white-9" flat bordered style="margin-bottom:4%;">
                     <q-card-section>
-                        <div class="text-h6 text-white">
-                          {{$t('scarcity')}}  {{ scarcityModel }}
+                        <div class="text-h5 text-black">
+                          {{$t('scarcity')}}
+
+                    <q-btn
+                      color="yellow-9"
+                      round
+                      flat
+                      dense
+                      :icon="expanded11 ? 'keyboard_arrow_up' : 'help'"
+                      @click="expanded11 = !expanded11"
+                    />
                         </div>
-                        <div class="text-h8 bg-yellow-9 text-white">
-                        {{$t('scarcityString')}}
-                        </div>
+
+                    </q-card-section>
+                    <q-separator inset />
+
+                    <q-slide-transition>
+                      <div v-show="expanded11">
+                      <q-separator />
+                      <q-card-section class="text-subitle2">
+                            {{$t('scarcityString')}}
+                      </q-card-section>
+                    </div>
+                  </q-slide-transition>
+
+
+                    <q-card-section>
+                          <q-slider class="q-mt-md"
+                            v-model="scarcityModel"
+                            label-always
+                            dense
+                            label-text-color="white"
+                            :step="1"
+                            color="yellow-9"
+                            :min="0"
+                            :max="5"
+                            />
+                            <p class="q-mt-sm text-caption text-grey" > {{$t('value5')}}</p>
                     </q-card-section>
                 </q-card>
-
-                <q-slider
-                  v-model="scarcityModel"
-                  label
-
-                  :step="1"
-                  color="yellow-9"
-                  :min="0"
-                  :max="5"
-                />
-                <p style="color: grey;"> {{$t('value5')}}</p>
               </div>
+
+
 
               <div class="col-1 col-md-1 col-sm-12 col-xs-12 q-mt-md">
               </div>
 
               <div class="col-5 col-md-5 col-sm-12 col-xs-12 q-mt-md">
-                <q-card class="my-card bg-green-10" style="margin-bottom:4%;">
+                <q-card class="my-card bg-white-9" flat bordered style="margin-bottom:4%;">
                     <q-card-section>
-                      <div class="text-h6 text-white">
-                        {{$t('consistency')}}  {{ consistencyModel }}
-                      </div>
-                      <div class="text-h8 bg-green-10 text-white">
-                        {{$t('consistencyString')}}
-                      </div>
+                        <div class="text-h5 text-black">
+                          {{$t('consistency')}}
+
+                    <q-btn
+                      color="green-10"
+                      round
+                      flat
+                      dense
+                      :icon="expanded12 ? 'keyboard_arrow_up' : 'help'"
+                      @click="expanded12 = !expanded12"
+                    />
+                        </div>
+
+                    </q-card-section>
+                    <q-separator inset />
+
+                    <q-slide-transition>
+                      <div v-show="expanded12">
+                      <q-separator />
+                      <q-card-section class="text-subitle2">
+                            {{$t('consistencyString')}}
+                      </q-card-section>
+                    </div>
+                  </q-slide-transition>
+
+
+                    <q-card-section>
+                          <q-slider class="q-mt-md"
+                            v-model="scarcityModel"
+                            label-always
+                            dense
+                            label-text-color="white"
+                            :step="1"
+                            color="green-10"
+                            :min="0"
+                            :max="5"
+                            />
+                            <p class="q-mt-sm text-caption text-grey" > {{$t('value5')}}</p>
                     </q-card-section>
                 </q-card>
-
-                <q-slider
-                  v-model="consistencyModel"
-                  label
-                  :step="1"
-                  color="green-10"
-                  :min="0"
-                  :max="5"
-                />
-                <p style="color: grey;"> {{$t('value5')}}</p>
               </div>
+
+
 
               </div>
 
               <div class="row q-mt-lg">
-              <div class="col-5 col-md-5 col-sm-12 col-xs-12 q-mt-md">
-                <q-card class="my-card bg-orange-10" style="margin-bottom:4%;">
+                <div class="col-5 col-md-5 col-sm-12 col-xs-12 q-mt-md">
+                <q-card class="my-card bg-white-9" flat bordered style="margin-bottom:4%;">
                     <q-card-section>
-                        <div class="text-h6 text-white">
-                          {{$t('social_proof')}}   {{ socialProofModel }}
+                        <div class="text-h5 text-black">
+                          {{$t('social_proof')}}
+
+                    <q-btn
+                      color="orange-10"
+                      round
+                      flat
+                      dense
+                      :icon="expanded13 ? 'keyboard_arrow_up' : 'help'"
+                      @click="expanded13 = !expanded13"
+                    />
                         </div>
-                        <div class="text-h8 bg-orange-10 text-white">
-                        {{$t('social_proofString')}}
-                        </div>
+
+                    </q-card-section>
+                    <q-separator inset />
+
+                    <q-slide-transition>
+                      <div v-show="expanded13">
+                      <q-separator />
+                      <q-card-section class="text-subitle2">
+                            {{$t('social_proofString')}}
+                      </q-card-section>
+                    </div>
+                  </q-slide-transition>
+
+
+                    <q-card-section>
+                          <q-slider class="q-mt-md"
+                            v-model="socialProofModel"
+                            label-always
+                            dense
+                            label-text-color="white"
+                            :step="1"
+                            color="orange-10"
+                            :min="0"
+                            :max="5"
+                            />
+                            <p class="q-mt-sm text-caption text-grey" > {{$t('value5')}}</p>
                     </q-card-section>
                 </q-card>
-
-                <q-slider
-                  v-model="socialProofModel"
-                  label
-                  :step="1"
-                  color="orange-10"
-                  :min="0"
-                  :max="5"
-                />
-                <p style="color: grey;"> {{$t('value5')}}</p>
               </div>
+
 
               <div class="col-1 col-md-1 col-sm-12 col-xs-12 q-mt-md">
               </div>
 
               <div class="col-5 col-md-5 col-sm-12 col-xs-12 q-mt-md">
-                <q-card class="my-card bg-red-10" style="margin-bottom:4%;">
+                <q-card class="my-card bg-white-9" flat bordered style="margin-bottom:4%;">
                     <q-card-section>
-                      <div class="text-h6 text-white">
-                        {{$t('gratitude')}}  {{ gratitudeModel }}
-                      </div>
-                      <div class="text-h8 bg-red-10 text-white">
-                        {{$t('gratitudeString')}}
-                      </div>
+                        <div class="text-h5 text-black">
+                          {{$t('gratitude')}}
+
+                    <q-btn
+                      color="red-10"
+                      round
+                      flat
+                      dense
+                      :icon="expanded14 ? 'keyboard_arrow_up' : 'help'"
+                      @click="expanded14 = !expanded14"
+                    />
+                        </div>
+
+                    </q-card-section>
+                    <q-separator inset />
+
+                    <q-slide-transition>
+                      <div v-show="expanded14">
+                      <q-separator />
+                      <q-card-section class="text-subitle2">
+                            {{$t('gratitudeString')}}
+                      </q-card-section>
+                    </div>
+                  </q-slide-transition>
+
+
+                    <q-card-section>
+                          <q-slider class="q-mt-md"
+                            v-model="gratitudeModel"
+                            label-always
+                            dense
+                            label-text-color="white"
+                            :step="1"
+                            color="red-10"
+                            :min="0"
+                            :max="5"
+                            />
+                            <p class="q-mt-sm text-caption text-grey" > {{$t('value5')}}</p>
                     </q-card-section>
                 </q-card>
-
-                <q-slider
-                  v-model="gratitudeModel"
-                  label
-
-                  :step="1"
-                  color="red-10"
-                  :min="0"
-                  :max="5"
-                />
-                <p style="color: grey;"> {{$t('value5')}}</p>
               </div>
 
-            <div class="row q-mt-lg">
-              <div class="col-5 col-md-5 col-sm-12 col-xs-12 q-mt-md">
-                <q-card class="my-card bg-blue-10" style="margin-bottom:4%;">
+
+
+            <div class="col-5 col-md-5 col-sm-12 col-xs-12 q-mt-md">
+                <q-card class="my-card bg-white-9" flat bordered style="margin-bottom:4%;">
                     <q-card-section>
-                      <div class="text-h6 text-white">
-                       {{$t('authority')}}  {{ authorityModel }}
-                      </div>
-                      <div class="text-h8 bg-blue-10 text-white">
-                        {{$t('authorityString')}}
-                      </div>
+                        <div class="text-h5 text-black">
+                          {{$t('authority')}}
+
+                    <q-btn
+                      color="blue-10"
+                      round
+                      flat
+                      dense
+                      :icon="expanded15 ? 'keyboard_arrow_up' : 'help'"
+                      @click="expanded15 = !expanded15"
+                    />
+                        </div>
+
+                    </q-card-section>
+                    <q-separator inset />
+
+                    <q-slide-transition>
+                      <div v-show="expanded15">
+                      <q-separator />
+                      <q-card-section class="text-subitle2">
+                            {{$t('authorityString')}}
+                      </q-card-section>
+                    </div>
+                  </q-slide-transition>
+
+
+                    <q-card-section>
+                          <q-slider class="q-mt-md"
+                            v-model="authorityModel"
+                            label-always
+                            dense
+                            label-text-color="white"
+                            :step="1"
+                            color="blue-10"
+                            :min="0"
+                            :max="5"
+                            />
+                            <p class="q-mt-sm text-caption text-grey" > {{$t('value5')}}</p>
                     </q-card-section>
                 </q-card>
-
-                <q-slider
-                  v-model="authorityModel"
-                  label
-
-                  :step="1"
-                  color="blue-10"
-                  :min="0"
-                  :max="5"
-                />
-                <p style="color: grey;"> {{$t('value5')}}</p>
               </div>
             </div>
-              </div>
-
 
 
 
@@ -847,12 +1150,28 @@ export default defineComponent({
   setup () {
     const $q = useQuasar()
     const { locale } = useI18n({ useScope: 'global' })
-    //const language_selected =this.$i18n.locale
-    //console.log(locale.value)
+    const expanded1 = ref(false)
+    const expanded2 = ref(false)
+    const expanded3 = ref(false)
+    const expanded4 = ref(false)
+    const expanded5 = ref(false)
+    const expanded6 = ref(false)
+    const expanded7 = ref(false)
+    const expanded8 = ref(false)
+    const expanded9 = ref(false)
+    const expanded10 = ref(false)
+    const expanded11 = ref(false)
+    const expanded12 = ref(false)
+    const expanded13 = ref(false)
+    const expanded14 = ref(false)
+    const expanded15 = ref(false)
     const store = useStore()
     const step = ref(1)
     const ageModel = ref(null)
     const ageOptions = reactive(Array.from({length: 89}, (_, i) => i + 12))
+    const workHoursOptions = reactive(Array.from({length:11},(_, i) => i))
+    const zero_to_five = reactive(Array.from({length:6},(_, i) => i))
+    const zero_to_15 = reactive(Array.from({length:16},(_, i) => i))
     const genderModel = ref(null)
     let genderOptions = ref(null)
      if (locale.value == "en-US"){
@@ -1144,12 +1463,12 @@ export default defineComponent({
       ]
     )
 
-    const computerScienceknowledgeModel = ref(0)
+    const computerScienceknowledgeModel = ref(null)
     const antiPhisCourseModel = ref(false)
     const antiPhisCourseEverModel = ref(false)
     const victimModel = ref(false)
-    const timeModel = ref(0)
-    const selfConfidenceModel = ref(0)
+    const timeModel = ref(null)
+    const selfConfidenceModel = ref(null)
     const impulsivityModel = ref(0)
     const curiosityModel = ref(0)
     const riskPropensityModel = ref(0)
@@ -1165,7 +1484,7 @@ export default defineComponent({
     const socialProofModel = ref(0)
     const gratitudeModel = ref(0)
     const authorityModel = ref(0)
-    const workHoursPriorTestModel = ref(0)
+    const workHoursPriorTestModel = ref(null)
 
     const form = reactive({
       first_name: '',
@@ -1296,6 +1615,7 @@ export default defineComponent({
     return {
       ageModel,
       ageOptions,
+      workHoursOptions,
       nat_options,
       filterFn (val, update) {
         if (val === '') {
@@ -1313,6 +1633,21 @@ export default defineComponent({
           nat_options.value = natOptions.filter(v => v.toLowerCase().indexOf(needle) > -1)
         })
       },
+      expanded1,
+      expanded2,
+      expanded3,
+      expanded4,
+      expanded5,
+      expanded6,
+      expanded7,
+      expanded8,
+      expanded9,
+      expanded10,
+      expanded11,
+      expanded12,
+      expanded13,
+      expanded14,
+      expanded15,
       genderModel,
       genderOptions,
       eduLevelModel,
@@ -1356,6 +1691,8 @@ export default defineComponent({
       authorityModel,
       workHoursPriorTestModel,
       form,
+      zero_to_five,
+      zero_to_15,
       startRegister,
       userRegister,
       showImpulsivity,
