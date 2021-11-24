@@ -38,6 +38,7 @@ export default {
       }
 
     },
+
     async test_delivery({ commit }, payload) {
       try {
         const { data } = await api.post('email/test-delivery/', payload)
@@ -73,6 +74,11 @@ export default {
           email[i].data = new Date(email[i].data);
           email[i].data = email[i].data.toLocaleString()
       }
+      state.email = email
+    },
+
+    email_all_success(state, email) {
+
       state.email = email
     },
     result_success(state, result) {

@@ -2,11 +2,10 @@
   <q-layout>
     <q-page-container>
       <q-page>
-        <div class="q-pa-xs">
-          <q-toolbar v-if="!persistent" inset class ="shadow-2 rounded-borders bg-blue-10 text-white ">
-            <div v-if="cont < 10" class="mb-3 mb-md-5 mx-auto text-center">
-              <q-toolbar-title>Email {{cont+1}}/10</q-toolbar-title>
-            </div>
+        <div class="row">
+          <q-toolbar v-if="!persistent" inset class ="shadow-2 bg-blue-10 text-white ">
+              <q-toolbar-title v-if="cont < 10" class="q-ml-sm">Email {{cont+1}}/10</q-toolbar-title>
+
 
 
             <q-space />
@@ -84,7 +83,7 @@
 
 
 
-      <q-dialog v-model="terminate">
+      <q-dialog persistent v-model="terminate">
       <q-card>
         <q-card-section>
           <div class="text-h6 text-primary">{{$t('nice_job')}}</div>
@@ -183,7 +182,7 @@
                 <div v-html="email_info.email[cont].body.body_table" />
 
                 <div v-if="email_info.email[cont].body.button_name" :class="email_info.email[cont].body.button_class">
-                  <q-btn :icon="email_info.email[cont].body.button_icon" :color="email_info.email[cont].body.button_color" :label="email_info.email[cont].body.button_name">
+                  <q-btn :color="email_info.email[cont].body.button_color" :label="email_info.email[cont].body.button_name">
                     <q-tooltip>
                       <div style="font-size: 14px;"> {{email_info.email[cont].body.button_link}} </div>
                     </q-tooltip>

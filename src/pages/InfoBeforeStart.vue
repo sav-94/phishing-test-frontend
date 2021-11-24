@@ -2,9 +2,9 @@
   <q-layout>
     <q-page-container>
       <q-page>
-        <div class="q-pa-xs">
-          <q-toolbar inset class ="shadow-2 rounded-borders bg-blue-10 text-white ">
-            <div class="mb-3 mb-md-5 mx-auto text-center">
+        <div class="row">
+          <q-toolbar inset class ="shadow-2 bg-blue-10 text-white ">
+            <div class="q-ml-sm">
               <q-toolbar-title>{{$t('someInfo')}}</q-toolbar-title>
 
             </div>
@@ -26,7 +26,7 @@
 
 
 
-          <div class="col-md-8 col-xs-12 q-pt-lg q-pl-xl q-pr-xl">
+          <div class="col-md-8 col-xs-12 q-pt-lg q-pl-xl q-pr-xl q-mt-xl">
             <div class="text-black-9 text-center text-justify q-m-lg">
 
               <p>{{$t('before_starting_string1')}}</p>
@@ -36,7 +36,7 @@
 
             </div>
             <div class="q-pt-xl text-center">
-              <q-btn style="margin-bottom:10%;" @click="() => { router.push({ name: 'email' }) }" color="blue-10" rounded :label="$t('pop_starting6')" />
+              <q-btn outline style="margin-bottom:10%;" @click="() => { router.push({ name: 'email' }) }" color="blue-10" :label="$t('pop_starting6')" />
             </div>
           </div>
 

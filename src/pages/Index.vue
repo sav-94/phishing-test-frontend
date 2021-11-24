@@ -2,10 +2,10 @@
   <q-layout>
     <q-page-container>
       <q-page>
-        <div class="q-pa-md">
-          <div class="row shadow-2">
-          <q-toolbar class ="shadow-2 rounded-borders bg-blue-10 text-white">
-            <q-toolbar-title>Spamley</q-toolbar-title>
+        <div>
+          <div class="row">
+          <q-toolbar class ="shadow-2 bg-blue-10 text-white">
+            <q-toolbar-title class="q-ml-xl" >Spamley</q-toolbar-title>
             <div class="customTextColor">
             <q-select
               v-model="locale"
@@ -26,10 +26,10 @@
               style="min-width:150px;color:white;"
               />
             </div>
-          <q-btn class="gt-sm" flat round dense icon="kayaking" />
-            <q-btn class="gt-sm" flat round dense icon="password" />
-            <q-btn class="gt-sm" flat round dense icon="attach_email" />
-            <q-btn class="gt-sm" flat round dense icon="sentiment_satisfied_alt" />
+            <q-btn class="gt-sm" flat round dense icon="kayaking"/>
+            <q-btn class="gt-sm" flat round dense icon="password"/>
+            <q-btn class="gt-sm" flat round dense icon="attach_email"/>
+            <q-btn class="gt-sm" flat round dense icon="sentiment_satisfied_alt"/>
           </q-toolbar>
         </div>
         </div>
@@ -79,17 +79,43 @@
             </q-card>
           </div>
 
-          <div class="col-md-7 col-xs-12 q-pt-lg q-pl-xl q-pr-xl">
-            <div class="text-blue-grey-9 text-center text-justify q-m-lg">
+          <div class="col-md-7 col-xs-12 q-pt-md q-pl-md q-pr-md">
+            <div class="text-blue-grey-9 text-center text-justify q-ma-sm">
               <p style="font-size: 125%;">{{$t('intro1')}}</p><p style="font-size: 125%;">{{$t('intro2')}}</p><p style="font-size: 125%;">{{$t('intro3')}}</p><p style="font-size: 125%;">{{$t('intro4')}}</p><p style="font-size: 125%;">{{$t('intro5')}}</p><p style="font-size: 125%;">{{$t('intro6')}}</p>
             </div>
             <div class="q-pt-xl text-center">
-              <q-btn @click="start()" style="margin-bottom:25%;" color="blue-10" rounded :label="$t('btn1')"/>
+              <q-btn @click="start()" style="margin-bottom:25%;" color="blue-10" :label="$t('btn1')"/>
             </div>
           </div>
-
         </div>
 
+
+          <div class="row bg-grey-3 q-pa-xs">
+          <div class="col col-md-1 col-sm-4 col-xs-3 q-ml-md q-mt-lg">
+            <q-img class="q-mb-sm"
+            src="http://areacomunicazione.policlinico.unina.it/wp-content/uploads/2014/02/logo-federico-II-blu.png"
+            spinner-color="white"
+            size="100px"
+            style="height: 70px; max-width: 70px"
+          />
+          </div>
+
+          <div class="col col-md-3 col-sm-8 col-xs-8 ">
+            <div class="text-blue-10 q-mt-lg q-ml-lg" style="font-size:85%;">
+            Università degli Studi di Napoli "Federico II" <br> Dipartimento di Ingegneria Elettrica e delle Tecnologie dell'Informazione
+          </div>
+          </div>
+          <div class="col-md-2 q-mr-sm"></div>
+          <q-separator class="gt-xs" vertical inset />
+
+          <div class="col-md-5 col-xs-12 q-pt-md q-pl-md q-pr-md">
+
+            <div class="text-blue-grey-9 text-center text-justify q-ml-xs" style="font-size:90%;margin-top:-1.5%;">
+              <div class="text-blue-10">Contacts</div>
+              <span style="font-weight: bold;">Prof. Alessio Botta</span> a.botta@unina.it  <br><span style="font-weight: bold;">Luigi Gallo</span> luigi.gallo3@unina.it<br><span style="font-weight: bold;">Saverio Ruggiero</span> sav.ruggiero@studenti.unina.it<br><span style="font-weight: bold;">Ilaria Panaro</span> il.panaro@studenti.unina.it
+            </div>
+          </div>
+          </div>
 
       </q-page>
     </q-page-container>
