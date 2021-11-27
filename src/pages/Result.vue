@@ -68,7 +68,8 @@
 
       <q-card class="col-6 col-md-4 col-xs-11 q-ma-md">
           <q-card-section>
-            <div class="col-auto">
+            <div class="row">
+            <div class="col-6 col-md-6">
             <q-knob
             readonly
               :min="0"
@@ -81,12 +82,14 @@
               track-color="orange-3"
               class="text-orange q-ma-md"
             />
-            <b>{{$t('number_phishing_email')}}</b>
           </div>
+            <div class="col-6 col-md-6 q-mt-xl"><b style="overflow-wrap:break-word;">{{$t('number_phishing_email')}}</b></div>
+            </div>
           </q-card-section>
           <q-separator dark inset />
         <q-card-section>
-          <div class="col-auto ">
+          <div class="row">
+          <div class="col-6 col-md-6">
             <q-knob
             readonly
               :min="0"
@@ -99,8 +102,9 @@
               track-color="blue-3"
               class="text-blue q-ma-md"
             />
-            <b style="overflow-wrap:break-word;">{{$t('average_response_time')}}</b>
         </div>
+        <div class="col-6 col-md-6 q-mt-xl"><b style="overflow-wrap:break-word;">{{$t('average_response_time')}}</b></div>
+          </div>
         </q-card-section>
       </q-card>
 
@@ -119,13 +123,7 @@
 
       </q-card-section>
 
-      <q-card-section>
-         <div class="row">
-            <div class="col-auto q-ma-xl">
-              <p style="font-weight: bold;font-size:140%" class="color-primary">{{awareness_phihsing}}</p>
-            </div>
-          </div>
-      </q-card-section>
+
 
      <q-card-section>
       <q-card-actions align="evenly">
@@ -161,7 +159,7 @@
 
             <div class="text-blue-grey-9 text-center text-justify q-ml-xs" style="font-size:90%;margin-top:-1.5%;">
               <div class="text-blue-10">Contacts</div>
-              <span style="font-weight: bold;">Prof. Alessio Botta</span> a.botta@unina.it  <br><span style="font-weight: bold;">Luigi Gallo</span> luigi.gallo3@unina.it<br><span style="font-weight: bold;">Saverio Ruggiero</span> sav.ruggiero@studenti.unina.it<br><span style="font-weight: bold;">Ilaria Panaro</span> il.panaro@studenti.unina.it
+              <span style="font-weight: bold;">Alessio Botta</span> a.botta@unina.it  <br><span style="font-weight: bold;">Luigi Gallo</span> luigi.gallo3@unina.it<br><span style="font-weight: bold;">Saverio Ruggiero</span> sav.ruggiero@studenti.unina.it<br><span style="font-weight: bold;">Ilaria Panaro</span> il.panaro@studenti.unina.it
             </div>
           </div>
           </div>

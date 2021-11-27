@@ -211,6 +211,8 @@ export default {
     Female: "Donna",
     Male: "Uomo",
     antiphishing_course_ever: " Hai mai partecipato a corsi anti-phishing?",
-    Other: "Altro"
+    Other: "Altro",
+    test_validity_substring:"Seleziona il valore 3 per confermare che le risposte che hai fornito sono valide.",
+    validity:"Veridicità"
 
 }

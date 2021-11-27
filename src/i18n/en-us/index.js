@@ -207,5 +207,7 @@ export default {
     Female: "Female",
     Male: "Male",
     antiphishing_course_ever: " Has ever taken part to anti phishing course?",
-    Other: "Other"
+    Other: "Other",
+    test_validity_substring:"Select the value 3 to confirm that the information you provided is valid.",
+    validity:"Truthfullness"
 }
