@@ -6,7 +6,7 @@ import {date} from 'quasar'
 
 export default {
   namespaced: true,
-
+  isLoaded: false,
 
   state: {
     email: [],
@@ -15,7 +15,10 @@ export default {
 
   getters: {
     email: state => state.email,
-    result: state => state.result
+    result: state => {return state.result},
+    isLoaded: state => state.isLoaded,
+    emails_Lists: state => state.emails_Lists
+
   },
 
   actions: {
@@ -83,6 +86,7 @@ export default {
     },
     result_success(state, result) {
       state.result = result
+      //console.log(state.result)
     }
   }
 }

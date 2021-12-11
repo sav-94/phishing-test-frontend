@@ -19,82 +19,7 @@
 
         <!-- ALERT -->
 
-        <q-dialog v-model="persistent" persistent transition-show="scale" transition-hide="scale">
-          <q-card  style="width: 750px; max-width: 80vw;">
-            <q-card-section class="bg-white-10 text-blue-10">
-              <div class="text-h6">{{$t('pop_starting1')}}</div>
-            </q-card-section>
 
-
-
-            <q-card-section>
-              <q-form
-                @submit="startTest"
-                class="q-gutter-md"
-              >
-                <q-input
-                  v-model="form.first_name"
-                  :label="$t('pop_starting2')"
-                  :hint="$t('pop_starting3')"
-                  lazy-rules
-                  :rules="[ val =>  val && val.length > 0 || $t('pop_starting3')]"
-                />
-                <q-input
-                  v-model="form.email"
-                  :label="$t('pop_starting4')"
-                  :hint="$t('pop_starting5')"
-                  lazy-rules
-                  :rules="[ val => !!val || $t('pop_starting5'), , isValidEmail]"
-                />
-
-                <div class="text-right">
-                  <q-btn flat :label="$t('pop_starting6')" type="submit" color="blue-10"/>
-                </div>
-
-              </q-form>
-
-            </q-card-section>
-
-          </q-card>
-        </q-dialog>
-
-
-        <q-dialog v-if="countTime > 300 && cont < 10" v-model="timeEndPersistent" persistent transition-show="scale" transition-hide="scale">
-          <q-card  style="width: 300px">
-            <q-card-section class="bg-blue-10 text-white">
-              <div class="text-h6">{{$t('time_alert')}}</div>
-            </q-card-section>
-
-            <q-card-section class="q-pt-none bg-blue-10 text-white">
-              {{$t('time_alert_text')}}
-            </q-card-section>
-
-            <q-card-section class="q-pt-none q-mt-md">
-
-                <div class="flex flex-center">
-                  <q-btn :label="$t('continue')" @click="timeEnd()" color="blue-10"/>
-                </div>
-
-            </q-card-section>
-
-          </q-card>
-        </q-dialog>
-
-
-
-
-      <q-dialog persistent v-model="terminate">
-      <q-card>
-        <q-card-section>
-          <div class="text-h6 text-primary">{{$t('nice_job')}}</div>
-        </q-card-section>
-
-        <q-card-actions align="right">
-          <q-btn v-model="terminate" @click="() => { router.push({ name: 'result' }) }" color="primary" :label="$t('show_results')" v-close-popup />
-
-        </q-card-actions>
-      </q-card>
-    </q-dialog>
         <!-- COUNT TIME
         <div v-if="countTime != -1 && cont < 10" class="q-mr-xl q-ma-sm text-right">
           <q-circular-progress
@@ -112,7 +37,7 @@
             appear
             enter-active-class="animated fadeInRight"
           >
-        <div v-if="!persistent && email_info.email[cont] !== undefined" class="row q-ma-sm flex flex-center">
+        <div v-if="email_info.email[cont] !== undefined" class="row q-ma-sm flex flex-center">
 
           <div v-if="email_info.email[cont].contex !== undefined" class="col-md-9 col-xs-12">
               <div class="text-blue-10 text-center text-justify center">
@@ -234,7 +159,10 @@ export default defineComponent({
   setup () {
     const router = useRouter()
     const store = useStore()
+
+    const result = computed(() => store.state.result)
     const email_info = computed(() => store.state.email)
+    console.log(email_info)
     const { locale } = useI18n({ useScope: 'global' })
     let lingua = ""
     if (locale.value == "en-US"){
@@ -356,6 +284,7 @@ export default defineComponent({
       email_info,
       testDelivery,
       cont,
+      result,
       reported_as_spam,
       next,
       countTime,
