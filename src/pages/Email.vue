@@ -211,7 +211,7 @@
 
             <div class="col-medium-3 col-xs-12 q-ma-md">
                 <div class="q-gutter-sm">
-                  <q-checkbox left-label v-model="reported_as_spam" :label="$t('label_suspicious')" />
+                  <q-checkbox class="disabled" left-label v-model="reported_as_spam" :label="$t('label_suspicious')" />
                 </div>
             </div>
           </div>
@@ -372,6 +372,9 @@ export default defineComponent({
 </script>
 
 <style>
+.disabled, .disabled *{
+cursor: auto !important;
+}
 .tooltip {
   position: relative;
   display: inline-block;

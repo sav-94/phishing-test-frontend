@@ -164,12 +164,12 @@
       <div class="col-md-1"></div>
       <div class="col-auto q-mt-xs">
         <q-btn-toggle
+        @click="resetSelectValue()"
         v-model="slide"
         :options="[
-          { label: 'mail', value: 'style' },
-          { label: 'Scheda 1', value: 'tv' },
-          { label: 'Scheda 2', value: 'layers' },
-           { label: 'Scheda 3', value: 'map' }
+          { label: 'E-mail', value: 'style' },
+          { label: 'Features', value: 'layers' }
+
         ]"
       />
       </div>
@@ -196,6 +196,9 @@
         <q-carousel-slide name="style" class="q-pa-none">
 
           <div v-if="email_info.email[cont] !== undefined" class="q-carousel--padding">
+            <div class="row justify-center">
+              <h6 style="font-size:40px; margin: 20px 10px 20px;" :class="Response_phrases[cont][4]">{{Response_phrases[cont][2]}} </h6>
+            </div>
 
           <div v-if="email_info.email[cont].contex !== undefined" class="col-md-8 col-xs-12">
               <div class="text-blue-10 text-center text-justify center">
@@ -212,7 +215,7 @@
 
                   <div class="col q-pl-xs">
                     <div>
-                      <span class="q-ml-md"><b>{{email_info.email[cont].sender_name}}</b></span><h5 style="font-size:130%; margin: 20px 10px 20px;" :class="Response_phrases[cont][4]">{{Response_phrases[cont][0]}} </h5>
+                      <span class="q-ml-md"><b>{{email_info.email[cont].sender_name}}</b></span>
                     </div>
                     <div>
                       <q-btn no-caps size="xs" flat text-color="grey-8" label="to me" style="font-size:80%;"  icon-right="arrow_drop_down">
@@ -280,24 +283,75 @@
             </q-card>
           </div>
         </q-carousel-slide>
-        <q-carousel-slide name="tv" class="column no-wrap flex-center">
-          <q-icon name="live_tv" size="56px" />
-          <div class="q-mt-md text-center">
-            Scheda 1
-          </div>
-        </q-carousel-slide>
-        <q-carousel-slide name="layers" class="column no-wrap flex-center">
-          <q-icon name="layers" size="56px" />
-          <div class="q-mt-md text-center">
-            Scheda 2
-          </div>
-        </q-carousel-slide>
-        <q-carousel-slide name="map" class="column no-wrap flex-center">
-          <q-icon name="terrain" size="56px" />
-          <div class="q-mt-md text-center ">
-            Scheda 3
-          </div>
-        </q-carousel-slide>
+        <!--Start second page card - feedback email-->
+        <q-carousel-slide name="layers" class="col-md-8 col-xs-12 no-wrap flex-center">
+        <!--Start Card2-->
+           <q-card class="my-card">
+             <q-card-section>
+               <div class="row justify-center">
+                 <img v-if="Response_phrases[cont][4]=='text-green'" src="https://i.postimg.cc/Prdnm0cK/check-ok-72x.png" alt="">
+                 <img v-if="Response_phrases[cont][4]=='text-red'" src="https://i.postimg.cc/PxbFJ5tH/check-not-72x.png" alt="">
+               </div>
+               <h5 style="font-size:20px;" class="text-justify q-ml-md q-mr-md">{{Response_phrases[cont][0]}}</h5>
+             </q-card-section>
+            
+         <!--Start select-->
+            <q-card-section>
+              <div>
+                  <div class="text-bold text-black q-mb-xl q-ml-md" style="font-size:18px">Seleziona una caratteristica descrittiva dell'email:</div>
+                  <div class="col-6 q-gutter-md q-ml-xs" style="max-width: 350px">
+                      <q-select  outlined 
+                        v-model="featuresResult" 
+                        :options="featuresResultOptions" 
+                        option-value="featuresResultOptions.value" 
+                        /></div>
+            <!--End select-->
+                <q-card-section>
+                  <div v-if="featuresResult.value !=null" class="text-bold text-grey q-ml-sm" style="font-size:17px">Valore: {{featuresResult.value}}</div>
+                </q-card-section>
+              </div>
+      </q-card-section>
+      <!--Start checkbox-->
+      <q-card-section>
+        <div class="">
+          <div class="text-bold text-black q-mb-xl q-ml-md" style="font-size:18px">Cognitive triggers presenti:</div>
+          <div class="q-gutter-sm gt-sm row">
+            <q-checkbox disable class="disabled " v-model="group1" label="Consistency" :color="cognitive_value[cont][0]"></q-checkbox>
+            <q-checkbox disable class="disabled " v-model="group1" label="Reciprocity" :color="cognitive_value[cont][1]"></q-checkbox>
+            <q-checkbox disable class="disabled " v-model="group1" label="Scarcity" :color="cognitive_value[cont][2]"></q-checkbox>
+            <q-checkbox disable class="disabled " v-model="group1" label="Liking" :color="cognitive_value[cont][3]"></q-checkbox>
+            <q-checkbox disable class="disabled " v-model="group1" label="Social Proof" :color="cognitive_value[cont][4]"></q-checkbox>
+            <q-checkbox disable class="disabled " v-model="group1" label="Authority" :color="cognitive_value[cont][5]"></q-checkbox>
+            <q-checkbox disable class="disabled " v-model="group1" label="Sense of Urgency" :color="cognitive_value[cont][6]"></q-checkbox>
+         </div>
+
+         
+         <div class="q-gutter-sm ">
+           <div class="row lt-sm">
+            <q-checkbox disable class="disabled col-6" v-model="group1" label="Consistency" :color="cognitive_value[cont][0]"></q-checkbox>
+            <q-checkbox disable class="disabled col-6" v-model="group1" label="Reciprocity" :color="cognitive_value[cont][1]"></q-checkbox>
+           </div>
+           <div class="row lt-sm">
+             <q-checkbox disable class="disabled col-6" v-model="group1" label="Scarcity" :color="cognitive_value[cont][2]"></q-checkbox>
+             <q-checkbox disable class="disabled col-6" v-model="group1" label="Liking" :color="cognitive_value[cont][3]"></q-checkbox>
+           </div>
+           <div class="row lt-sm">
+            <q-checkbox disable class="disabled col-6" v-model="group1" label="Social Proof" :color="cognitive_value[cont][4]"></q-checkbox>
+            <q-checkbox disable class="disabled col-6" v-model="group1" label="Authority" :color="cognitive_value[cont][5]"></q-checkbox>
+           
+           </div>
+            <div class="row lt-sm">
+              <q-checkbox disable class="disabled col-6" v-model="group1" label="Sense of Urgency" :color="cognitive_value[cont][6]"></q-checkbox>
+            </div>
+         </div>
+     
+
+       </div>
+      </q-card-section>
+      <!--End checkbox-->
+    </q-card>
+      </q-carousel-slide>
+        <!--end second page card - feedback email-->
       </q-carousel>
     </div>
       </div>
@@ -354,7 +408,17 @@ export default defineComponent({
     const { locale } = useI18n({ useScope: 'global' })
     let lingua = ""
     const Response_phrases = email_info.value.result[0].Response_phrases
+    const cont = ref(0)
+    ///////
+    const cognitive_value= email_info.value.result[0].list_cognitive
+    
 
+    const title1 = "Email 1"
+    const text2 = "Il valore assoluto è "
+    const featuresResult = ref({label:'Seleziona', value:0})
+  ///////
+
+  
 
     if (locale.value == "en-US"){
               lingua = 'English'
@@ -374,7 +438,13 @@ export default defineComponent({
 
     }
 
-    const cont = ref(0)
+    const resetSelectValue = () => {
+       featuresResult.value = "Seleziona un valore"
+
+
+    }
+
+    
 
      const progress = computed(() => {
       if(result.value[result.value.length - 1]){
@@ -385,7 +455,6 @@ export default defineComponent({
       }
     )
 
-
     const n_phishing = computed(() => {
       if(result.value[result.value.length - 1]){
         return (result.value[result.value.length - 1].n_phishing)
@@ -394,6 +463,7 @@ export default defineComponent({
 
       }
     )
+   
     const avg_answer_time = computed(() => {
       if(result.value[result.value.length - 1]){
         return (result.value[result.value.length - 1].avg_answer_time)
@@ -442,30 +512,75 @@ export default defineComponent({
       return ''
     })
     const progressLabel = computed(() => (progress.value * 100).toFixed(2) + '%')
+    
+    const featuresResultOptions= [
+        {label:'Numero parole nell\'oggetto', value: email_info.value.email[cont.value].subject.subject_n_word}, {label:'Numero caratteri nell\'oggetto', value: email_info.value.email[cont.value].subject.subject_n_chars},
+        {label:'Numero parole nel body', value: email_info.value.email[cont.value].body.body_n_words}, {label:'Numero caratteri nel body', value: email_info.value.email[cont.value].body.body_n_chars,},
+        {label:'Numero parole di scam nell\'oggetto', value:email_info.value.email[cont.value].subject.subject_n_scammy_words}, {label:'Numero parole di phishing nell\'oggetto', value:email_info.value.email[cont.value].subject.subject_n_phishy_words},
+        {label:'Numero parole di scam nel body', value:email_info.value.email[cont.value].body.body_n_scammy_words}, {label:'Numero parole di phishing nel body', value:email_info.value.email[cont.value].body.body_n_phishy_words},
 
-
+        {label:'Leggibilità', value:email_info.value.email[cont.value].body.body_readability}, {label:'Tipo Contesto', value:email_info.value.email[cont.value].context_result},
+        {label:'Numero immagini', value:email_info.value.email[cont.value].body.body_n_pictures}, {label:'Personalizzazione della mail', value:email_info.value.email[cont.value].body.body_greetings_custom},
+        {label:'Percentuale caratteri speciali', value:email_info.value.email[cont.value].subject.subject_ratio_special_chars}, {label:'Percentuale numeri', value:email_info.value.email[cont.value].subject.subject_ration_num}
+      ]
     const next = async () => {
-
+  
       if(cont.value < 10){
+
         cont.value = cont.value + 1
       }
       if(cont.value === 10){
         cont.value = 1
       }
+      featuresResult.value = "Seleziona un valore"
+        featuresResultOptions[0].value = email_info.value.email[cont.value].subject.subject_n_word
+        featuresResultOptions[1].value = email_info.value.email[cont.value].subject.subject_n_chars
+        featuresResultOptions[2].value = email_info.value.email[cont.value].body.body_n_words
+
+        featuresResultOptions[3].value = email_info.value.email[cont.value].body.body_n_chars
+        featuresResultOptions[4].value = email_info.value.email[cont.value].subject.subject_n_scammy_words
+        featuresResultOptions[5].value = email_info.value.email[cont.value].subject.subject_n_phishy_words
+
+        featuresResultOptions[6].value = email_info.value.email[cont.value].body.body_n_scammy_words
+        featuresResultOptions[7].value = email_info.value.email[cont.value].body.body_n_phishy_words
+        featuresResultOptions[8].value = email_info.value.email[cont.value].body.body_readability
+
+        featuresResultOptions[9].value = email_info.value.email[cont.value].context_result
+        featuresResultOptions[10].value = email_info.value.email[cont.value].body.body_n_pictures
+        featuresResultOptions[11].value = email_info.value.email[cont.value].body.body_greetings_custom
+
+        featuresResultOptions[12].value = email_info.value.email[cont.value].subject.subject_ration_num
+        featuresResultOptions[13].value = email_info.value.email[cont.value].subject.subject_ratio_special_chars
     }
 
     const back = async () => {
-
       if(cont.value < 10){
         cont.value = cont.value - 1
+        
       }
       if(cont.value === 0){
         cont.value = 9
       }
+      featuresResult.value = "Seleziona un valore"
+        featuresResultOptions[0].value = email_info.value.email[cont.value].subject.subject_n_word
+        featuresResultOptions[1].value = email_info.value.email[cont.value].subject.subject_n_chars
+        featuresResultOptions[2].value = email_info.value.email[cont.value].body.body_n_words
+
+        featuresResultOptions[3].value = email_info.value.email[cont.value].body.body_n_chars
+        featuresResultOptions[4].value = email_info.value.email[cont.value].subject.subject_n_scammy_words
+        featuresResultOptions[5].value = email_info.value.email[cont.value].subject.subject_n_phishy_words
+
+        featuresResultOptions[6].value = email_info.value.email[cont.value].body.body_n_scammy_words
+        featuresResultOptions[7].value = email_info.value.email[cont.value].body.body_n_phishy_words
+        featuresResultOptions[8].value = email_info.value.email[cont.value].body.body_readability
+
+        featuresResultOptions[9].value = email_info.value.email[cont.value].context_result
+        featuresResultOptions[10].value = email_info.value.email[cont.value].body.body_n_pictures
+        featuresResultOptions[11].value = email_info.value.email[cont.value].body.body_greetings_custom
+
+        featuresResultOptions[12].value = email_info.value.email[cont.value].subject.subject_ration_num
+        featuresResultOptions[13].value = email_info.value.email[cont.value].subject.subject_ratio_special_chars
     }
-
-
-
 
 
     return {
@@ -484,6 +599,15 @@ export default defineComponent({
       back,
       slide,
       router,
+      //////
+      featuresResultOptions,
+    featuresResult,
+    group1: ref(null),
+    cognitive_value,
+    title1,
+    text2,
+    resetSelectValue
+      
 
     }
   }
@@ -493,6 +617,9 @@ export default defineComponent({
 </script>
 
 <style>
+.disabled, .disabled *{
+cursor: auto !important;
+}
 .tooltip {
   position: relative;
   display: inline-block;
