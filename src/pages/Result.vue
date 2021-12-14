@@ -39,7 +39,7 @@
             enter-active-class="animated fadeInRight"
           >
 
-    <div class="row">
+    <div v-if="showCards" class="row">
 
         <q-card class="col-6 col-md-4 col-xs-11 q-ma-md">
           <q-card-section>
@@ -87,7 +87,7 @@
 
 
 
-      <q-card class="col-6 col-md-4 col-xs-11 q-ma-md">
+      <q-card v-if="showCards" class="col-6 col-md-4 col-xs-11 q-ma-md">
           <q-card-section>
             <div class="row">
             <div class="col-6 col-md-6">
@@ -155,7 +155,7 @@
   </q-card>
 
     </div>
-    <div class="row justify-center q-mt-md">
+    <div  v-if="showCards == false" class="row justify-center q-mt-md">
         <div class="col-auto"></div>
         <div class="col-auto">
           <q-btn @click="back()" color="primary" label="Back" />
@@ -294,16 +294,16 @@
                </div>
                <h5 style="font-size:20px;" class="text-justify q-ml-md q-mr-md">{{Response_phrases[cont][0]}}</h5>
              </q-card-section>
-            
+
          <!--Start select-->
             <q-card-section>
               <div>
                   <div class="text-bold text-black q-mb-xl q-ml-md" style="font-size:18px">Seleziona una caratteristica descrittiva dell'email:</div>
                   <div class="col-6 q-gutter-md q-ml-xs" style="max-width: 350px">
-                      <q-select  outlined 
-                        v-model="featuresResult" 
-                        :options="featuresResultOptions" 
-                        option-value="featuresResultOptions.value" 
+                      <q-select  outlined
+                        v-model="featuresResult"
+                        :options="featuresResultOptions"
+                        option-value="featuresResultOptions.value"
                         /></div>
             <!--End select-->
                 <q-card-section>
@@ -325,7 +325,7 @@
             <q-checkbox disable class="disabled " v-model="group1" label="Sense of Urgency" :color="cognitive_value[cont][6]"></q-checkbox>
          </div>
 
-         
+
          <div class="q-gutter-sm ">
            <div class="row lt-sm">
             <q-checkbox disable class="disabled col-6" v-model="group1" label="Consistency" :color="cognitive_value[cont][0]"></q-checkbox>
@@ -338,13 +338,13 @@
            <div class="row lt-sm">
             <q-checkbox disable class="disabled col-6" v-model="group1" label="Social Proof" :color="cognitive_value[cont][4]"></q-checkbox>
             <q-checkbox disable class="disabled col-6" v-model="group1" label="Authority" :color="cognitive_value[cont][5]"></q-checkbox>
-           
+
            </div>
             <div class="row lt-sm">
               <q-checkbox disable class="disabled col-6" v-model="group1" label="Sense of Urgency" :color="cognitive_value[cont][6]"></q-checkbox>
             </div>
          </div>
-     
+
 
        </div>
       </q-card-section>
@@ -398,6 +398,8 @@ import {date} from 'quasar'
 
 export default defineComponent({
   setup () {
+
+    const showCards = ref(false)
     const router = useRouter()
     const store = useStore()
     const slide = ref('style')
@@ -411,14 +413,14 @@ export default defineComponent({
     const cont = ref(0)
     ///////
     const cognitive_value= email_info.value.result[0].list_cognitive
-    
+
 
     const title1 = "Email 1"
     const text2 = "Il valore assoluto è "
     const featuresResult = ref({label:'Seleziona', value:0})
   ///////
 
-  
+
 
     if (locale.value == "en-US"){
               lingua = 'English'
@@ -444,7 +446,7 @@ export default defineComponent({
 
     }
 
-    
+
 
      const progress = computed(() => {
       if(result.value[result.value.length - 1]){
@@ -463,7 +465,7 @@ export default defineComponent({
 
       }
     )
-   
+
     const avg_answer_time = computed(() => {
       if(result.value[result.value.length - 1]){
         return (result.value[result.value.length - 1].avg_answer_time)
@@ -512,7 +514,7 @@ export default defineComponent({
       return ''
     })
     const progressLabel = computed(() => (progress.value * 100).toFixed(2) + '%')
-    
+
     const featuresResultOptions= [
         {label:'Numero parole nell\'oggetto', value: email_info.value.email[cont.value].subject.subject_n_word}, {label:'Numero caratteri nell\'oggetto', value: email_info.value.email[cont.value].subject.subject_n_chars},
         {label:'Numero parole nel body', value: email_info.value.email[cont.value].body.body_n_words}, {label:'Numero caratteri nel body', value: email_info.value.email[cont.value].body.body_n_chars,},
@@ -524,13 +526,14 @@ export default defineComponent({
         {label:'Percentuale caratteri speciali', value:email_info.value.email[cont.value].subject.subject_ratio_special_chars}, {label:'Percentuale numeri', value:email_info.value.email[cont.value].subject.subject_ration_num}
       ]
     const next = async () => {
-  
+
       if(cont.value < 10){
 
         cont.value = cont.value + 1
       }
       if(cont.value === 10){
-        cont.value = 1
+        showCards.value = true
+        cont.value = -1
       }
       featuresResult.value = "Seleziona un valore"
         featuresResultOptions[0].value = email_info.value.email[cont.value].subject.subject_n_word
@@ -556,10 +559,9 @@ export default defineComponent({
     const back = async () => {
       if(cont.value < 10){
         cont.value = cont.value - 1
-        
+
       }
       if(cont.value === 0){
-        cont.value = 9
       }
       featuresResult.value = "Seleziona un valore"
         featuresResultOptions[0].value = email_info.value.email[cont.value].subject.subject_n_word
@@ -597,6 +599,7 @@ export default defineComponent({
       start,
       next,
       back,
+      showCards,
       slide,
       router,
       //////
@@ -607,7 +610,7 @@ export default defineComponent({
     title1,
     text2,
     resetSelectValue
-      
+
 
     }
   }
