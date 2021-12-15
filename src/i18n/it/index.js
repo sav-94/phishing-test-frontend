@@ -213,6 +213,17 @@ export default {
     antiphishing_course_ever: " Hai mai partecipato a corsi anti-phishing?",
     Other: "Altro",
     test_validity_substring:"Seleziona il valore 3 per confermare che le risposte che hai fornito sono valide.",
-    validity:"Veridicità"
+    validity:"Veridicità",
+    subtitle_string: "Seleziona una caratteristica descrittiva dell'email",
+    value_string: "Valore",
+    cognitive_triggers_string: "Cognitive triggers presenti",
+    next_results: "Pros.",
+    previous_results: " Prec.",
+    features_string: "Features",
+    sense_of_urgency:"Senso di urgenza",
+    liking:"Simpatia",
+    reciprocity:" Reciprocità",
+    contacts:" Contatti",
+    legitimate:" Legittima"
 
 }

@@ -90,7 +90,7 @@
         </div>
 
 
-          <div class="row bg-grey-3 q-pa-xs">
+          <q-card div class="row bg-white-3 q-pa-xs shadows">
           <div class="col col-md-1 col-sm-4 col-xs-3 q-ml-md q-mt-lg">
             <q-img class="q-mb-sm"
             src="http://areacomunicazione.policlinico.unina.it/wp-content/uploads/2014/02/logo-federico-II-blu.png"
@@ -111,14 +111,17 @@
           <div class="col-md-5 col-xs-12 q-pt-md q-pl-md q-pr-md">
 
             <div class="text-blue-grey-9 text-center text-justify q-ml-xs" style="font-size:90%;margin-top:-1.5%;">
-              <div class="text-blue-10">Contacts</div>
+              <div class="text-blue-10">{{$t('contacts')}}</div>
               <span style="font-weight: bold;">Alessio Botta</span> a.botta@unina.it  <br><span style="font-weight: bold;">Luigi Gallo</span> luigi.gallo3@unina.it<br><span style="font-weight: bold;">Saverio Ruggiero</span> sav.ruggiero@studenti.unina.it<br><span style="font-weight: bold;">Ilaria Panaro</span> il.panaro@studenti.unina.it
             </div>
           </div>
-          </div>
+          </q-card>
 
       </q-page>
     </q-page-container>
+
+
+
   </q-layout>
 </template>
 

@@ -209,5 +209,16 @@ export default {
     antiphishing_course_ever: " Has ever taken part to anti phishing course?",
     Other: "Other",
     test_validity_substring:"Select the value 3 to confirm that the information you provided is valid.",
-    validity:"Truthfullness"
+    validity:"Truthfullness",
+    subtitle_string: "Select a descriptive email feature",
+    value_string: "Value",
+    cognitive_triggers_string: "Cognitive triggers",
+    next_results: "Next",
+    previous_results: "Prev.",
+    features_string: "Features",
+    sense_of_urgency:"Sense of urgency",
+    liking:"Liking",
+    reciprocity:"Reciprocity",
+    contacts:"Contacts",
+    legitimate:"Legitimate"
 }

@@ -3,6 +3,6 @@ import it from "./it";
 
 
 export default{
- 'en-US': enUs,
+  'en-US': enUs,
   it: it
 }
