@@ -298,9 +298,9 @@
                         /></div>
                 </div>
                   <div class="col-6 q-mt-md">
-                  <q-card class ="col-6 q-mt-lg no-shadow">
-                    <q-card-section>
-                      ciao
+                  <q-card v-if="featuresResult.explanation!=''" class ="col-6 q-mt-lg no-shadow">
+                    <q-card-section >
+                      {{featuresResult.explanation}}
                     </q-card-section>
                   </q-card>
                   </div>
@@ -443,37 +443,41 @@ export default defineComponent({
     let lingua = ""
     const Response_phrases = email_info.value.result[0].Response_phrases
     const cont = ref(0)
-    ///////
     const cognitive_value= email_info.value.result[0].list_cognitive
-
-
-    const title1 = "Email 1"
-    const text2 = "Il valore assoluto è "
-    const featuresResult = ref({label:'Seleziona', value:0})
-  ///////
+    const featuresResult = ref({label:'Seleziona', value:0, explanation:""})
     const esito = ref(null)
     const motivation = ref(null)
 
+    const features_result = email_info.value.result[0].list_features
+    const link_result = email_info.value.result[0].list_link
+
     const featuresResultOptions = ref(null)
     const featuresResultOptions1= [
-        {label:'Numero parole nell\'oggetto', value: email_info.value.email[cont.value].subject.subject_n_word}, {label:'Numero caratteri nell\'oggetto', value: email_info.value.email[cont.value].subject.subject_n_chars},
-        {label:'Numero parole nel body', value: email_info.value.email[cont.value].body.body_n_words}, {label:'Numero caratteri nel body', value: email_info.value.email[cont.value].body.body_n_chars,},
-        {label:'Numero parole di scam nell\'oggetto', value:email_info.value.email[cont.value].subject.subject_n_scammy_words}, {label:'Numero parole di phishing nell\'oggetto', value:email_info.value.email[cont.value].subject.subject_n_phishy_words},
-        {label:'Numero parole di scam nel body', value:email_info.value.email[cont.value].body.body_n_scammy_words}, {label:'Numero parole di phishing nel body', value:email_info.value.email[cont.value].body.body_n_phishy_words},
+        {label:'Numero parole nell\'oggetto', value: email_info.value.email[cont.value].subject.subject_n_word, explanation:""}, {label:'Numero caratteri nell\'oggetto', value: email_info.value.email[cont.value].subject.subject_n_chars, explanation:""},
+        {label:'Numero parole nel body', value: email_info.value.email[cont.value].body.body_n_words, explanation:""}, {label:'Numero caratteri nel body', value: email_info.value.email[cont.value].body.body_n_chars, explanation:""},
+        {label:'Numero parole di scam nell\'oggetto', value:email_info.value.email[cont.value].subject.subject_n_scammy_words, explanation:""}, {label:'Numero parole di phishing nell\'oggetto', value:email_info.value.email[cont.value].subject.subject_n_phishy_words, explanation:""},
+        {label:'Numero parole di scam nel body', value:email_info.value.email[cont.value].body.body_n_scammy_words, explanation:""}, {label:'Numero parole di phishing nel body', value:email_info.value.email[cont.value].body.body_n_phishy_words, explanation:""},
+        {label:'Leggibilità', value:email_info.value.email[cont.value].body.body_readability, explanation:features_result[cont.value][7]}, {label:'Tipo Contesto', value: features_result[cont.value][0], explanation: features_result[cont.value][2]},
+        {label:'Numero immagini', value:email_info.value.email[cont.value].body.body_n_pictures, explanation:""}, {label:'Personalizzazione della mail', value: features_result[cont.value][4], explanation: features_result[cont.value][5]},
+        {label:'Percentuale caratteri speciali', value:email_info.value.email[cont.value].subject.subject_ratio_special_chars, explanation:""}, {label:'Percentuale numeri', value:email_info.value.email[cont.value].subject.subject_ration_num, explanation:""},
+        {label:'Link testuali', value: link_result[cont.value][0], explanation:link_result[cont.value][4]},
+        {label:'Link legittimi', value:link_result[cont.value][1], explanation:link_result[cont.value][6]},
+        {label:'Link sospetti', value:link_result[cont.value][2], explanation:link_result[cont.value][8]},
+        {label:'Link di phishing', value:link_result[cont.value][3], explanation:link_result[cont.value][10]},
 
-        {label:'Leggibilità', value:email_info.value.email[cont.value].body.body_readability}, {label:'Tipo Contesto', value:email_info.value.email[cont.value].context_result},
-        {label:'Numero immagini', value:email_info.value.email[cont.value].body.body_n_pictures}, {label:'Personalizzazione della mail', value:email_info.value.email[cont.value].body.body_greetings_custom},
-        {label:'Percentuale caratteri speciali', value:email_info.value.email[cont.value].subject.subject_ratio_special_chars}, {label:'Percentuale numeri', value:email_info.value.email[cont.value].subject.subject_ration_num}
       ]
 
-    const featuresResultOptions2 = [{label:'Number of words in the subject', value: email_info.value.email[cont.value].subject.subject_n_word}, {label:'Number of characters in the subject', value: email_info.value.email[cont.value].subject.subject_n_chars},
-        {label:'Number of words in body', value: email_info.value.email[cont.value].body.body_n_words}, {label:'Number of characters in body', value: email_info.value.email[cont.value].body.body_n_chars,},
-        {label:'Number of scam words in the subject', value:email_info.value.email[cont.value].subject.subject_n_scammy_words}, {label:'Number of phishing words in subject', value:email_info.value.email[cont.value].subject.subject_n_phishy_words},
-        {label:'Number of scam words in the body', value:email_info.value.email[cont.value].body.body_n_scammy_words}, {label:'Number of phishing words in the body', value:email_info.value.email[cont.value].body.body_n_phishy_words},
-
-        {label:'Readability', value:email_info.value.email[cont.value].body.body_readability}, {label:'Context type', value:email_info.value.email[cont.value].context_result},
-        {label:'Number of images', value:email_info.value.email[cont.value].body.body_n_pictures}, {label:'Mail personalization', value:email_info.value.email[cont.value].body.body_greetings_custom},
-        {label:'Percentage of special characters', value:email_info.value.email[cont.value].subject.subject_ratio_special_chars}, {label:'Percentage of numbers', value:email_info.value.email[cont.value].subject.subject_ration_num}
+    const featuresResultOptions2 = [{label:'Number of words in the subject', value: email_info.value.email[cont.value].subject.subject_n_word, explanation:""}, {label:'Number of characters in the subject', value: email_info.value.email[cont.value].subject.subject_n_chars, explanation:""},
+        {label:'Number of words in body', value: email_info.value.email[cont.value].body.body_n_words, explanation:""}, {label:'Number of characters in body', value: email_info.value.email[cont.value].body.body_n_chars, explanation:""},
+        {label:'Number of scam words in the subject', value:email_info.value.email[cont.value].subject.subject_n_scammy_words, explanation:""}, {label:'Number of phishing words in subject', value:email_info.value.email[cont.value].subject.subject_n_phishy_words, explanation:""},
+        {label:'Number of scam words in the body', value:email_info.value.email[cont.value].body.body_n_scammy_words, explanation:""}, {label:'Number of phishing words in the body', value:email_info.value.email[cont.value].body.body_n_phishy_words, explanation:""},
+        {label:'Readability', value:email_info.value.email[cont.value].body.body_readability, explanation:features_result[cont.value][8]}, {label:'Context type', value: features_result[cont.value][1], explanation: features_result[cont.value][3]},
+        {label:'Number of images', value:email_info.value.email[cont.value].body.body_n_pictures, explanation:""}, {label:'Mail personalization', value:email_info.value.email[cont.value].body.body_greetings_custom, explanation:features_result[cont.value][6]},
+        {label:'Percentage of special characters', value:email_info.value.email[cont.value].subject.subject_ratio_special_chars, explanation:""}, {label:'Percentage of numbers', value:email_info.value.email[cont.value].subject.subject_ration_num, explanation:""},
+        {label:'Text Links', value:link_result[cont.value][0], explanation:link_result[cont.value][5]},
+        {label:'Legitimate Links', value:link_result[cont.value][1], explanation:link_result[cont.value][7]},
+        {label:'Sospicoius Links', value:link_result[cont.value][2], explanation:link_result[cont.value][9]},
+        {label:'Phishing Links', value:link_result[cont.value][3], explanation:link_result[cont.value][11]},
       ]
 
 
@@ -593,7 +597,7 @@ export default defineComponent({
         showCards.value = true
         cont.value = -1
       }
-      featuresResult.value = "Seleziona un valore"
+      
         featuresResultOptions.value[0].value = email_info.value.email[cont.value].subject.subject_n_word
         featuresResultOptions.value[1].value = email_info.value.email[cont.value].subject.subject_n_chars
         featuresResultOptions.value[2].value = email_info.value.email[cont.value].body.body_n_words
@@ -606,22 +610,58 @@ export default defineComponent({
         featuresResultOptions.value[7].value = email_info.value.email[cont.value].body.body_n_phishy_words
         featuresResultOptions.value[8].value = email_info.value.email[cont.value].body.body_readability
 
-        featuresResultOptions.value[9].value = email_info.value.email[cont.value].context_result
+        featuresResultOptions.value[9].value = features_result[cont.value][0]
+        featuresResultOptions.value[9].explanation = features_result[cont.value][2]
+
         featuresResultOptions.value[10].value = email_info.value.email[cont.value].body.body_n_pictures
-        featuresResultOptions.value[11].value = email_info.value.email[cont.value].body.body_greetings_custom
+
+        featuresResultOptions.value[11].value = features_result[cont.value][4]
+        featuresResultOptions.value[11].explanation = features_result[cont.value][5]
 
         featuresResultOptions.value[12].value = email_info.value.email[cont.value].subject.subject_ration_num
         featuresResultOptions.value[13].value = email_info.value.email[cont.value].subject.subject_ratio_special_chars
 
+         featuresResultOptions.value[14].value = link_result[cont.value][0]
+        featuresResultOptions.value[15].value = link_result[cont.value][1]
+        featuresResultOptions.value[16].value = link_result[cont.value][2]
+        featuresResultOptions.value[17].value = link_result[cont.value][3]
+
+        featuresResultOptions.value[14].explanation = link_result[cont.value][4]
+        featuresResultOptions.value[15].explanation = link_result[cont.value][6]
+        featuresResultOptions.value[16].explanation = link_result[cont.value][8]
+        featuresResultOptions.value[17].explanation = link_result[cont.value][10]
+
         if (locale.value == "en-US"){
               lingua = 'English'
+              featuresResult.value = "Select a feature"
               esito.value = Response_phrases[cont.value][3]
               motivation.value = Response_phrases[cont.value][1]
+              featuresResultOptions.value[11].value = email_info.value.email[cont.value].body.body_greetings_custom
+              featuresResultOptions.value[11].explanation = features_result[cont.value][6]
+              featuresResultOptions.value[8].explanation = features_result[cont.value][8]
+               featuresResultOptions.value[9].explanation = features_result[cont.value][3]
+
+              featuresResultOptions.value[14].explanation = link_result[cont.value][5]
+              featuresResultOptions.value[15].explanation = link_result[cont.value][7]
+              featuresResultOptions.value[16].explanation = link_result[cont.value][9]
+              featuresResultOptions.value[17].explanation = link_result[cont.value][11]
               featuresResultOptions.value = featuresResultOptions2
           }else if (locale.value == "it"){
               lingua = 'Italian'
+              featuresResult.value = "Seleziona una feature"
               esito.value= Response_phrases[cont.value][2]
               motivation.value = Response_phrases[cont.value][0]
+              featuresResultOptions.value[11].value = features_result[cont.value][4]
+              featuresResultOptions.value[11].explanation = features_result[cont.value][5]
+              featuresResultOptions.value[8].explanation = features_result[cont.value][7]
+               featuresResultOptions.value[9].explanation = features_result[cont.value][2]
+
+              featuresResultOptions.value[14].explanation = link_result[cont.value][4]
+              featuresResultOptions.value[15].explanation = link_result[cont.value][6]
+              featuresResultOptions.value[16].explanation = link_result[cont.value][8]
+              featuresResultOptions.value[17].explanation = link_result[cont.value][10]
+
+
               featuresResultOptions.value = featuresResultOptions1
           }
 
@@ -634,7 +674,7 @@ export default defineComponent({
       }
       if(cont.value === 0){
       }
-      featuresResult.value = "Seleziona un valore"
+      
         featuresResultOptions.value[0].value = email_info.value.email[cont.value].subject.subject_n_word
         featuresResultOptions.value[1].value = email_info.value.email[cont.value].subject.subject_n_chars
         featuresResultOptions.value[2].value = email_info.value.email[cont.value].body.body_n_words
@@ -647,22 +687,55 @@ export default defineComponent({
         featuresResultOptions.value[7].value = email_info.value.email[cont.value].body.body_n_phishy_words
         featuresResultOptions.value[8].value = email_info.value.email[cont.value].body.body_readability
 
-        featuresResultOptions.value[9].value = email_info.value.email[cont.value].context_result
+        featuresResultOptions.value[9].value = features_result[cont.value][0]
+        featuresResultOptions.value[9].explanation = features_result[cont.value][3]
         featuresResultOptions.value[10].value = email_info.value.email[cont.value].body.body_n_pictures
-        featuresResultOptions.value[11].value = email_info.value.email[cont.value].body.body_greetings_custom
+
+        featuresResultOptions.value[11].value = features_result[cont.value][4]
+        featuresResultOptions.value[11].explanation = features_result[cont.value][5]
 
         featuresResultOptions.value[12].value = email_info.value.email[cont.value].subject.subject_ration_num
         featuresResultOptions.value[13].value = email_info.value.email[cont.value].subject.subject_ratio_special_chars
 
+        featuresResultOptions.value[14].value = link_result[cont.value][0]
+        featuresResultOptions.value[15].value = link_result[cont.value][1]
+        featuresResultOptions.value[16].value = link_result[cont.value][2]
+        featuresResultOptions.value[17].value = link_result[cont.value][3]
+
+        featuresResultOptions.value[14].explanation = link_result[cont.value][4]
+        featuresResultOptions.value[15].explanation = link_result[cont.value][6]
+        featuresResultOptions.value[16].explanation = link_result[cont.value][8]
+        featuresResultOptions.value[17].explanation = link_result[cont.value][10]
+
         if (locale.value == "en-US"){
               lingua = 'English'
+              featuresResult.value = "Select a feature"
               esito.value = Response_phrases[cont.value][3]
               motivation.value = Response_phrases[cont.value][1]
+              featuresResultOptions.value[11].value = email_info.value.email[cont.value].body.body_greetings_custom
+              featuresResultOptions.value[11].explanation = features_result[cont.value][6]
+              featuresResultOptions.value[8].explanation = features_result[cont.value][8]
+               featuresResultOptions.value[9].explanation = features_result[cont.value][3]
+
+               featuresResultOptions.value[14].explanation = link_result[cont.value][5]
+              featuresResultOptions.value[15].explanation = link_result[cont.value][7]
+              featuresResultOptions.value[16].explanation = link_result[cont.value][9]
+              featuresResultOptions.value[17].explanation = link_result[cont.value][11]
               featuresResultOptions.value = featuresResultOptions2
           }else if (locale.value == "it"){
               lingua = 'Italian'
+              featuresResult.value = "Seleziona una feature"
               esito.value= Response_phrases[cont.value][2]
               motivation.value = Response_phrases[cont.value][0]
+              featuresResultOptions.value[11].value = features_result[cont.value][4]
+              featuresResultOptions.value[11].explanation = features_result[cont.value][5]
+              featuresResultOptions.value[8].explanation = features_result[cont.value][7]
+               featuresResultOptions.value[9].explanation = features_result[cont.value][2]
+
+               featuresResultOptions.value[14].explanation = link_result[cont.value][4]
+              featuresResultOptions.value[15].explanation = link_result[cont.value][6]
+              featuresResultOptions.value[16].explanation = link_result[cont.value][8]
+              featuresResultOptions.value[17].explanation = link_result[cont.value][10]
               featuresResultOptions.value = featuresResultOptions1
           }
 
@@ -688,14 +761,13 @@ export default defineComponent({
       showCards,
       slide,
       router,
-      //////
       featuresResultOptions,
-    featuresResult,
-    group1: ref(null),
-    cognitive_value,
-    title1,
-    text2,
-    resetSelectValue
+      featuresResult,
+      group1: ref(null),
+      cognitive_value,
+      resetSelectValue,
+      features_result,
+      link_result
 
 
     }
