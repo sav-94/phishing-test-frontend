@@ -216,14 +216,15 @@ export default {
     validity: "Veridicità",
     subtitle_string: "Seleziona una caratteristica descrittiva dell'email",
     value_string: "Valore:",
-    cognitive_triggers_string: "Cognitive triggers presenti",
+    cognitive_triggers_string: "Caratteristiche della mail (cognitive triggers)",
     next_results: "Pros.",
     previous_results: " Prec.",
-    features_string: "Features",
+    features_string: "Dettagli",
     sense_of_urgency: "Senso di urgenza",
     liking: "Simpatia",
     reciprocity: " Reciprocità",
     contacts: " Contatti",
-    legitimate: " Legittima"
+    legitimate: " Legittima",
+    showMoreFeatures: "Clicca per vedere ulteriori informazioni"
 
 }

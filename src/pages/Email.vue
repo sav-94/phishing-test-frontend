@@ -204,7 +204,7 @@
               <q-btn @click="next(true)"  color="negative" label="Phishing" />
             </div>
             <div class="col-auto">
-              <q-btn @click="next(false)" :disable="reported_as_spam" color="positive" label="$t('legitimate')" />
+              <q-btn @click="next(false)" :disable="reported_as_spam" color="positive" :label="$t('legitimate')" />
             </div>
           </div>
           <div class="q-mt-lg col-xs-12 flex flex-center">

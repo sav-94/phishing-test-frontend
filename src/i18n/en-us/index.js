@@ -210,15 +210,16 @@ export default {
     Other: "Other",
     test_validity_substring: "Select the value 3 to confirm that the information you provided is valid.",
     validity: "Truthfullness",
-    subtitle_string: "Select a descriptive email feature",
+    ubtitle_string: "Select a descriptive email feature",
     value_string: "Value:",
-    cognitive_triggers_string: "Cognitive triggers",
+    cognitive_triggers_string: "Main features of the email (Cognitive triggers)",
     next_results: "Next",
     previous_results: "Prev.",
-    features_string: "Features",
+    features_string: "Details",
     sense_of_urgency: "Sense of urgency",
     liking: "Liking",
     reciprocity: "Reciprocity",
     contacts: "Contacts",
-    legitimate: "Legitimate"
+    legitimate: "Legitimate",
+    showMoreFeatures: "Click to show more information"
 }
