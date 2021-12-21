@@ -174,7 +174,7 @@
     <div v-if="showCards==false" class="row fit">
     <div class="col-md-2 col-sm-2"></div>
     <div class="col-md-8 col-sm-12 col-xs-12">
-      <q-carousel 
+      <q-carousel
         v-model="slide"
         transition-prev="scale"
         transition-next="scale"
@@ -274,104 +274,105 @@
           </div>
         </q-carousel-slide>
         <!--Start second page card - feedback email-->
-       <q-carousel-slide name="layers" class="col-md-8 col-xs-12 no-wrap flex-center"> 
-        <!--Start Card2--> 
-           <q-card class="my-card"> 
-             <q-card-section> 
-               <div class="row justify-center"> 
-                 <img v-if="Response_phrases[cont][4]=='text-green'" src="https://i.postimg.cc/Prdnm0cK/check-ok-72x.png" alt=""> 
-                 <img v-if="Response_phrases[cont][4]=='text-red'" src="https://i.postimg.cc/PxbFJ5tH/check-not-72x.png" alt=""> 
-               </div> 
-               <h5 style="font-size:20px;" class="text-justify q-ml-md q-mr-md">{{motivation}}</h5> 
-             </q-card-section> 
- 
- 
-        <q-card-section> 
-        <div class=""> 
-          <div class="text-bold text-black q-mb-xl q-ml-md" style="font-size:18px">{{$t('cognitive_triggers_string')}}</div> 
-          <div class="q-gutter-sm gt-sm row"> 
-            <q-checkbox disable class="disabled " v-model="group1" :label="$t('consistency')" :color="cognitive_value[cont][0]"></q-checkbox> 
-            <q-checkbox disable class="disabled " v-model="group1" :label="$t('reciprocity')"  :color="cognitive_value[cont][1]"></q-checkbox> 
-            <q-checkbox disable class="disabled " v-model="group1" :label="$t('scarcity')" :color="cognitive_value[cont][2]"></q-checkbox> 
-            <q-checkbox disable class="disabled " v-model="group1" :label="$t('liking')"  :color="cognitive_value[cont][3]"></q-checkbox> 
-            <q-checkbox disable class="disabled " v-model="group1" :label="$t('social_proof')" :color="cognitive_value[cont][4]"></q-checkbox> 
-            <q-checkbox disable class="disabled " v-model="group1" :label="$t('authority')" :color="cognitive_value[cont][5]"></q-checkbox> 
-            <q-checkbox disable class="disabled " v-model="group1" :label="$t('sense_of_urgency')"  :color="cognitive_value[cont][6]"></q-checkbox> 
-         </div> 
- 
- 
-         <div class="q-gutter-sm "> 
-           <div class="row lt-sm"> 
-            <q-checkbox disable class="disabled col-6" v-model="group1" label="Consistency" :color="cognitive_value[cont][0]"></q-checkbox> 
-            <q-checkbox disable class="disabled col-6" v-model="group1" label="Reciprocity" :color="cognitive_value[cont][1]"></q-checkbox> 
-           </div> 
-           <div class="row lt-sm"> 
-             <q-checkbox disable class="disabled col-6" v-model="group1" label="Scarcity" :color="cognitive_value[cont][2]"></q-checkbox> 
-             <q-checkbox disable class="disabled col-6" v-model="group1" label="Liking" :color="cognitive_value[cont][3]"></q-checkbox> 
-           </div> 
-           <div class="row lt-sm"> 
-            <q-checkbox disable class="disabled col-6" v-model="group1" label="Social Proof" :color="cognitive_value[cont][4]"></q-checkbox> 
-            <q-checkbox disable class="disabled col-6" v-model="group1" label="Authority" :color="cognitive_value[cont][5]"></q-checkbox> 
- 
-           </div> 
-            <div class="row lt-sm"> 
-              <q-checkbox disable class="disabled col-6" v-model="group1" label="Sense of Urgency" :color="cognitive_value[cont][6]"></q-checkbox> 
-            </div> 
-         </div> 
- 
- 
-       </div> 
-      </q-card-section> 
-      <!--End checkbox--> 
-         <!--Start select--> 
- 
-              <q-card-section> 
-            <div class="text-h6 text-black q-ml-md" style="margin-top:-2%;"> 
-                    {{$t('showMoreFeatures')}} 
-              <q-btn 
-                color="blue-10" 
-                round 
-                flat 
-                dense 
-                :icon="showFeature ? 'keyboard_arrow_up' : 'keyboard_arrow_down'" 
-                @click="showFeature= !showFeature" 
-              /> 
-            </div> 
-              </q-card-section> 
- 
- 
-              <q-slide-transition> 
-                <div v-show="showFeature"> 
- 
-                <q-card-section class="text-subitle2"> 
-              <q-card-section> 
-              <div class="row"> 
-                <div class="col-6"> 
-                  <div class="text-bold text-black q-mb-xl q-ml-md" style="font-size:18px">{{$t('subtitle_string')}}</div> 
-                  <div class="q-gutter-md q-ml-xs" style="max-width: 350px"> 
-                      <q-select  outlined 
-                        v-model="featuresResult" 
-                        :options="featuresResultOptions" 
-                        option-value="featuresResultOptions.value" 
-                        /></div> 
-                </div> 
-                  <div v-if="featuresResult.explanation!=''" class="col-6 q-mt-md"> 
-                  <q-card class ="col-6 q-mt-lg no-shadow"> 
-                    <q-card-section> 
+       <q-carousel-slide name="layers" class="col-md-8 col-xs-12 no-wrap flex-center">
+        <!--Start Card2-->
+           <q-card class="my-card">
+             <q-card-section>
+               <div class="row justify-center">
+                 <img v-if="Response_phrases[cont][4]=='text-green'" src="https://i.postimg.cc/Prdnm0cK/check-ok-72x.png" alt="">
+                 <img v-if="Response_phrases[cont][4]=='text-red'" src="https://i.postimg.cc/PxbFJ5tH/check-not-72x.png" alt="">
+               </div>
+               <h5 style="font-size:20px;" class="text-justify q-ml-md q-mr-md">{{motivation}}</h5>
+             </q-card-section>
+
+
+        <q-card-section>
+        <div class="">
+          <div class="text-bold text-black q-mb-xl q-ml-md" style="font-size:18px">{{$t('cognitive_triggers_string')}}</div>
+          <div class="q-gutter-sm gt-sm row">
+            <q-checkbox disable class="disabled " v-model="group1" :label="$t('consistency')" :color="cognitive_value[cont][0]"></q-checkbox>
+            <q-checkbox disable class="disabled " v-model="group1" :label="$t('reciprocity')"  :color="cognitive_value[cont][1]"></q-checkbox>
+            <q-checkbox disable class="disabled " v-model="group1" :label="$t('scarcity')" :color="cognitive_value[cont][2]"></q-checkbox>
+            <q-checkbox disable class="disabled " v-model="group1" :label="$t('liking')"  :color="cognitive_value[cont][3]"></q-checkbox>
+            <q-checkbox disable class="disabled " v-model="group1" :label="$t('social_proof')" :color="cognitive_value[cont][4]"></q-checkbox>
+            <q-checkbox disable class="disabled " v-model="group1" :label="$t('authority')" :color="cognitive_value[cont][5]"></q-checkbox>
+            <q-checkbox disable class="disabled " v-model="group1" :label="$t('sense_of_urgency')"  :color="cognitive_value[cont][6]"></q-checkbox>
+         </div>
+
+
+         <div class="q-gutter-sm ">
+           <div class="row lt-sm">
+            <q-checkbox disable class="disabled col-6" v-model="group1" label="Consistency" :color="cognitive_value[cont][0]"></q-checkbox>
+            <q-checkbox disable class="disabled col-6" v-model="group1" label="Reciprocity" :color="cognitive_value[cont][1]"></q-checkbox>
+           </div>
+           <div class="row lt-sm">
+             <q-checkbox disable class="disabled col-6" v-model="group1" label="Scarcity" :color="cognitive_value[cont][2]"></q-checkbox>
+             <q-checkbox disable class="disabled col-6" v-model="group1" label="Liking" :color="cognitive_value[cont][3]"></q-checkbox>
+           </div>
+           <div class="row lt-sm">
+            <q-checkbox disable class="disabled col-6" v-model="group1" label="Social Proof" :color="cognitive_value[cont][4]"></q-checkbox>
+            <q-checkbox disable class="disabled col-6" v-model="group1" label="Authority" :color="cognitive_value[cont][5]"></q-checkbox>
+
+           </div>
+            <div class="row lt-sm">
+              <q-checkbox disable class="disabled col-6" v-model="group1" label="Sense of Urgency" :color="cognitive_value[cont][6]"></q-checkbox>
+            </div>
+         </div>
+
+
+       </div>
+      </q-card-section>
+      <!--End checkbox-->
+         <!--Start select-->
+
+              <q-card-section>
+            <div class="text-bold text-black q-ml-md" style="margin-top:-2%;">
+                    {{$t('showMoreFeatures')}}
+              <q-btn
+                color="blue-10"
+                round
+                flat
+                dense
+                :icon="showFeature ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
+                @click="showFeature= !showFeature"
+              />
+            </div>
+              </q-card-section>
+
+            <q-separator/>
+
+              <q-slide-transition>
+                <div v-show="showFeature">
+                <q-card-section class="text-subitle2">
+              <q-card-section>
+              <div class="row">
+                <div class="col-6 col-xs-12">
+                  <div class="text-bold text-blue-10 q-mb-xl" style="font-size:15px">{{$t('subtitle_string')}}</div>
+                  <div class="q-gutter-md " style="max-width: 350px">
+                      <q-select  outlined
+                        v-model="featuresResult"
+                        :options="featuresResultOptions"
+                        option-value="featuresResultOptions.value"
+                        /></div>
+                        <q-card-section>
+                  <div v-if="featuresResult.value !=null" class="text-grey q-ml-sm" style="font-size:13px">{{$t('value_string')}}<span class="text-boldtext-grey q-ml-sm" style="font-size:17px"> {{featuresResult.value}}</span></div>
+                </q-card-section>
+                </div>
+                  <div v-if="featuresResult.explanation!=''" class="col-6 q-mt-md">
+                  <q-card class ="col-6 col-xs-12 q-mt-lg no-shadow">
+                    <q-card-section>
                       {{featuresResult.explanation}}
-                    </q-card-section> 
-                  </q-card> 
-                  </div> 
-            <!--End select--> 
-                <q-card-section> 
-                  <div v-if="featuresResult.value !=null" class="text-bold text-grey q-ml-sm" style="font-size:17px">{{$t('value_string')}} {{featuresResult.value}}</div> 
-                </q-card-section> 
-              </div> 
-      </q-card-section> 
-                </q-card-section> 
-              </div> 
-            </q-slide-transition> 
-          </q-card> 
+                    </q-card-section>
+                  </q-card>
+                  </div>
+            <!--End select-->
+
+              </div>
+      </q-card-section>
+                </q-card-section>
+              </div>
+            </q-slide-transition>
+          </q-card>
 
         <!--end second page card - feedback email-->
         </q-carousel-slide>
@@ -394,7 +395,7 @@
 
     </div>
 
-    <div  v-if="showCards == false" class="row q-mt-xs q-mb-md lt-sm">
+    <div  v-if="showCards == false" class="row q-mt-xs q-mb-md lt-md">
         <div class="col-1"></div>
         <div class="col-2">
           <q-btn @click="back()" color="primary" :label="$t('previous_results')" />
@@ -489,10 +490,10 @@ export default defineComponent({
         {label:'Leggibilità', value:email_info.value.email[cont.value].body.body_readability, explanation:features_result[cont.value][7]}, {label:'Tipo Contesto', value: features_result[cont.value][0], explanation: features_result[cont.value][2]},
         {label:'Numero immagini', value:email_info.value.email[cont.value].body.body_n_pictures, explanation:""}, {label:'Personalizzazione della mail', value: features_result[cont.value][4], explanation: features_result[cont.value][5]},
         {label:'Percentuale caratteri speciali', value:email_info.value.email[cont.value].subject.subject_ratio_special_chars, explanation:""}, {label:'Percentuale numeri', value:email_info.value.email[cont.value].subject.subject_ration_num, explanation:""},
-        {label:'Link testuali', value: link_result1[cont.value][0], explanation:link_result1[cont.value][1]},
-        {label:'Link legittimi', value:link_result2[cont.value][0], explanation:link_result2[cont.value][1]},
-        {label:'Link sospetti', value:link_result4[cont.value][0], explanation:link_result4[cont.value][1]},
-        {label:'Link di phishing', value:link_result3[cont.value][0], explanation:link_result3[cont.value][1]},
+        {label:'Link testuali', value: link_result1[cont.value][2], explanation:link_result1[cont.value][0]},
+        {label:'Link legittimi', value:link_result2[cont.value][2], explanation:link_result2[cont.value][0]},
+        {label:'Link sospetti', value:link_result4[cont.value][2], explanation:link_result4[cont.value][0]},
+        {label:'Link di phishing', value:link_result3[cont.value][2], explanation:link_result3[cont.value][0]},
 
       ]
 
@@ -503,10 +504,10 @@ export default defineComponent({
         {label:'Readability', value:email_info.value.email[cont.value].body.body_readability, explanation:features_result[cont.value][8]}, {label:'Context type', value: features_result[cont.value][1], explanation: features_result[cont.value][3]},
         {label:'Number of images', value:email_info.value.email[cont.value].body.body_n_pictures, explanation:""}, {label:'Mail personalization', value:email_info.value.email[cont.value].body.body_greetings_custom, explanation:features_result[cont.value][6]},
         {label:'Percentage of special characters', value:email_info.value.email[cont.value].subject.subject_ratio_special_chars, explanation:""}, {label:'Percentage of numbers', value:email_info.value.email[cont.value].subject.subject_ration_num, explanation:""},
-        {label:'Text Links', value:link_result1[cont.value][0], explanation:link_result1[cont.value][2]},
-        {label:'Legitimate Links', value:link_result2[cont.value][0], explanation:link_result2[cont.value][2]},
-        {label:'Sospicoius Links', value:link_result4[cont.value][0], explanation:link_result4[cont.value][2]},
-        {label:'Phishing Links', value:link_result3[cont.value][0], explanation:link_result3[cont.value][2]},
+        {label:'Text Links', value:link_result1[cont.value][2], explanation:link_result1[cont.value][1]},
+        {label:'Legitimate Links', value:link_result2[cont.value][2], explanation:link_result2[cont.value][1]},
+        {label:'Sospicoius Links', value:link_result4[cont.value][2], explanation:link_result4[cont.value][1]},
+        {label:'Phishing Links', value:link_result3[cont.value][2], explanation:link_result3[cont.value][1]}
       ]
 
 
@@ -617,7 +618,7 @@ export default defineComponent({
 
 
     const next = async () => {
-
+      window.scrollTo(0, 0);
       if(cont.value < 10){
 
         cont.value = cont.value + 1
@@ -626,7 +627,7 @@ export default defineComponent({
         showCards.value = true
         cont.value = -1
       }
-      
+
         featuresResultOptions.value[0].value = email_info.value.email[cont.value].subject.subject_n_word
         featuresResultOptions.value[1].value = email_info.value.email[cont.value].subject.subject_n_chars
         featuresResultOptions.value[2].value = email_info.value.email[cont.value].body.body_n_words
@@ -650,15 +651,11 @@ export default defineComponent({
         featuresResultOptions.value[12].value = email_info.value.email[cont.value].subject.subject_ration_num
         featuresResultOptions.value[13].value = email_info.value.email[cont.value].subject.subject_ratio_special_chars
 
-        featuresResultOptions.value[14].value = link_result1[cont.value][0]
-        featuresResultOptions.value[15].value = link_result2[cont.value][0]
-        featuresResultOptions.value[16].value = link_result4[cont.value][0]
-        featuresResultOptions.value[17].value = link_result3[cont.value][0]
+        featuresResultOptions.value[14].value = link_result1[cont.value][2]
+        featuresResultOptions.value[15].value = link_result2[cont.value][2]
+        featuresResultOptions.value[16].value = link_result4[cont.value][2]
+        featuresResultOptions.value[17].value = link_result3[cont.value][2]
 
-        featuresResultOptions.value[14].explanation = link_result1[cont.value][1]
-        featuresResultOptions.value[15].explanation = link_result2[cont.value][1]
-        featuresResultOptions.value[16].explanation = link_result4[cont.value][1]
-        featuresResultOptions.value[17].explanation = link_result3[cont.value][1]
 
         if (locale.value == "en-US"){
               lingua = 'English'
@@ -670,10 +667,10 @@ export default defineComponent({
               featuresResultOptions.value[8].explanation = features_result[cont.value][8]
                featuresResultOptions.value[9].explanation = features_result[cont.value][3]
 
-              featuresResultOptions.value[14].explanation = link_result1[cont.value][2]
-              featuresResultOptions.value[15].explanation = link_result2[cont.value][2]
-              featuresResultOptions.value[16].explanation = link_result4[cont.value][2]
-              featuresResultOptions.value[17].explanation = link_result3[cont.value][2]
+              featuresResultOptions.value[14].explanation = link_result1[cont.value][1]
+              featuresResultOptions.value[15].explanation = link_result2[cont.value][1]
+              featuresResultOptions.value[16].explanation = link_result4[cont.value][1]
+              featuresResultOptions.value[17].explanation = link_result3[cont.value][1]
               featuresResultOptions.value = featuresResultOptions2
           }else if (locale.value == "it"){
               lingua = 'Italian'
@@ -685,10 +682,10 @@ export default defineComponent({
               featuresResultOptions.value[8].explanation = features_result[cont.value][7]
                featuresResultOptions.value[9].explanation = features_result[cont.value][2]
 
-              featuresResultOptions.value[14].explanation = link_result1[cont.value][1]
-              featuresResultOptions.value[15].explanation = link_result2[cont.value][1]
-              featuresResultOptions.value[16].explanation = link_result4[cont.value][1]
-              featuresResultOptions.value[17].explanation = link_result3[cont.value][1]
+              featuresResultOptions.value[14].explanation = link_result1[cont.value][0]
+              featuresResultOptions.value[15].explanation = link_result2[cont.value][0]
+              featuresResultOptions.value[16].explanation = link_result4[cont.value][0]
+              featuresResultOptions.value[17].explanation = link_result3[cont.value][0]
 
 
               featuresResultOptions.value = featuresResultOptions1
@@ -697,13 +694,14 @@ export default defineComponent({
     }
 
     const back = async () => {
+      window.scrollTo(0, 0);
       if(cont.value < 10){
         cont.value = cont.value - 1
 
       }
       if(cont.value === 0){
       }
-      
+
         featuresResultOptions.value[0].value = email_info.value.email[cont.value].subject.subject_n_word
         featuresResultOptions.value[1].value = email_info.value.email[cont.value].subject.subject_n_chars
         featuresResultOptions.value[2].value = email_info.value.email[cont.value].body.body_n_words
@@ -717,7 +715,8 @@ export default defineComponent({
         featuresResultOptions.value[8].value = email_info.value.email[cont.value].body.body_readability
 
         featuresResultOptions.value[9].value = features_result[cont.value][0]
-        featuresResultOptions.value[9].explanation = features_result[cont.value][3]
+        featuresResultOptions.value[9].explanation = features_result[cont.value][2]
+
         featuresResultOptions.value[10].value = email_info.value.email[cont.value].body.body_n_pictures
 
         featuresResultOptions.value[11].value = features_result[cont.value][4]
@@ -726,15 +725,11 @@ export default defineComponent({
         featuresResultOptions.value[12].value = email_info.value.email[cont.value].subject.subject_ration_num
         featuresResultOptions.value[13].value = email_info.value.email[cont.value].subject.subject_ratio_special_chars
 
-        eaturesResultOptions.value[14].value = link_result1[cont.value][0]
-        featuresResultOptions.value[15].value = link_result2[cont.value][0]
-        featuresResultOptions.value[16].value = link_result4[cont.value][0]
-        featuresResultOptions.value[17].value = link_result3[cont.value][0]
+        featuresResultOptions.value[14].value = link_result1[cont.value][2]
+        featuresResultOptions.value[15].value = link_result2[cont.value][2]
+        featuresResultOptions.value[16].value = link_result4[cont.value][2]
+        featuresResultOptions.value[17].value = link_result3[cont.value][2]
 
-        featuresResultOptions.value[14].explanation = link_result1[cont.value][1]
-        featuresResultOptions.value[15].explanation = link_result2[cont.value][1]
-        featuresResultOptions.value[16].explanation = link_result4[cont.value][1]
-        featuresResultOptions.value[17].explanation = link_result3[cont.value][1]
 
         if (locale.value == "en-US"){
               lingua = 'English'
@@ -746,10 +741,10 @@ export default defineComponent({
               featuresResultOptions.value[8].explanation = features_result[cont.value][8]
                featuresResultOptions.value[9].explanation = features_result[cont.value][3]
 
-              featuresResultOptions.value[14].explanation = link_result1[cont.value][2]
-              featuresResultOptions.value[15].explanation = link_result2[cont.value][2]
-              featuresResultOptions.value[16].explanation = link_result4[cont.value][2]
-              featuresResultOptions.value[17].explanation = link_result3[cont.value][2]
+              featuresResultOptions.value[14].explanation = link_result1[cont.value][1]
+              featuresResultOptions.value[15].explanation = link_result2[cont.value][1]
+              featuresResultOptions.value[16].explanation = link_result4[cont.value][1]
+              featuresResultOptions.value[17].explanation = link_result3[cont.value][1]
               featuresResultOptions.value = featuresResultOptions2
           }else if (locale.value == "it"){
               lingua = 'Italian'
@@ -761,10 +756,12 @@ export default defineComponent({
               featuresResultOptions.value[8].explanation = features_result[cont.value][7]
                featuresResultOptions.value[9].explanation = features_result[cont.value][2]
 
-              featuresResultOptions.value[14].explanation = link_result1[cont.value][1]
-              featuresResultOptions.value[15].explanation = link_result2[cont.value][1]
-              featuresResultOptions.value[16].explanation = link_result4[cont.value][1]
-              featuresResultOptions.value[17].explanation = link_result3[cont.value][1]
+              featuresResultOptions.value[14].explanation = link_result1[cont.value][0]
+              featuresResultOptions.value[15].explanation = link_result2[cont.value][0]
+              featuresResultOptions.value[16].explanation = link_result4[cont.value][0]
+              featuresResultOptions.value[17].explanation = link_result3[cont.value][0]
+
+
               featuresResultOptions.value = featuresResultOptions1
           }
 

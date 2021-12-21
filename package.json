@@ -10,23 +10,23 @@
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
-    "@quasar/extras": "^1.0.0",
+    "@quasar/extras": "^1.12.2",
     "axios": "^0.21.1",
-    "core-js": "^3.6.5",
-    "quasar": "^2.0.0-beta.1",
+    "core-js": "^3.20.0",
+    "quasar": "^2.3.4",
     "vue-i18n": "^9.1.9",
-    "vue-loader": "^16.2.0",
+    "vue-loader": "^16.8.3",
     "vue-recaptcha": "^2.0.1",
     "vuex": "^4.0.2"
   },
   "devDependencies": {
-    "@intlify/vue-i18n-loader": "^3.0.0",
-    "@quasar/app": "^3.1.0",
+    "@intlify/vue-i18n-loader": "^3.3.0",
+    "@quasar/app": "^3.2.5",
     "babel-eslint": "^10.0.1",
     "eslint": "^7.14.0",
     "eslint-config-prettier": "^8.1.0",
-    "eslint-plugin-vue": "^7.0.0",
-    "eslint-webpack-plugin": "^2.4.0",
+    "eslint-plugin-vue": "^7.20.0",
+    "eslint-webpack-plugin": "^2.6.0",
     "yaml-loader": "^0.6.0"
   },
   "browserslist": [
