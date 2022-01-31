@@ -24,7 +24,11 @@
               map-options
               options-dense
               style="min-width:150px;color:white;"
-              />
+              >
+              <q-avatar class="q-mb-sm" size="24px">
+                <img :src="$t('img')"/>
+              </q-avatar>
+            </q-select>
             </div>
             <q-btn class="gt-sm" flat round dense icon="kayaking"/>
             <q-btn class="gt-sm" flat round dense icon="password"/>
@@ -35,7 +39,6 @@
         </div>
 
         <div class="row">
-
           <div class="col-md-5 col-xs-12 q-pt-lg q-pl-xl q-pr-xl gt-sm">
             <q-card>
               <q-card-section>
@@ -89,11 +92,10 @@
           </div>
         </div>
 
-
           <q-card div class="row bg-white-3 q-pa-xs shadows">
           <div class="col col-md-1 col-sm-4 col-xs-3 q-ml-md q-mt-lg">
             <q-img class="q-mb-sm"
-            src="http://areacomunicazione.policlinico.unina.it/wp-content/uploads/2014/02/logo-federico-II-blu.png"
+            src="https://freepikpsd.com/file/2019/10/federico-ii-logo-png-6-300x200-Transparent-Images.png"
             spinner-color="white"
             size="100px"
             style="height: 70px; max-width: 70px"
@@ -119,9 +121,6 @@
 
       </q-page>
     </q-page-container>
-
-
-
   </q-layout>
 </template>
 
@@ -139,12 +138,9 @@ export default defineComponent({
     const store = useStore()
 
     const { locale } = useI18n({ useScope: 'global' })
-
-
     const start = () => {
        store.dispatch('email/get_home')
        router.push({ name: 'register'})
-
     }
 
     return {
@@ -154,8 +150,8 @@ export default defineComponent({
       autoplay,
       locale,
       localeOptions: [
-        { value: 'en-US', label: 'English' },
-        { value: 'it', label: 'Italiano' }
+        { value: 'en-US', label: 'English'},
+        { value: 'it', label: 'Italiano'}
       ]
 
     }

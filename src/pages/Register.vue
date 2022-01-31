@@ -376,6 +376,7 @@
 <q-step
   :name="6"
   :title="$t('pers_Characterization')"
+  :error="testEmpty5"
   icon="workspaces"
   :done="step > 6"
 
@@ -652,6 +653,7 @@
 <q-step
   :name="7"
   :title="$t('big_five')"
+  :error="testEmpty6"
   icon="workspaces"
 
   :done="step > 7"
@@ -954,7 +956,6 @@
   :name="8"
   :title="$t('cognitive_vulnerabilities')"
   icon="workspaces"
-
   :done="step > 8"
 >
 
@@ -1647,22 +1648,22 @@ const antiPhisCourseEverModel = ref(false)
 const victimModel = ref(false)
 const timeModel = ref(null)
 const selfConfidenceModel = ref(null)
-const impulsivityModel = ref(0)
-const curiosityModel = ref(0)
-const riskPropensityModel = ref(0)
-const test_validModel = ref(0)
-const riskPerceptionModel = ref(0)
-const privacyDataModel = ref(0)
-const extraversionModel = ref(0)
-const agreeablenessModel = ref(0)
-const conscientiousnessModel = ref(0)
-const emotionalStabilityModel = ref(0)
-const opennessModel = ref(0)
-const scarcityModel = ref(0)
-const consistencyModel = ref(0)
-const socialProofModel = ref(0)
-const gratitudeModel = ref(0)
-const authorityModel = ref(0)
+const impulsivityModel = ref(null)
+const curiosityModel = ref(null)
+const riskPropensityModel = ref(null)
+const test_validModel = ref(null)
+const riskPerceptionModel = ref(null)
+const privacyDataModel = ref(null)
+const extraversionModel = ref(null)
+const agreeablenessModel = ref(null)
+const conscientiousnessModel = ref(null)
+const emotionalStabilityModel = ref(null)
+const opennessModel = ref(null)
+const scarcityModel = ref(null)
+const consistencyModel = ref(null)
+const socialProofModel = ref(null)
+const gratitudeModel = ref(null)
+const authorityModel = ref(null)
 const workHoursPriorTestModel = ref(null)
 
 const form = reactive({
@@ -1691,6 +1692,9 @@ const testEmpty1 = ref(false)
 const testEmpty2 = ref(false)
 const testEmpty3 = ref(false)
 const testEmpty4 = ref(false)
+const testEmpty5 = ref(false)
+const testEmpty6 = ref(false)
+const testEmpty7 = ref(false)
 const router = useRouter()
 
 const startRegister = async () => {
@@ -1750,6 +1754,31 @@ if(computerScienceknowledgeModel.value== null || workHoursPriorTestModel.value =
 }else{
   testEmpty4.value=false
 }
+
+if(impulsivityModel.value == null || curiosityModel.value == null || riskPropensityModel.value == null || riskPerceptionModel.value == null || privacyDataModel.value == null){
+    if(step.value > 6){
+      testEmpty5.value = true
+    }
+}else{
+  testEmpty5.value = false
+}
+
+if(opennessModel.value  == null || extraversionModel.value  == null || agreeablenessModel.value  == null || conscientiousnessModel.value  == null || emotionalStabilityModel.value == null){
+  if (step.value > 7){
+    testEmpty6.value = true
+  }
+  }else{
+    testEmpty6.value = false
+    }
+
+if(scarcityModel.value  == null || consistencyModel.value  == null || socialProofModel.value  == null || gratitudeModel.value == null || authorityModel.value  == null )
+{
+  testEmpty7.value = true
+}else{
+  testEmpty7.value = false
+  }
+
+
 }
 const userRegister = async () => {
 
@@ -1757,7 +1786,7 @@ if(ageModel.value == null || !genderModel.value || !eduLevelModel.value
     || !eduFieldModel.value || !jobFieldModel.value
     || !emplTypeModel.value || jobExpYearModel.value == null || !hobbyModel.value
     || !natModel.value || !lanModel.value || timeModel.value == null || computerScienceknowledgeModel.value== null || workHoursPriorTestModel.value == null
-    || selfConfidenceModel.value == null){
+    || selfConfidenceModel.value == null || impulsivityModel.value == null || curiosityModel.value == null || riskPropensityModel.value == null || riskPerceptionModel.value == null || privacyDataModel.value == null || opennessModel.value  == null || extraversionModel.value  == null || agreeablenessModel.value  == null || conscientiousnessModel.value  == null || emotionalStabilityModel.value == null || scarcityModel.value  == null || consistencyModel.value  == null || socialProofModel.value  == null || gratitudeModel.value == null || authorityModel.value  == null ){
 
 
 if (locale.value == "en-US"){
@@ -1938,6 +1967,9 @@ testEmpty1,
 testEmpty2,
 testEmpty3,
 testEmpty4,
+testEmpty5,
+testEmpty6,
+testEmpty7,
 persistent
 }
 }

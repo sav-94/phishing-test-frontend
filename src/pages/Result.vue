@@ -39,17 +39,14 @@
             enter-active-class="animated fadeInRight"
           >
 
-    <div v-if="showCards" class="row">
-
-        <q-card class="col-6 col-md-4 col-xs-11 q-ma-md">
+    <div v-if="showCards" class="row gt-sm">
+      <div class="col-2"></div>
+        <q-card class="col-6 col-md-4 col-xs-12 q-ma-md gt-sm">
           <q-card-section>
-            <h5 class="text-center center">{{$t('score_is')}}</h5>
+            <div class="text-h6 center justify-center">{{$t('score_is')}}</div>
           </q-card-section>
-
-          <q-separator dark inset />
-
-        <q-card-section>
-          <q-linear-progress stripe size="25px" :value="progress" >
+          <q-card-section>
+          <q-linear-progress stripe size="23px" :value="progress" >
             <div class="absolute-full flex flex-center">
               <q-badge color="white" text-color="black" :label="progressLabel" />
             </div>
@@ -58,36 +55,31 @@
         </q-card>
 
 
-      <q-card class="col-2 col-md-3 col-xs-11 q-ma-md gt-sm">
+      <q-card class="col-2 col-md-3 q-ma-md gt-sm">
           <q-card-section>
             <div class="col-auto q-ma-md">
-          <p class="text-center center">{{$t('level_of_awareness')}}</p><br><div class="col-auto q-mt-md">
-                <div class="q-ma-md">
+          <p class="text-center center">{{$t('level_of_awareness')}}</p><br>
+          <div class="justify-center">
                   <p style="font-weight: bold;font-size:130%" class="text-center">{{awareness_phihsing}}</p>
-              </div>
             </div>
           </div>
-
       </q-card-section>
+  </q-card>
 
+    </div>
+  <div v-if="showCards" class="row gt-sm">
+    <div class="col-2"></div>
+    <q-card class="col-2 col-md-3 col-xs-12 q-ma-md gt-sm">
       <q-card-section>
-     </q-card-section>
-
-     <q-card-section>
-     </q-card-section>
-          <q-separator inset />
+      </q-card-section>
      <q-card-section>
       <q-card-actions align="evenly">
-        <q-btn flat label="Home page" class="text-white-10" color="orange-10" @click="start()" />
-        <q-btn flat :label="$t('repeat_test')" color="blue-10" @click="() => { router.push({ name: 'email' }) }"/>
+        <q-btn flat :label="$t('showMoreFeatures2')" class="text-white-10" color="orange-10" @click="changeView()" />
       </q-card-actions>
     </q-card-section>
   </q-card>
 
-
-
-
-      <q-card v-if="showCards" class="col-6 col-md-4 col-xs-11 q-ma-md">
+      <q-card v-if="showCards" class="col-6 col-md-4 gt-sm q-ma-md">
           <q-card-section>
             <div class="row">
             <div class="col-6 col-md-6">
@@ -108,7 +100,13 @@
             </div>
           </q-card-section>
           <q-separator dark inset />
-        <q-card-section>
+      </q-card>
+
+  </div>
+  <div v-if="showCards" class="row gt-sm">
+    <div class="col-2"></div>
+    <q-card class="col-6 col-md-4 col-xs-11 q-ma-md">
+    <q-card-section>
           <div class="row">
           <div class="col-6 col-md-6">
             <q-knob
@@ -127,34 +125,121 @@
         <div class="col-6 col-md-6 q-mt-xl"><b style="overflow-wrap:break-word;">{{$t('average_response_time')}}</b></div>
           </div>
         </q-card-section>
-      </q-card>
+    </q-card>
 
 
-
-
-        <q-card class="col-2 col-md-3 col-xs-11 q-ma-md lt-md">
-          <q-card-section>
-               <div class="col-auto q-ma-md">
-          <p class="text-center center">{{$t('level_of_awareness')}}</p><br><div class="col-auto q-mt-md">
-                <div class="q-ma-md">
-                  <p style="font-weight: bold;font-size:130%" class="text-center">{{awareness_phihsing}}</p>
-              </div>
-            </div>
-          </div>
-
-      </q-card-section>
-
-
-
+    <q-card class="col-2 col-md-3 col-xs-11 q-ma-md gt-sm">
+    <q-card-section>
+    </q-card-section>
      <q-card-section>
       <q-card-actions align="evenly">
         <q-btn flat label="Home page" class="text-white-10" color="orange-10" @click="start()" />
         <q-btn flat :label="$t('repeat_test')" color="blue-10" @click="() => { router.push({ name: 'email' }) }"/>
       </q-card-actions>
     </q-card-section>
+    </q-card>
+
+
+  </div>
+
+
+
+
+  <div v-if="showCards" class="row lt-md">
+
+    <q-card class="col-xs-11 q-ma-md">
+          <q-card-section>
+            <div class="text-h6 center justify-center">{{$t('score_is')}}</div>
+          </q-card-section>
+          <q-card-section>
+          <q-linear-progress stripe size="23px" :value="progress" >
+            <div class="absolute-full flex flex-center">
+              <q-badge color="white" text-color="black" :label="progressLabel" />
+            </div>
+          </q-linear-progress>
+        </q-card-section>
+        </q-card>
+
+        <q-card class="col-xs-11 q-ma-md">
+          <q-card-section>
+            <div class="col-auto q-ma-md">
+          <p class="text-center center">{{$t('level_of_awareness')}}</p><br>
+          <div class="justify-center">
+                  <p style="font-weight: bold;font-size:130%" class="text-center">{{awareness_phihsing}}</p>
+            </div>
+          </div>
+      </q-card-section>
   </q-card>
 
-    </div>
+
+  <q-card class="col-xs-11 q-ma-md">
+    <q-card-section>
+          <div class="row">
+          <div class="col-6 col-md-6 ">
+            <q-knob
+            readonly
+              :min="0"
+              :max="100"
+              v-model="avg_answer_time"
+              show-value
+              size="80px"
+              :thickness="0.22"
+              color="blue"
+              track-color="blue-3"
+              class="text-blue q-ml-md"
+            />
+        </div>
+        <div class="col-xs-5 q-mt-lg"><b style="font-size:80%;overflow-wrap:break-word;">{{$t('average_response_time')}}</b></div>
+          </div>
+        </q-card-section>
+    </q-card>
+
+    <q-card class="col-xs-11 q-ma-md">
+          <q-card-section>
+            <div class="row">
+            <div class="col-6 col-md-6">
+            <q-knob
+            readonly
+              :min="0"
+              :max="10"
+              v-model="email_info.result[0].n_phishing"
+              show-value
+              size="80px"
+              :thickness="0.22"
+              color="orange"
+              track-color="orange-3"
+              class="text-orange q-ml-md"
+            />
+          </div>
+            <div class="col-xs-5 q-mt-lg"><b style="font-size:80%;overflow-wrap:break-word;">{{$t('number_phishing_email')}}</b></div>
+            </div>
+          </q-card-section>
+          <q-separator dark inset />
+      </q-card>
+
+    <q-card class="col-xs-11 q-ma-md bg-blue-10">
+     <q-card-section>
+      <q-card-actions align="evenly">
+        <q-btn flat :label="$t('showMoreFeatures2')" class="text-white-10" color="white" @click="changeView()" />
+      </q-card-actions>
+    </q-card-section>
+  </q-card>
+
+
+
+    <q-card class="col-xs-11 q-ma-md">
+    <q-card-section>
+      <q-card-actions align="evenly">
+        <q-btn flat label="Home page" class="text-white-10" color="orange-10" @click="start()" />
+        <q-btn flat :label="$t('repeat_test')" color="blue-10" @click="() => { router.push({ name: 'email' }) }"/>
+      </q-card-actions>
+    </q-card-section>
+    </q-card>
+
+
+  </div>
+
+
     <div  v-if="showCards == false" class="row justify-center q-mt-md">
         <div class="col-auto"></div>
 
@@ -165,7 +250,7 @@
         v-model="slide"
         :options="[
           { label: 'E-mail', value: 'style' },
-          { label: 'Features', value: 'layers' }
+          { label: $t('features_string'), value: 'layers' }
         ]"
       />
       </div>
@@ -200,7 +285,7 @@
                 <div class="row">
 
                   <div class="col-auto">
-                    <q-avatar  color="white" text-color="primary" font-size="100%" icon="account_circle" />
+
                   </div>
 
                   <div class="col q-pl-xs">
@@ -216,8 +301,12 @@
                               <q-item-section><p><span style="color:#808080">{{$t('from')}} </span> {{email_info.email[cont].fromEmail.from_email}}</p></q-item-section>
                             </q-item>
 
-                            <q-item>
-                              <q-item-section><p><span style="color:#808080">{{$t('to')}} </span> {{form.email}}</p></q-item-section>
+                            <q-item v-if="user_email !== undefined">
+                              <q-item-section><p><span style="color:#808080">{{$t('to')}} </span>{{user_email}}</p></q-item-section>
+                            </q-item>
+
+                            <q-item v-if="user_email == undefined">
+                              <q-item-section><p><span style="color:#808080">{{$t('to')}} </span>: me</p></q-item-section>
                             </q-item>
 
                             <q-item>
@@ -232,7 +321,7 @@
                   </div>
 
                   <!-- <div class="col-auto q-pr-lg">{{email_info[cont].time}}</div> -->
-                  <div class="col-auto q-mr-lg"><q-icon name="alternate_email" size="md" /></div>
+                  <div class="col-auto q-mr-lg"><span>e-mail #</span><b style="font-size:120%;" class="text-primary"> {{cont+1}}</b></div>
 
                   <div class="col-12 q-mt-xl q-ml-xl">
                     <p><span class="label bg-white text-primary" style="font-size:110%">{{$t('subject')}}</span> {{email_info.email[cont].subject.subject_email}}</p>
@@ -346,7 +435,7 @@
                 <q-card-section class="text-subitle2">
               <q-card-section>
               <div class="row">
-                <div class="col-6 col-xs-12">
+                <div class="col-6 col-md-6 col-sm-6 col-xs-12">
                   <div class="text-bold text-blue-10 q-mb-xl" style="font-size:15px">{{$t('subtitle_string')}}</div>
                   <div class="q-gutter-md " style="max-width: 350px">
                       <q-select  outlined
@@ -355,11 +444,11 @@
                         option-value="featuresResultOptions.value"
                         /></div>
                         <q-card-section>
-                  <div v-if="featuresResult.value !=null" class="text-grey q-ml-sm" style="font-size:13px">{{$t('value_string')}}<span class="text-boldtext-grey q-ml-sm" style="font-size:17px"> {{featuresResult.value}}</span></div>
+                  <div v-if="featuresResult.value !=null" class="text-grey" style="font-size:13px">{{$t('value_string')}}<span class="text-boldtext-grey q-ml-sm" style="font-size:17px"> {{featuresResult.value}}</span></div>
                 </q-card-section>
                 </div>
-                  <div v-if="featuresResult.explanation!=''" class="col-6 q-mt-md">
-                  <q-card class ="col-6 col-xs-12 q-mt-lg no-shadow">
+                  <div v-if="featuresResult.explanation!=''" class="col-6 col-xs-12 q-mt-md">
+                  <q-card class ="col-6 col-md-6 col-sm-6 col-xs-12 q-mt-lg no-shadow">
                     <q-card-section>
                       {{featuresResult.explanation}}
                     </q-card-section>
@@ -416,7 +505,7 @@
       <q-card class="row bg-grey-3 q-pa-xs">
           <div class="col col-md-1 col-sm-4 col-xs-3 q-ml-md q-mt-lg">
             <q-img class="q-mb-sm"
-            src="http://areacomunicazione.policlinico.unina.it/wp-content/uploads/2014/02/logo-federico-II-blu.png"
+            src="https://freepikpsd.com/file/2019/10/federico-ii-logo-png-6-300x200-Transparent-Images.png"
             spinner-color="white"
             size="100px"
             style="height: 70px; max-width: 70px"
@@ -456,20 +545,22 @@ import {date} from 'quasar'
 export default defineComponent({
   setup () {
 
-    const showCards = ref(false)
+    const showCards = ref(true)
     const router = useRouter()
     const store = useStore()
     const slide = ref('style')
     const result =  computed(() => store.getters['email/result'])
-    console.log(result.value)
+    //console.log(result.value)
     const email_info = computed(() => store.state.email)
-    console.log(email_info)
+    const user_email = computed(() => store.state.user_email)
+    //console.log(user_email)
+    //console.log(email_info)
     const { locale } = useI18n({ useScope: 'global' })
     let lingua = ""
     const Response_phrases = email_info.value.result[0].Response_phrases
     const cont = ref(0)
     const cognitive_value= email_info.value.result[0].list_cognitive
-    const featuresResult = ref({label:'Seleziona', value:0, explanation:""})
+    const featuresResult = ref({label:'Seleziona', value:null, explanation:""})
     const esito = ref(null)
     const motivation = ref(null)
 
@@ -542,9 +633,6 @@ export default defineComponent({
             featuresResult.value = "Seleziona un valore"
 
           }
-
-
-
     }
 
 
@@ -567,6 +655,8 @@ export default defineComponent({
       }
     )
 
+
+
     const avg_answer_time = computed(() => {
       if(result.value[result.value.length - 1]){
         return (result.value[result.value.length - 1].avg_answer_time)
@@ -576,18 +666,20 @@ export default defineComponent({
 
       }
     )
+
+
     const awareness_phihsing = computed(() => {
       if(result.value[result.value.length - 1]){
-        if(result.value[result.value.length - 1].n_correct < 5){
+        if(result.value[result.value.length - 1].n_correct < 6){
             if (locale.value == "en-US"){
               return 'Negative'
             }else if (locale.value == "it"){
-              return 'Scarso'
+              return 'Basso'
             }
 
 
 
-        }else if(result.value[result.value.length - 1].n_correct === 5){
+        }else if(result.value[result.value.length - 1].n_correct === 6){
           if (locale.value == "en-US"){
               return 'Basic'
           }else if (locale.value == "it"){
@@ -595,15 +687,15 @@ export default defineComponent({
           }
 
 
-        }else if(result.value[result.value.length - 1].n_correct > 5 && result.value[result.value.length - 1].n_correct < 7){
+        }else if(result.value[result.value.length - 1].n_correct > 6 && result.value[result.value.length - 1].n_correct < 9){
 
           if (locale.value == "en-US"){
-              return 'Intermediate'
+              return 'Good'
           }else if (locale.value == "it"){
               return 'Buono'
           }
 
-        }else if(result.value[result.value.length - 1].n_correct > 7 ){
+        }else if(result.value[result.value.length - 1].n_correct === 9 || result.value[result.value.length - 1].n_correct === 10 ){
 
           if (locale.value == "en-US"){
               return 'Excellent'
@@ -617,7 +709,16 @@ export default defineComponent({
     const progressLabel = computed(() => (progress.value * 100).toFixed(2) + '%')
 
 
+    const changeView = async () => {
+      window.scrollTo(0, 0);
+      //console.log(showCards.value)
+      showCards.value =false
+      cont.value = 0
+      //console.log(showCards.value)
+    }
+
     const next = async () => {
+      slide.value="style"
       window.scrollTo(0, 0);
       if(cont.value < 10){
 
@@ -695,11 +796,10 @@ export default defineComponent({
 
     const back = async () => {
       window.scrollTo(0, 0);
-      if(cont.value < 10){
-        cont.value = cont.value - 1
+      slide.value="style"
 
-      }
-      if(cont.value === 0){
+      if ((cont.value > 1) && (cont.value <10)){
+          cont.value = cont.value - 1
       }
 
         featuresResultOptions.value[0].value = email_info.value.email[cont.value].subject.subject_n_word
@@ -769,6 +869,7 @@ export default defineComponent({
 
 
     return {
+      changeView,
       form,
       email_info,
       progress,
@@ -780,6 +881,7 @@ export default defineComponent({
       cont,
       result,
       start,
+      user_email,
       next,
       back,
       esito,
