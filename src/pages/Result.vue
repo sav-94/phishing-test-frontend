@@ -1,22 +1,18 @@
 <template>
-  <q-layout>
-    <q-page-container>
-      <q-page>
-        <div class="row">
+  <q-layout view="lHh lpr lFf" style="background-image: url('https://i.ibb.co/KXhNv0W/crossword.png'">
+    <q-header>
+        <div class="row" style="background-image: url('https://i.ibb.co/KXhNv0W/crossword.png'">
           <q-toolbar inset class ="shadow-2 bg-blue-10 text-white">
-            <div class="q-ml-sm">
-              <q-toolbar-title>{{$t('test_results')}}</q-toolbar-title>
-            </div>
 
-            <q-space />
-
-            <q-btn class="gt-sm" flat round dense icon="kayaking" />
-            <q-btn class="gt-sm" flat round dense icon="password" />
-            <q-btn class="gt-sm" flat round dense icon="attach_email" />
-            <q-btn class="gt-sm" flat round dense icon="sentiment_satisfied_alt" />
+            <q-toolbar-title class="q-ml-xl gt-xs q-mb-xs text-justify">{{$t('test_results')}}</q-toolbar-title>
+            <q-toolbar-title class="q-ml-xs lt-sm q-mb-xs text-justify">{{$t('test_results')}}</q-toolbar-title>
 
           </q-toolbar>
         </div>
+    </q-header>
+
+    <q-page-container style="background-image: url('https://i.ibb.co/KXhNv0W/crossword.png'">
+     <q-page style="background-image: url('https://i.ibb.co/KXhNv0W/crossword.png'">
 
         <!-- ALERT -->
 
@@ -39,25 +35,26 @@
             enter-active-class="animated fadeInRight"
           >
 
-    <div v-if="showCards" class="row gt-sm">
-      <div class="col-2"></div>
-        <q-card class="col-6 col-md-4 col-xs-12 q-ma-md gt-sm">
+    <div v-if="showCards" class="gt-xs">
+    <div class="row q-mt-xl">
+      <div class="col-lg-2 col-md-2 col-sm-1"></div>
+        <q-card class="col-6 col-md-4 col-sm-4 q-mr-xs  q-ml-xs q-mt-xs q-mb-xs gt-sm">
           <q-card-section>
             <div class="text-h6 center justify-center">{{$t('score_is')}}</div>
           </q-card-section>
           <q-card-section>
-          <q-linear-progress stripe size="23px" :value="progress" >
+          <q-linear-progress color="blue-10" track-color="orange" size="23px" :value="progress" >
             <div class="absolute-full flex flex-center">
-              <q-badge color="white" text-color="black" :label="progressLabel" />
+              <q-badge color="blue-10" text-color="white" :label="progressLabel" />
             </div>
           </q-linear-progress>
         </q-card-section>
         </q-card>
 
 
-      <q-card class="col-2 col-md-3 q-ma-md gt-sm">
+      <q-card class="col-lg-4 col-sm-4 col-md-4 q-mr-xs  q-ml-xs q-mt-xs q-mb-xs gt-sm">
           <q-card-section>
-            <div class="col-auto q-ma-md">
+            <div class="col-auto q-mr-xs  q-ml-xs q-mt-xs q-mb-xs">
           <p class="text-center center">{{$t('level_of_awareness')}}</p><br>
           <div class="justify-center">
                   <p style="font-weight: bold;font-size:130%" class="text-center">{{awareness_phihsing}}</p>
@@ -68,8 +65,8 @@
 
     </div>
   <div v-if="showCards" class="row gt-sm">
-    <div class="col-2"></div>
-    <q-card class="col-2 col-md-3 col-xs-12 q-ma-md gt-sm">
+    <div class="col-lg-2 col-md-2 col-sm-1"></div>
+    <q-card class="col-2 col-md-4 col-xs-12 q-mr-xs  q-ml-xs q-mt-xs q-mb-xs gt-sm">
       <q-card-section>
       </q-card-section>
      <q-card-section>
@@ -79,7 +76,7 @@
     </q-card-section>
   </q-card>
 
-      <q-card v-if="showCards" class="col-6 col-md-4 gt-sm q-ma-md">
+      <q-card v-if="showCards" class="col-6 col-md-4 gt-sm q-mr-xs  q-ml-xs q-mt-xs q-mb-xs">
           <q-card-section>
             <div class="row">
             <div class="col-6 col-md-6">
@@ -93,7 +90,7 @@
               :thickness="0.22"
               color="orange"
               track-color="orange-3"
-              class="text-orange q-ma-md"
+              class="text-orange q-mr-xs  q-ml-xs q-mt-xs q-mb-xs"
             />
           </div>
             <div class="col-6 col-md-6 q-mt-xl"><b style="overflow-wrap:break-word;">{{$t('number_phishing_email')}}</b></div>
@@ -104,8 +101,8 @@
 
   </div>
   <div v-if="showCards" class="row gt-sm">
-    <div class="col-2"></div>
-    <q-card class="col-6 col-md-4 col-xs-11 q-ma-md">
+    <div class="col-lg-2 col-md-2 col-sm-1"></div>
+    <q-card class="col-6 col-md-5 col-xs-11 q-mr-xs  q-ml-xs q-mt-xs q-mb-xs">
     <q-card-section>
           <div class="row">
           <div class="col-6 col-md-6">
@@ -119,7 +116,7 @@
               :thickness="0.22"
               color="blue"
               track-color="blue-3"
-              class="text-blue q-ma-md"
+              class="text-blue q-mr-xs  q-ml-xs q-mt-xs q-mb-xs"
             />
         </div>
         <div class="col-6 col-md-6 q-mt-xl"><b style="overflow-wrap:break-word;">{{$t('average_response_time')}}</b></div>
@@ -128,7 +125,7 @@
     </q-card>
 
 
-    <q-card class="col-2 col-md-3 col-xs-11 q-ma-md gt-sm">
+    <q-card class="col-2 col-md-3 col-xs-11 q-mr-xs  q-ml-xs q-mt-xs q-mb-xs gt-sm">
     <q-card-section>
     </q-card-section>
      <q-card-section>
@@ -141,13 +138,13 @@
 
 
   </div>
-
+    </div>
 
 
 
   <div v-if="showCards" class="row lt-md">
 
-    <q-card class="col-xs-11 q-ma-md">
+    <q-card class="col-xs-11 q-mr-md q-ml-md q-mt-xs q-mb-xs">
           <q-card-section>
             <div class="text-h6 center justify-center">{{$t('score_is')}}</div>
           </q-card-section>
@@ -160,7 +157,7 @@
         </q-card-section>
         </q-card>
 
-        <q-card class="col-xs-11 q-ma-md">
+        <q-card class="col-xs-11 q-mr-md q-ml-md q-mt-xs q-mb-xs">
           <q-card-section>
             <div class="col-auto q-ma-md">
           <p class="text-center center">{{$t('level_of_awareness')}}</p><br>
@@ -172,7 +169,7 @@
   </q-card>
 
 
-  <q-card class="col-xs-11 q-ma-md">
+  <q-card class="col-xs-11 q-mr-md q-ml-md q-mt-xs q-mb-xs">
     <q-card-section>
           <div class="row">
           <div class="col-6 col-md-6 ">
@@ -194,7 +191,7 @@
         </q-card-section>
     </q-card>
 
-    <q-card class="col-xs-11 q-ma-md">
+    <q-card class="col-xs-11 q-mr-md q-ml-md q-mt-xs q-mb-xs">
           <q-card-section>
             <div class="row">
             <div class="col-6 col-md-6">
@@ -217,7 +214,7 @@
           <q-separator dark inset />
       </q-card>
 
-    <q-card class="col-xs-11 q-ma-md bg-blue-10">
+    <q-card class="col-xs-11 q-mr-md q-ml-md q-mt-xs q-mb-xs bg-blue-10">
      <q-card-section>
       <q-card-actions align="evenly">
         <q-btn flat :label="$t('showMoreFeatures2')" class="text-white-10" color="white" @click="changeView()" />
@@ -227,7 +224,7 @@
 
 
 
-    <q-card class="col-xs-11 q-ma-md">
+    <q-card class="col-xs-11 q-mr-md q-ml-md q-mt-xs q-mb-xs">
     <q-card-section>
       <q-card-actions align="evenly">
         <q-btn flat label="Home page" class="text-white-10" color="orange-10" @click="start()" />
@@ -240,13 +237,14 @@
   </div>
 
 
-    <div  v-if="showCards == false" class="row justify-center q-mt-md">
+    <div v-if="showCards == false" class="row justify-center q-mt-md">
         <div class="col-auto"></div>
 
       <div class="col-md-1"></div>
-      <div class="col-auto q-mt-xs">
+      <div class="col-auto q-mt-xs q-mb-xs">
         <q-btn-toggle
         @click="resetSelectValue()"
+        style="background-color:white;"
         v-model="slide"
         :options="[
           { label: 'E-mail', value: 'style' },
@@ -258,8 +256,9 @@
     </div>
     <div v-if="showCards==false" class="row fit">
     <div class="col-md-2 col-sm-2"></div>
-    <div class="col-md-8 col-sm-12 col-xs-12">
+    <div class="col-md-8 col-sm-12 col-xs-12" style="background-image: url('https://i.ibb.co/KXhNv0W/crossword.png'">
       <q-carousel
+        style="background-image: url('https://i.ibb.co/KXhNv0W/crossword.png'"
         v-model="slide"
         transition-prev="scale"
         transition-next="scale"
@@ -469,7 +468,7 @@
     </div>
       </div>
 
-      <div  v-if="showCards == false" class="row justify-center q-mb-md gt-sm">
+      <div v-if="showCards == false" class="row justify-center gt-sm">
         <div class="col-auto"></div>
         <div class="col-auto">
           <q-btn @click="back()" color="primary" :label="$t('previous_results')" />
@@ -484,7 +483,7 @@
 
     </div>
 
-    <div  v-if="showCards == false" class="row q-mt-xs q-mb-md lt-md">
+    <div v-if="showCards == false" class="row q-mt-xs lt-md">
         <div class="col-1"></div>
         <div class="col-2">
           <q-btn @click="back()" color="primary" :label="$t('previous_results')" />
@@ -498,41 +497,72 @@
       <div class="col-1"></div>
 
     </div>
-
-
         </transition-group>
       </q-page>
-      <q-card class="row bg-grey-3 q-pa-xs">
-          <div class="col col-md-1 col-sm-4 col-xs-3 q-ml-md q-mt-lg">
-            <q-img class="q-mb-sm"
-            src="https://freepikpsd.com/file/2019/10/federico-ii-logo-png-6-300x200-Transparent-Images.png"
-            spinner-color="white"
-            size="100px"
-            style="height: 70px; max-width: 70px"
-          />
-          </div>
-
-          <div class="col col-md-3 col-sm-8 col-xs-8 ">
-            <div class="text-blue-10 q-mt-lg q-ml-lg" style="font-size:85%;">
-            Università degli Studi di Napoli "Federico II" <br> Dipartimento di Ingegneria Elettrica e delle Tecnologie dell'Informazione
-          </div>
-          </div>
-          <div class="col-md-2 q-mr-sm"></div>
-          <q-separator class="gt-xs" vertical inset />
-
-          <div class="col-md-5 col-xs-12 q-pt-md q-pl-md q-pr-md">
-
-            <div class="text-blue-grey-9 text-center text-justify q-ml-xs" style="font-size:90%;margin-top:-1.5%;">
-              <div class="text-blue-10">{{$t('contacts')}}</div>
-              <span style="font-weight: bold;">Alessio Botta</span> a.botta[at]unina.it  <br><span style="font-weight: bold;">Luigi Gallo</span> luigi.gallo3[at]unina.it<br><span style="font-weight: bold;">Saverio Ruggiero</span> sav.ruggiero[at]studenti.unina.it<br><span style="font-weight: bold;">Ilaria Panaro</span> il.panaro[at]studenti.unina.it
-            </div>
-          </div>
-      </q-card>
     </q-page-container>
 
+      <q-card
+          div
+          class="row q-pt-lg q-mt-md"
+          style="background-image: url('https://i.ibb.co/KXhNv0W/crossword.png'"
+        >
 
+          <div
+            class="col col-md-1 col-sm-4 col-xs-3 q-ml-md q-mt-md"
+            style="margin-top: 0.5%"
+          >
+            <q-img
+              class="q-mb-sm"
+              src="https://sworld.co.uk/img/img/18/268/originals/0.png"
+              spinner-color="white"
+              size="100px"
+              style="height: 80px; max-width: 110px"
+            />
+          </div>
 
-  </q-layout>
+          <div class="col col-md-3 col-sm-7 col-xs-8">
+            <div class="text-blue-10 q-mt-lg q-ml-lg gt-sm" style="font-size: 85%">
+              Università degli Studi di Napoli "Federico II" <br />
+              Dipartimento di Ingegneria Elettrica e delle Tecnologie
+              dell'Informazione
+            </div>
+
+            <div class="text-blue-10 q-mt-xs q-ml-lg lt-md" style="font-size: 85%">
+              Università degli Studi di Napoli "Federico II" <br />
+              Dipartimento di Ingegneria Elettrica e delle Tecnologie
+              dell'Informazione
+            </div>
+          </div>
+          <div class="col-md-2 q-mr-sm"></div>
+          <q-separator class="gt-sm" vertical inset />
+
+          <div class="col-md-5 col-xs-12 q-pt-md q-pl-md q-pr-md gt-sm">
+            <div
+              class="text-blue-grey-9 text-center text-justify q-ml-xs q-mb-xl"
+              style="font-size: 90%; margin-top: -1.5%"
+            >
+              <div style="font-weight:bold;" class="text-blue-10">{{ $t("contacts") }}</div>
+              <span style="font-weight: bold">Alessio Botta</span>
+              a.botta[at]unina.it <br /><span style="font-weight: bold"
+                >Luigi Gallo</span
+              >
+              luigi.gallo3[at]unina.it<br /><span style="font-weight: bold"
+                >Saverio Ruggiero</span
+              >
+              sav.ruggiero[at]studenti.unina.it<br /><span
+                style="font-weight: bold"
+                >Danilo Gentile</span
+              >
+              danil.gentile[at]studenti.unina.it<br>
+              <span
+                style="font-weight: bold"
+                >Ilaria Panaro</span
+              >
+              il.panaro[at]studenti.unina.it
+            </div>
+          </div>
+        </q-card>
+      </q-layout>
 </template>
 
 <script>

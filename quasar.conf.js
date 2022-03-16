@@ -146,9 +146,9 @@ module.exports = configure(function (/* ctx */) {
       },
 
       manifest: {
-        name: `app`,
-        short_name: `app`,
-        description: `app`,
+        name: `Spamley Web App`,
+        short_name: `Spamley`,
+        description: ``,
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',

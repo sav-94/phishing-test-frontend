@@ -1,13 +1,18 @@
 <template>
-  <q-layout>
-    <q-page-container>
-      <q-page>
-        <div>
-          <div class="row">
-          <q-toolbar class ="shadow-2 bg-blue-10 text-white">
-            <q-toolbar-title class="q-ml-xl" >Spamley</q-toolbar-title>
-            <div class="customTextColor">
-            <q-select
+  <q-layout view="lHh lpr fff">
+    <q-header>
+      <div
+        class="row"
+        style="background-image: url('https://i.ibb.co/KXhNv0W/crossword.png')"
+      >
+        <q-toolbar
+          class="text-white bg-blue-10 q-pa-xs"
+          style="background-color: rgba(0, 72, 124,0.4)"
+        >
+
+
+          <div class="customTextColor">
+            <q-select class="q-mr-xl q-ml-xl gt-xs"
               v-model="locale"
               :options="localeOptions"
               :label="$t('lang')"
@@ -23,125 +28,165 @@
               emit-value
               map-options
               options-dense
-              style="min-width:150px;color:white;"
-              >
-              <q-avatar class="q-mb-sm" size="24px">
-                <img :src="$t('img')"/>
+              style="min-width: 150px; color: white"
+            >
+              <q-avatar class="q-mb-sm q-ml-xl" size="24px">
+                <img :src="$t('img')" />
               </q-avatar>
             </q-select>
-            </div>
-            <q-btn class="gt-sm" flat round dense icon="kayaking"/>
-            <q-btn class="gt-sm" flat round dense icon="password"/>
-            <q-btn class="gt-sm" flat round dense icon="attach_email"/>
-            <q-btn class="gt-sm" flat round dense icon="sentiment_satisfied_alt"/>
-          </q-toolbar>
+
+            <q-select class="q-mr-xs lt-sm"
+              v-model="locale"
+              :options="localeOptions"
+              :label="$t('lang')"
+              transition-show="scale"
+              transition-hide="scale"
+              dense
+              bg-color="bg-blue-10"
+              label-color="white"
+              color="white"
+              popup-content-class="bg-blue-10"
+              use-chips="true"
+              borderless
+              emit-value
+              map-options
+              options-dense
+              style="min-width: 150px; color: white"
+            >
+              <q-avatar class="q-mb-sm q-ml-xl" size="24px">
+                <img :src="$t('img')" />
+              </q-avatar>
+            </q-select>
+          </div>
+        </q-toolbar>
+      </div>
+    </q-header>
+
+    <q-page-container style="background-image: url('https://i.ibb.co/KXhNv0W/crossword.png'">
+      <q-page style="background-image: url('https://i.ibb.co/KXhNv0W/crossword.png'">
+        <div
+          class="row"
+        >
+
+
+    <div class="row text-center gt-md">
+        <div class="descript col-xs-12 col-sm-12 col-md-12 q-ma-xs">
+          <h1 class="text-blue-10" style="font-weight:bold;">{{$t('intro1')}}</h1>
+          <p class="q-mr-md q-ml-md">{{$t('intro2')}}{{$t('intro3')}}{{$t('intro4')}}<br>{{$t('intro5')}}{{$t('intro6')}}<br>{{$t('intro7')}}<br>{{$t('intro8')}}<br>{{$t('intro9')}}</p>
+          <q-btn outline @click="start()" class="q-pt-xs q-pl-xl q-pr-xl q-pb-xs q-mt-xl" size="lg" color="blue-10" :label="$t('btn1')"/>
         </div>
-        </div>
+      </div>
 
-        <div class="row">
-          <div class="col-md-5 col-xs-12 q-pt-lg q-pl-xl q-pr-xl gt-sm">
-            <q-card>
-              <q-card-section>
-                <q-carousel
-                  v-model="slide"
-                  transition-prev="scale"
-                  transition-next="scale"
-                  swipeable
-                  animate
-                  control-color="blue-10"
-                  navigation
-                  padding
-                  arrows
-                  :autoplay="autoplay"
-                  infinite
-                  @mouseenter="autoplay = false"
-                  @mouseleave="autoplay = true"
-                  height="300px"
-                  class="text-blue-10 rounded-borders"
-                >
-                  <q-carousel-slide name="style" class="column no-wrap flex-center">
-                    <q-icon name="attach_email" size="56px" />
-                    <div class="q-mt-md text-center">
-                      {{$t('carousel1')}}
-                    </div>
-                  </q-carousel-slide>
-                  <q-carousel-slide name="tv" class="column no-wrap flex-center">
-                    <q-icon name="security" size="56px" />
-                    <div class="q-mt-md text-center">
-                      {{$t('carousel2')}}
-                    </div>
-                  </q-carousel-slide>
-                  <q-carousel-slide name="layers" class="column no-wrap flex-center">
-                    <q-icon name="sentiment_satisfied_alt" size="56px" />
-                    <div class="q-mt-md text-center">
-                      {{$t('carousel3')}}
-                    </div>
-                  </q-carousel-slide>
-                </q-carousel>
-              </q-card-section>
-            </q-card>
+
+          <div class="row">
+
+
+
+          <div class="col-md-1"></div>
+          <div class="col-lg-7 col-md-10 col-sm-12 col-xs-12 q-pt-md q-pl-md q-pr-md gt-xs lt-lg">
+            <div class="text-blue-grey-9 text-center text-justify gt-xs">
+              <p class="text-blue-10" style="font-size: 175%;font-weight:bold;margin:auto;display:flex;justify-content:center;overflow-wrap:break-word;">{{$t('intro1')}}</p><br><p style="font-size: 110%;margin:auto;overflow-wrap:break-word">{{$t('intro2')}}</p><p style="font-size: 110%;margin:auto;">{{$t('intro3')}}</p><p style="font-size: 110%;margin:auto;">{{$t('intro4')}}</p><p style="font-size: 110%;margin:auto;">{{$t('intro5')}}</p><p style="font-size: 110%;margin:auto;">{{$t('intro6')}}</p><p style="font-size: 110%;margin:auto;">{{$t('intro7')}}</p><br><p class="text-blue-10 text-justify text-center" style="font-size: 110%;margin:auto;display:flex;justify-content:center;">{{$t('intro8')}}</p><p style="font-size: 110%;margin:auto;">{{$t('intro9')}}</p>
+            </div>
+            <div class="q-pt-md text-center">
+              <q-btn @click="start()" style="margin-bottom:11%;" color="blue-10" :label="$t('btn1')"/>
+            </div>
           </div>
 
-          <div class="col-md-7 col-xs-12 q-pt-md q-pl-md q-pr-md">
-            <div class="text-blue-grey-9 text-center text-justify q-ma-sm">
-              <p style="font-size: 125%;">{{$t('intro1')}}</p><p style="font-size: 125%;">{{$t('intro2')}}</p><p style="font-size: 125%;">{{$t('intro3')}}</p><p style="font-size: 125%;">{{$t('intro4')}}</p><p style="font-size: 125%;">{{$t('intro5')}}</p><p style="font-size: 125%;">{{$t('intro6')}}</p>
+        <div class="col-md-7 col-sm-11 col-xs-11 q-ml-md q-mr-md q-pr-sm lt-sm">
+            <div class="text-blue-grey-9 text-center text-justify lt-sm">
+              <p class="text-blue-10 q-mt-xs q-mt-md" style="font-size: 175%;font-weight:bold;margin:auto;display:flex;justify-content:center;">{{$t('intro1')}}</p><p style="font-size: 110%;margin:auto;">{{$t('intro2')}}</p><p style="font-size: 110%;margin:auto;">{{$t('intro3')}}</p><p style="font-size: 110%;margin:auto;">{{$t('intro4')}}</p><p style="font-size: 110%;margin:auto;">{{$t('intro5')}}</p><p style="font-size: 110%;margin:auto;">{{$t('intro6')}}</p><p style="font-size: 110%;margin:auto;">{{$t('intro7')}}</p><br><p class="text-blue-10 text-justify text-center" style="font-size: 150%;margin:auto;display:flex;justify-content:center;">{{$t('intro8')}}</p><p style="font-size: 110%;margin:auto;">{{$t('intro9')}}</p>
             </div>
-            <div class="q-pt-xl text-center">
-              <q-btn @click="start()" style="margin-bottom:25%;" color="blue-10" :label="$t('btn1')"/>
+            <div class="q-pt-md text-center">
+              <q-btn outline @click="start()" size="md" style="margin-bottom:20%;" color="blue-10" :label="$t('btn1')"/>
             </div>
           </div>
         </div>
-
-          <q-card div class="row bg-white-3 q-pa-xs shadows">
-          <div class="col col-md-1 col-sm-4 col-xs-3 q-ml-md q-mt-lg">
-            <q-img class="q-mb-sm"
-            src="https://freepikpsd.com/file/2019/10/federico-ii-logo-png-6-300x200-Transparent-Images.png"
-            spinner-color="white"
-            size="100px"
-            style="height: 70px; max-width: 70px"
-          />
           </div>
-
-          <div class="col col-md-3 col-sm-8 col-xs-8 ">
-            <div class="text-blue-10 q-mt-lg q-ml-lg" style="font-size:85%;">
-            Università degli Studi di Napoli "Federico II" <br> Dipartimento di Ingegneria Elettrica e delle Tecnologie dell'Informazione
-          </div>
-          </div>
-          <div class="col-md-2 q-mr-sm"></div>
-          <q-separator class="gt-xs" vertical inset />
-
-          <div class="col-md-5 col-xs-12 q-pt-md q-pl-md q-pr-md">
-
-            <div class="text-blue-grey-9 text-center text-justify q-ml-xs" style="font-size:90%;margin-top:-1.5%;">
-              <div class="text-blue-10">{{$t('contacts')}}</div>
-              <span style="font-weight: bold;">Alessio Botta</span> a.botta@unina.it  <br><span style="font-weight: bold;">Luigi Gallo</span> luigi.gallo3@unina.it<br><span style="font-weight: bold;">Saverio Ruggiero</span> sav.ruggiero@studenti.unina.it<br><span style="font-weight: bold;">Ilaria Panaro</span> il.panaro@studenti.unina.it
-            </div>
-          </div>
-          </q-card>
-
       </q-page>
     </q-page-container>
+
+    <q-card
+          div
+          class="row q-pt-md"
+          style="background-image: url('https://i.ibb.co/KXhNv0W/crossword.png'"
+        >
+
+          <div
+            class="col col-md-1 col-sm-4 col-xs-3 q-ml-md q-mt-lg"
+            style="margin-top: 0.5%"
+          >
+            <q-img
+              class="q-mb-sm"
+              src="https://sworld.co.uk/img/img/18/268/originals/0.png"
+              spinner-color="white"
+              size="100px"
+              style="height: 80px; max-width: 110px"
+            />
+          </div>
+
+          <div class="col col-md-3 col-sm-7 col-xs-8">
+            <div class="text-blue-10 q-mt-lg q-ml-lg gt-sm" style="font-size: 85%">
+              Università degli Studi di Napoli "Federico II" <br />
+              Dipartimento di Ingegneria Elettrica e delle Tecnologie
+              dell'Informazione
+            </div>
+
+            <div class="text-blue-10 q-mt-xs q-ml-lg lt-md" style="font-size: 85%">
+              Università degli Studi di Napoli "Federico II" <br />
+              Dipartimento di Ingegneria Elettrica e delle Tecnologie
+              dell'Informazione
+            </div>
+          </div>
+          <div class="col-md-2 q-mr-sm"></div>
+
+
+          <div class="col-md-5 col-xs-12 q-pt-md q-pl-md q-pr-md gt-sm">
+            <div
+              class="text-blue-grey-9 text-center text-justify q-ml-xs q-mb-xl"
+              style="font-size: 90%; margin-top: -1.5%"
+            >
+              <div style="font-weight:bold;" class="text-blue-10">{{ $t("contacts") }}</div>
+              <span style="font-weight: bold">Alessio Botta</span>
+              a.botta[at]unina.it <br /><span style="font-weight: bold"
+                >Luigi Gallo</span
+              >
+              luigi.gallo3[at]unina.it<br /><span style="font-weight: bold"
+                >Saverio Ruggiero</span
+              >
+              sav.ruggiero[at]studenti.unina.it<br /><span
+                style="font-weight: bold"
+                >Danilo Gentile</span
+              >
+              danil.gentile[at]studenti.unina.it<br>
+              <span
+                style="font-weight: bold"
+                >Ilaria Panaro</span
+              >
+              il.panaro[at]studenti.unina.it
+            </div>
+          </div>
+        </q-card>
   </q-layout>
 </template>
 
 <script>
-import { defineComponent, ref,watch } from 'vue'
-import { useRouter } from 'vue-router'
-import {i18n } from 'boot/i18n.js'
-import { useI18n } from 'vue-i18n'
-import { useStore } from 'vuex'
+import { defineComponent, ref, watch } from "vue";
+import { useRouter } from "vue-router";
+import { i18n } from "boot/i18n.js";
+import { useI18n } from "vue-i18n";
+import { useStore } from "vuex";
 export default defineComponent({
-  setup () {
-    const slide = ref('style')
-    const router = useRouter()
-    const autoplay = ref(2500)
-    const store = useStore()
+  setup() {
+    const slide = ref("style");
+    const router = useRouter();
+    const autoplay = ref(2500);
+    const store = useStore();
 
-    const { locale } = useI18n({ useScope: 'global' })
+    const { locale } = useI18n({ useScope: "global" });
     const start = () => {
-       store.dispatch('email/get_home')
-       router.push({ name: 'register'})
-    }
+      store.dispatch("email/get_home");
+      router.push({ name: "register" });
+    };
 
     return {
       slide,
@@ -150,19 +195,16 @@ export default defineComponent({
       autoplay,
       locale,
       localeOptions: [
-        { value: 'en-US', label: 'English'},
-        { value: 'it', label: 'Italiano'}
-      ]
-
-    }
-  }
-})
-
+        { value: "en-US", label: "English" },
+        { value: "it", label: "Italiano" },
+      ],
+    };
+  },
+});
 </script>
 
 <style>
-.customTextColor .q-field__native{
+.customTextColor .q-field__native {
   color: white;
 }
-
 </style>

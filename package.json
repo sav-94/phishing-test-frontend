@@ -1,8 +1,8 @@
 {
-  "name": "tim-app",
+  "name": "Spamley Web App",
   "version": "0.0.1",
-  "description": "app",
-  "productName": "app",
+  "description": "",
+  "productName": "Spamley Web App",
   "author": "Gennaro",
   "private": true,
   "scripts": {

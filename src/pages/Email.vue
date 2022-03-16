@@ -1,21 +1,15 @@
 <template>
-  <q-layout>
-    <q-page-container>
-      <q-page>
-        <div class="row">
+  <q-layout view="lHh lpr lFf">
+    <q-header>
+        <div class="row" style="background-image: url('https://i.ibb.co/KXhNv0W/crossword.png'">
           <q-toolbar v-if="!persistent" inset class ="shadow-2 bg-blue-10 text-white ">
-              <q-toolbar-title v-if="cont < 10" class="q-ml-sm">Email {{cont+1}}/10</q-toolbar-title>
-
-
-
-            <q-space />
-            <q-btn class="gt-sm" flat round dense icon="kayaking" />
-            <q-btn class="gt-sm" flat round dense icon="password" />
-            <q-btn class="gt-sm" flat round dense icon="attach_email" />
-            <q-btn class="gt-sm" flat round dense icon="sentiment_satisfied_alt" />
-
+            <q-toolbar-title class="q-ml-xl gt-xs q-mb-xs text-justify" v-if="cont < 10">Email {{cont+1}}/10</q-toolbar-title>
+            <q-toolbar-title class="q-ml-xs lt-sm q-mb-xs text-justify"  v-if="cont < 10">Email {{cont+1}}/10</q-toolbar-title>
           </q-toolbar>
         </div>
+    </q-header>
+        <q-page-container style="background-image: url('https://i.ibb.co/KXhNv0W/crossword.png'">
+      <q-page style="background-image: url('https://i.ibb.co/KXhNv0W/crossword.png'">
 
         <!-- ALERT -->
 
@@ -155,11 +149,9 @@
                     </div>
                   </div>
 
-                  <!-- <div class="col-auto q-pr-lg">{{email_info[cont].time}}</div> -->
-                  <div class="col-auto q-mr-lg"><q-icon name="alternate_email" size="md" /></div>
 
                   <div class="col-12 q-mt-xl q-ml-xl">
-                    <p><span class="label bg-white text-primary" style="font-size:110%">{{$t('subject')}}</span> {{email_info.email[cont].subject.subject_email}}</p>
+                    <p><span class="label bg-white text-primary" style="font-size:110%;overflow-wrap:break-word;">{{$t('subject')}}</span> {{email_info.email[cont].subject.subject_email}}</p>
                   </div>
                   <div class="q-ml-lg" v-html="email_info.email[cont].body.body_attachment" />
                 </div>
@@ -236,17 +228,11 @@ export default defineComponent({
     const store = useStore()
     const email_info = computed(() => store.state.email)
     const { locale } = useI18n({ useScope: 'global' })
-    let lingua = ""
-    if (locale.value == "en-US"){
-              lingua = 'English'
-          }else if (locale.value == "it"){
-              lingua = 'Italian'
-          }
+
+
     const form = reactive({
       first_name: '',
-      email: '',
-      lang: lingua
-
+      email: ''
     })
     const terminate = ref(false)
     const reported_as_spam = ref(false)

@@ -29,7 +29,6 @@ export default {
           id: localStorage.getItem('userId'),
           name: form.first_name,
           email: form.email,
-          lang: form.lang,
           platform: window.navigator.platform
         }
         const { data } = await api.post('email/get/', payload)
