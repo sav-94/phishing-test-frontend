@@ -237,6 +237,34 @@ export default {
   img:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/1280px-Flag_of_Italy.svg.png",
   manutenzione:" Il sito è attualmente in manutenzione",
   manutenzione2:"Ritorna prossimamente",
-  conf:"Conferma"
+  conf:"Conferma",
+  attestato: "Attestato",
+  datiCertificato:"Compila il form  per visualizzare il tuo certificato",
+  nome: "Nome",
+  hintNome:"Inserisci il tuo nome",
+  cognome:"Cognome",
+  hintCognome:"Inserisci il tuo cognome",
+  cittadiNascita: "Città",
+  cittaHint: "Inserisci la tua città di nascita",
+  datanascita: "Data di Nascita",
+  risultato: "Mostra punteggio",
+  completion:"Attestato di partecipazione",
+  completion2:"Si certifica che ",
+  completion3:" nata/o a ",
+  completion4:" il ",
+  completion5:" ha completato il test ",
+  completion6:" Spamley Web App ",
+  completion7:" con un punteggio di ",
+  completion8:" in data ",
+  save:" Scarica",
+  close:" Chiudi ",
+  codiceopzionale:"Codice (Opzionale)",
+  inserirecodice:"Inserire codice a 6 cifre fornito da noi",
+  alertAttestato:"Sicuro di voler tornare indietro?",
+  testoAlertAttestato: "Tornando indietro non potrai scaricare il certificato. Assicurati di aver prima scaricato il tuo certificato.",
+  annulla:"Annulla",
+  mailLette: " Mail lette al giorno (in media)"
+
+
 
 }

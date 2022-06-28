@@ -37,8 +37,8 @@
 
     <div v-if="showCards" class="gt-xs">
     <div class="row q-mt-xl">
-      <div class="col-lg-2 col-md-2 col-sm-1"></div>
-        <q-card class="col-6 col-md-4 col-sm-4 q-mr-xs  q-ml-xs q-mt-xs q-mb-xs gt-sm">
+      <div class="col-lg-2 col-md-5 col-sm-1"></div>
+        <q-card class="col-8 col-md-7 col-sm-4 q-mr-xs q-ml-xl q-mt-xl q-mb-xs gt-sm">
           <q-card-section>
             <div class="text-h6 center justify-center">{{$t('score_is')}}</div>
           </q-card-section>
@@ -52,7 +52,7 @@
         </q-card>
 
 
-      <q-card class="col-lg-4 col-sm-4 col-md-4 q-mr-xs  q-ml-xs q-mt-xs q-mb-xs gt-sm">
+      <!--<q-card class="col-lg-4 col-sm-4 col-md-4 q-mr-xs  q-ml-xs q-mt-xs q-mb-xs gt-sm">
           <q-card-section>
             <div class="col-auto q-mr-xs  q-ml-xs q-mt-xs q-mb-xs">
           <p class="text-center center">{{$t('level_of_awareness')}}</p><br>
@@ -62,16 +62,16 @@
           </div>
       </q-card-section>
   </q-card>
-
+ -->
     </div>
-  <div v-if="showCards" class="row gt-sm">
+  <!--<div v-if="showCards" class="row gt-sm">
     <div class="col-lg-2 col-md-2 col-sm-1"></div>
     <q-card class="col-2 col-md-4 col-xs-12 q-mr-xs  q-ml-xs q-mt-xs q-mb-xs gt-sm">
       <q-card-section>
       </q-card-section>
      <q-card-section>
       <q-card-actions align="evenly">
-        <q-btn flat :label="$t('showMoreFeatures2')" class="text-white-10" color="orange-10" @click="changeView()" />
+        <q-btn disable flat :label="$t('showMoreFeatures2')" class="text-white-10" color="orange-10" @click="changeView()" />
       </q-card-actions>
     </q-card-section>
   </q-card>
@@ -100,11 +100,12 @@
       </q-card>
 
   </div>
+  -->
   <div v-if="showCards" class="row gt-sm">
-    <div class="col-lg-2 col-md-2 col-sm-1"></div>
+    <!--<div class="col-lg-2 col-md-2 col-sm-1"></div>
     <q-card class="col-6 col-md-5 col-xs-11 q-mr-xs  q-ml-xs q-mt-xs q-mb-xs">
     <q-card-section>
-          <div class="row">
+        <div class="row">
           <div class="col-6 col-md-6">
             <q-knob
             readonly
@@ -121,168 +122,20 @@
         </div>
         <div class="col-6 col-md-6 q-mt-xl"><b style="overflow-wrap:break-word;">{{$t('average_response_time')}}</b></div>
           </div>
-        </q-card-section>
+         </q-card-section>
     </q-card>
+   -->
+    <div class="col-4 col-md-4 gt-sm  q-ml-xl"></div>
+    <div class="col-2 col-md-3 col-xs-11 q-mr-xs  q-ml-xl q-mt-xl q-mb-xs gt-sm">
 
+        <q-btn outline size="xl" label="Home page" class="text-white-10 q-ml-xl" color="orange-10" @click="start()" />
+   <!--     <q-btn disable flat :label="$t('repeat_test')" color="blue-10" @click="() => { router.push({ name: 'email' }) }"/> -->
 
-    <q-card class="col-2 col-md-3 col-xs-11 q-mr-xs  q-ml-xs q-mt-xs q-mb-xs gt-sm">
-    <q-card-section>
-    </q-card-section>
-     <q-card-section>
-      <q-card-actions align="evenly">
-        <q-btn flat label="Home page" class="text-white-10" color="orange-10" @click="start()" />
-        <q-btn flat :label="$t('repeat_test')" color="blue-10" @click="() => { router.push({ name: 'email' }) }"/>
-      </q-card-actions>
-    </q-card-section>
-    </q-card>
+    </div>
 
 
   </div>
     </div>
-
-
-  <div class="row">
-    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-2"></div>
-      <q-btn flat v-if="hide_attestato" @click="form_documento = true" class="q-pt-xs q-pl-xl q-pr-xl q-pb-xs q-mt-xl platform-android-hide platform-ios-hide" size="lg" color="blue-10" :label="$t('attestato')"/>
-
-    <q-dialog class="platform-android-hide platform-ios-hide" v-model="form_documento" persistent transition-show="scale" transition-hide="scale">
-          <q-card  style="width: 750px; max-width: 80vw;">
-            <q-card-section class="bg-white-10 text-blue-10">
-              <div class="text-h6">{{$t('datiCertificato')}}</div>
-            </q-card-section>
-
-            <q-card-section>
-              <q-form
-                class="q-gutter-md"
-                @submit="checkEmptyForm"
-              >
-                <q-input
-                  v-model="form2.first_name"
-                  :label="$t('nome')"
-                  :hint="$t('hintNome')"
-                  lazy-rules
-                  :rules="[ val =>  val && val.length > 0 || $t('pop_starting3')]"
-                />
-
-                <q-input
-                  v-model="form2.last_name"
-                  :label="$t('cognome')"
-                  :hint="$t('hintCognome')"
-                  lazy-rules
-                  :rules="[ val =>  val && val.length > 0 || $t('pop_starting3')]"
-                />
-                <q-input
-                  v-model="form2.city"
-                  :label="$t('cittadiNascita')"
-                  :hint="$t('cittaHint')"
-                  lazy-rules
-                  :rules="[ val =>  val && val.length > 0 || $t('pop_starting3')]"
-                />
-
-                <div>
-                  <q-checkbox v-model="right" :label="$t('risultato')" />
-                  </div>
-
-                <q-input :label="$t('datanascita')" filled v-model="form2.data_nascita" >
-        <template v-slot:append>
-          <q-icon name="event" class="cursor-pointer">
-            <q-popup-proxy>
-              <q-date mask="MM/DD/YYYY" v-model="form2.data_nascita" ></q-date>
-            </q-popup-proxy>
-          </q-icon>
-        </template>
-      </q-input>
-                <div class="text-right">
-                  <!--<q-btn flat :label="$t('pop_starting6')" type="submit" color="blue-10"/>-->
-                  <q-btn flat :label="$t('attestato')" type="submit" />
-                  <q-btn flat :label="$t('go_back')" v-close-popup />
-                </div>
-
-              </q-form>
-
-            </q-card-section>
-
-          </q-card>
-
-
-    </q-dialog>
-    <q-dialog v-model="documento" persistent transition-show="scale" transition-hide="scale" class="bg-white">
-       <q-page-sticky class="bg-white gt-sm" position="bottom-right" :offset="[72, 36]">
-      <q-btn flat class="text-blue-10" :label="$t('save')"  @click="Download()"/>
-       </q-page-sticky>
-
-       <q-page-sticky class="bg-white" position="bottom-left" :offset="[72, 36]">
-      <q-btn flat class="text-blue-10 q-ml-md" :label="$t('close')" @click="alert= true"/>
-        <q-dialog v-model="alert">
-      <q-card>
-        <q-card-section>
-          <div class="text-h6">{{$t('alertAttestato')}}</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-          {{$t('testoAlertAttestato')}}</q-card-section>
-
-        <q-card-actions align="right" class="text-primary">
-          <q-btn flat :label="$t('annulla')" v-close-popup />
-          <q-btn flat :label="$t('conf')" @click="form_documento = false,documento = false" v-close-popup/>
-        </q-card-actions>
-      </q-card>
-    </q-dialog>
-
-
-
-       </q-page-sticky>
-       <q-card style="width: 595px;height: 842px;" class="bg-white text-black" id="element-to-print">
-         <q-space />
-      <q-card-section class=" bg-white q-mt-md q-pa-none text-blue-10" style="text-align:center;" >
-          <span style="font-size:40px; font-weight:bold">{{$t('completion')}}</span>
-      </q-card-section>
-
-      <q-card-section class="bg-white" style="text-align:center;" >
-          <span style="font-size:25px"><i>{{$t('completion2')}}</i></span>
-
-      </q-card-section>
-
-      <q-card-section class="bg-white" style="text-align:center;" >
-
-       <br><br>
-       <span style="font-size:30px"><b>{{form2.first_name}} {{form2.last_name}}</b></span><br/>{{$t('completion3')}}<b>{{form2.city}}</b>{{$t('completion4')}}<b>{{form2.data_nascita}}</b><br/>
-      </q-card-section>
-
-
-      <q-card-section class=" bg-white" style="text-align:center;" >
-          <span style="font-size:20px"><i>{{$t('completion5')}}</i></span> <br/><br/>
-       <span style="font-size:30px"><b>{{$t('completion6')}}</b></span> <br/><br/>
-      </q-card-section>
-
-
-      <q-card-section class=" bg-white" style="text-align:center;" >
-          <span v-if="right" style="font-size:20px">{{$t('completion7')}}<b>{{n_correct}}/10</b></span> <br/><br/>
-          <span class="q-mt-xl q-mb-none" style="font-size:20px;text-align:right;">{{$t('completion8')}}</span>
-          <span  style="font-size:15"><i><b>{{formattedString}}</b></i></span> <br/><br/>
-      </q-card-section>
-
-      <q-card-section class="bg-white row">
-        <div class="col-lg-3"></div>
-        <div class="col-lg-3 q-ml-lg q-pa-none">
-				<q-img style="height: 147px; width: 200px;" src="https://i.ibb.co/1nYJj84/Logo-Spamley-Copia.png" />
-        </div>
-      </q-card-section>
-
-        <q-card-section style="text-align:center;">
-            <div class="text-subtitle2 text-blue-10">spamley.comics.unina.it</div>
-        </q-card-section>
-
-
-
-       </q-card>
-    </q-dialog>
-
-
-</div>
-
-
-
 
 
 
@@ -315,7 +168,7 @@
 
   <q-card class="col-xs-11 q-mr-md q-ml-md q-mt-xs q-mb-xs">
     <q-card-section>
-          <div class="row">
+        <!--  <div class="row">
           <div class="col-6 col-md-6 ">
             <q-knob
             readonly
@@ -331,7 +184,7 @@
             />
         </div>
         <div class="col-xs-5 q-mt-lg"><b style="font-size:80%;overflow-wrap:break-word;">{{$t('average_response_time')}}</b></div>
-          </div>
+          </div> -->
         </q-card-section>
     </q-card>
 
@@ -693,10 +546,16 @@
               luigi.gallo3[at]unina.it<br /><span style="font-weight: bold"
                 >Saverio Ruggiero</span
               >
-              saverio.ruggiero[at]unina.it<br /><span style="font-weight: bold"
+              sav.ruggiero[at]studenti.unina.it<br /><span
+                style="font-weight: bold"
                 >Danilo Gentile</span
               >
               danil.gentile[at]studenti.unina.it<br>
+              <span
+                style="font-weight: bold"
+                >Ilaria Panaro</span
+              >
+              il.panaro[at]studenti.unina.it
             </div>
           </div>
         </q-card>
@@ -706,31 +565,14 @@
 <script>
 import { defineComponent, reactive, ref, computed } from 'vue'
 import { useStore } from 'vuex'
-import {date} from 'quasar'
-import html2pdf from "html2pdf.js"
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
-
+import {date} from 'quasar'
 
 export default defineComponent({
   setup () {
-    const right = ref(false)
+
     const showCards = ref(true)
-
-    const alert = ref(false)
-    const form_documento = ref(false)
-
-    const timeStamp = Date.now()
-    const formattedString = date.formatDate(timeStamp, 'DD/MM/YYYY')
-
-    const form2 = reactive({
-      first_name: '',
-      email: ref(null),
-      last_name: ref(null),
-      data_nascita: formattedString,
-      city: ref(null)
-    })
-    const documento = ref(false)
     const router = useRouter()
     const store = useStore()
     const slide = ref('style')
@@ -754,7 +596,7 @@ export default defineComponent({
     const link_result2 = email_info.value.result[0].list_link2
     const link_result3 = email_info.value.result[0].list_link3
     const link_result4 = email_info.value.result[0].list_link4
-    const hide_attestato = ref(true)
+
     const showFeature = ref(false)
 
     const featuresResultOptions = ref(null)
@@ -811,13 +653,6 @@ export default defineComponent({
 
     }
 
-    const hideAttestato = () => {
-      form_documento.value = true
-      hide_attestato.value = false
-    }
-
-
-
     const resetSelectValue = () => {
        if (locale.value == "en-US"){
             featuresResult.value = "Select a value"
@@ -831,16 +666,7 @@ export default defineComponent({
 
      const progress = computed(() => {
       if(result.value[result.value.length - 1]){
-        return (result.value[result.value.length - 1].n_correct)/10
-      }
-      return 0
-
-      }
-    )
-
-    const n_correct = computed(() => {
-      if(result.value[result.value.length - 1]){
-        return (result.value[result.value.length - 1].n_correct)
+        return (result.value[result.value.length - 1].n_correct)/20
       }
       return 0
 
@@ -871,7 +697,7 @@ export default defineComponent({
 
     const awareness_phihsing = computed(() => {
       if(result.value[result.value.length - 1]){
-        if(result.value[result.value.length - 1].n_correct < 5){
+        if(result.value[result.value.length - 1].n_correct < 6){
             if (locale.value == "en-US"){
               return 'Negative'
             }else if (locale.value == "it"){
@@ -880,11 +706,11 @@ export default defineComponent({
 
 
 
-        }else if(result.value[result.value.length - 1].n_correct === 5 || result.value[result.value.length - 1].n_correct === 6){
+        }else if(result.value[result.value.length - 1].n_correct === 6){
           if (locale.value == "en-US"){
               return 'Basic'
           }else if (locale.value == "it"){
-              return 'Medio'
+              return 'Sufficiente'
           }
 
 
@@ -907,55 +733,6 @@ export default defineComponent({
     }
       return ''
     })
-
-
-    const checkEmptyForm = async () =>{
-      //console.log(form2)
-      hide_attestato.value=false
-        if (form2.city != '' || form2.first_name != ref(null) || form2.last_name != ref(null) || form2.data_nascita != new(Date)){
-          documento.value = true
-        }else{
-          if (locale.value == "en-US"){
-
-          $q.notify({
-          type: 'negative',
-          message: "Enter all required fields!"
-          })
-      }else if(locale.value == "it"){
-          $q.notify({
-          type: 'negative',
-          message: "Compilare tutti i campi obbligatori!"
-          })
-
-      }
-        }
-
-
-    }
-
-    const Download = async () => {
-      var element = document.getElementById("element-to-print");
-      let nomefile = 'attestato_Spamley_' +form2.first_name + '_' +form2.last_name+'.pdf'
-      var opt = {
-        margin: [0,25],
-        filename: nomefile,
-        image: { type: "jpeg", quality: 0.95 },
-        html2canvas: { scale: 1.98, useCORS: true },
-        jsPDF: {
-          unit: "mm",
-          format: 'a4',
-          orientation: "p",
-        },
-      };
-
-      html2pdf().set(opt).from(element).save();
-    }
-
-
-
-
-
-
     const progressLabel = computed(() => (progress.value * 100).toFixed(2) + '%')
 
 
@@ -1119,18 +896,6 @@ export default defineComponent({
 
 
     return {
-      alert,
-      hide_attestato,
-      hideAttestato,
-      n_correct,
-      right,
-      formattedString,
-      timeStamp,
-      checkEmptyForm,
-      form2,
-      Download,
-      form_documento,
-      documento,
       changeView,
       form,
       email_info,

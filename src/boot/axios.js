@@ -3,8 +3,9 @@ import axios from 'axios'
 
 
 
-//const baseURL = 'http://localhost:8000/'
-const baseURL = 'https://spamley.comics.unina.it/backend/'
+const baseURL = 'http://localhost:8000/'
+//const baseURL = 'https://spamley.comics.unina.it/backend/'
+//const baseURL = 'http://143.225.28.84:8080/'
 
 const api = axios.create({
     baseURL: baseURL,

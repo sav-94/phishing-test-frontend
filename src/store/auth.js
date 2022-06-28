@@ -6,10 +6,12 @@ export default {
 
   state: {
     token: localStorage.getItem('access_token') || undefined,
+    group_code: "",
     user: {}
   },
 
   getters: {
+    group_code: state => state.group_code,
     isLoggedIn: state => state.token,
     user: state => state.user
   },
@@ -31,10 +33,26 @@ export default {
       }
 
     },
+
+    async prova({ commit }, code) {
+      try {
+        await localStorage.removeItem('access_token');
+        await localStorage.removeItem('refresh_token');
+        await localStorage.removeItem('userId');
+        delete api.defaults.headers.common['Authorization'];
+        commit('code_success', code);
+        //this.$router.push({ name: 'home' })
+      } catch (err) {
+        //console.log(err)
+      }
+
+    },
+
     // Register user
     async register({ commit }, form) {
       try {
         const { data } = await api.post('auth/user/create/', form);
+        console.log(form)
         //  Store the token into the local storage
         localStorage.setItem('access_token', data.access);
         localStorage.setItem('refresh_token', data.refresh);
@@ -50,6 +68,8 @@ export default {
       }
 
     },
+
+
     // Logout the user
     async logout({ commit }) {
       await localStorage.removeItem('token');
@@ -63,6 +83,14 @@ export default {
   },
 
   mutations: {
+    code_success(state,access){
+      let code = String(access.value)
+      console.log(code)
+      state.group_code = code
+
+    },
+
+
     auth_success(state, access) {
       state.token = access
     },

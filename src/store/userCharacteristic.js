@@ -153,14 +153,19 @@ export default {
 
     },
 
+
     async register({ commit }, payload) {
       try {
+
         const { data } = await api.post('auth/user/create/', payload)
+
+        //const { data } = await api.post('auth/user/create/', payload)
         //  Store the token into the local storage
         localStorage.setItem('access_token', data.access);
         localStorage.setItem('refresh_token', data.refresh);
         // store user ID
         localStorage.setItem('userId', data.id);
+        console.log(data.id)
         // Set the axios defaults
         api.defaults.headers.common['Authorization'] = 'JWT ' + data.access;
         //Notify.create({ type: 'positive', message: 'Data entered successfully!' })
@@ -173,6 +178,7 @@ export default {
     }
 
   },
+
 
   mutations: {
     edu_field_success(state, eduField) {

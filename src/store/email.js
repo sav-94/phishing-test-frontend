@@ -41,6 +41,7 @@ export default {
 
     },
 
+
     async test_delivery({ commit }, payload) {
       try {
         const { data } = await api.post('email/test-delivery/', payload)
@@ -60,7 +61,7 @@ export default {
         await localStorage.removeItem('refresh_token');
         await localStorage.removeItem('userId');
         delete api.defaults.headers.common['Authorization'];
-        commit('result_success', data);
+        //commit('result_success', data);
 
       } catch (err) {
         //console.log(err)

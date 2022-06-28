@@ -165,7 +165,7 @@
           <q-select outlined :dense="true" v-model="jobExpYearModel" :options="jobExpYearOptions" :label="$t('yearsofEx')" />
         </div>
 
-        <div class="col-md-1 col-sm-2 col-gt-xs">
+        <div class="col-sm-2 lt-md">
           </div>
 
         <div class="col-md-3 col-sm-4 col-xs-12 q-mt-md lt-md">
@@ -186,12 +186,22 @@
           />
         </div>
 
+        <div class="col-sm-2 lt-md">
+          </div>
 
 
+        <div class="col-sm-4 col-xs-12 lt-md">
 
-
-
-
+          <q-select
+        outlined
+        :dense="true"
+        v-model="numMail"
+        :options="mailOptions"
+        :label="$t('mailLette')"
+        emit-value
+        map-options
+      />
+        </div>
 
           </q-card-section>
 
@@ -212,7 +222,20 @@
             :label="$t('mailboxUsage')"
           />
         </div>
-        <div class="col-md-1"></div>
+        <div class="col-md-1 col-sm-2 col-gt-xs">
+          </div>
+        <div class="col-md-3 col-sm-4 col-xs-12">
+
+          <q-select
+        outlined
+        :dense="true"
+        v-model="numMail"
+        :options="mailOptions"
+        :label="$t('mailLette')"
+        emit-value
+        map-options
+      />
+        </div>
 
 
 
@@ -1086,6 +1109,7 @@ export default defineComponent({
 
 created(){
   this.startRegister()
+
 },
 
 setup () {
@@ -1093,6 +1117,31 @@ const rightDrawerOpen = ref(false)
 
 const $q = useQuasar()
 const { locale } = useI18n({ useScope: 'global' })
+const numMail = ref(null)
+let mailOptions = ref(null)
+reactive( [
+        {
+          label:'nessuna',
+          value: '1'
+        },
+
+        {
+          label:'nessuna',
+          value: '2'
+        },
+        {
+          label:'nessuna',
+          value: '3'
+        },
+        {
+          label:'nessuna',
+          value: '4'
+        },
+        {
+          label:'nessuna',
+          value: '5'
+        }
+      ])
 const expanded1 = ref(false)
 const expanded2 = ref(false)
 const expanded3 = ref(false)
@@ -1109,6 +1158,8 @@ const expanded13 = ref(false)
 const expanded14 = ref(false)
 const expanded15 = ref(false)
 const store = useStore()
+const group_code = computed(() => store.getters['auth/group_code'])
+//console.dir(typeof(group_code.value.length))
 const step = ref(1)
 const ageModel = ref(null)
 const ageOptions = reactive(Array.from({length: 89}, (_, i) => i + 12))
@@ -1119,10 +1170,55 @@ const genderModel = ref(null)
 let genderOptions = ref(null)
 if (locale.value == "en-US"){
 genderOptions = reactive(['Female', 'Male', 'Other'])
+mailOptions = reactive( [
+        {
+          label:'None',
+          value: '1'
+        },
+
+        {
+          label:'Less than 5',
+          value: '2'
+        },
+        {
+          label:'More than 5 less than 20',
+          value: '3'
+        },
+        {
+          label:'More than 20 less than 50',
+          value: '4'
+        },
+        {
+          label:'More than 50',
+          value: '5'
+        }
+      ])
 
 
 }else if (locale.value == "it"){
   genderOptions = reactive(['Donna', 'Uomo', 'Altro'])
+  mailOptions = reactive( [
+        {
+          label:'Nessuna',
+          value: '1'
+        },
+        {
+          label:'Meno di 5',
+          value: '2'
+        },
+        {
+          label:'Più di 5 meno di 20',
+          value: '3'
+        },
+        {
+          label:'Più di 20 meno di 50',
+          value: '4'
+        },
+        {
+          label:'Più di 50',
+          value: '5'
+        }
+      ])
 }
 const eduLevelModel = ref(null)
 const eduLevelOptions = computed(() => store.getters['userCharacteristic/eduLevel'])
@@ -1510,6 +1606,8 @@ const testEmpty6 = ref(false)
 const testEmpty7 = ref(false)
 const router = useRouter()
 const tab = ref('mails')
+const empty = ref("")
+let codice = ""
 
 
 
@@ -1543,7 +1641,7 @@ await store.dispatch('userCharacteristic/get_hobby',locale.value)
 
 const checkField1 = async() =>{
   if(ageModel.value == null || !genderModel.value || !natModel.value || !eduLevelModel.value || !eduFieldModel.value || !jobFieldModel.value
-    || !emplTypeModel.value || jobExpYearModel.value == null || !hobbyModel.value
+    || !emplTypeModel.value || jobExpYearModel.value == null || !hobbyModel.value || numMail.value == null
     || !natModel.value || timeModel.value == null || computerScienceknowledgeModel.value== null || workHoursPriorTestModel.value == null
     || selfConfidenceModel.value == null  ){
 
@@ -1565,7 +1663,7 @@ const checkField1 = async() =>{
       tab.value = 'alarms'
       go_Up()
     }
-    console.log(tab)
+
 }
 
 const checkField2 = async() =>{
@@ -1595,7 +1693,7 @@ const checkField2 = async() =>{
 const checkField3 = async() =>{
   if(ageModel.value == null || !genderModel.value || !eduLevelModel.value
     || !eduFieldModel.value || !jobFieldModel.value
-    || !emplTypeModel.value || jobExpYearModel.value == null || !hobbyModel.value
+    || !emplTypeModel.value || jobExpYearModel.value == null || !hobbyModel.value || numMail.value == null
     || !natModel.value || timeModel.value == null || computerScienceknowledgeModel.value== null || workHoursPriorTestModel.value == null
     || selfConfidenceModel.value == null || impulsivityModel.value == null || curiosityModel.value == null || riskPropensityModel.value == null || riskPerceptionModel.value == null || privacyDataModel.value == null || opennessModel.value  == null || extraversionModel.value  == null || agreeablenessModel.value  == null || conscientiousnessModel.value  == null || emotionalStabilityModel.value == null || scarcityModel.value  == null || consistencyModel.value  == null || socialProofModel.value  == null || gratitudeModel.value == null || authorityModel.value  == null ){
 
@@ -1613,6 +1711,16 @@ const checkField3 = async() =>{
 
       }
     }else{
+      if ((group_code.value.length == 6) || (group_code.value.length == 20)){
+        codice = group_code.value
+        //console.log("Group code == 6 o a 20")
+
+        //console.log(codice)
+      }else{
+        codice = null
+        //console.log("Group code diverso da 6 o da 20")
+        //console.log(codice)
+      }
       const hobbies = []
   for(let i=0; i<hobbyModel.value.length; i++){
     hobbies.push(hobbyModel.value[i].id)
@@ -1624,9 +1732,11 @@ const checkField3 = async() =>{
       gender: genderModel.value,
       years_job_experience: jobExpYearModel.value,
       nationality: natModel.value,
+      group_code: codice,
       computer_science_knowledge: computerScienceknowledgeModel.value,
       antiPhishing_course: antiPhisCourseModel.value,
       antiPhishing_course_ever: antiPhisCourseEverModel.value,
+      num_mail_read: numMail.value,
       phishing_attack: victimModel.value,
       time_on_internet: timeModel.value,
       educationLevel_id: eduLevelModel.value.id,
@@ -1665,8 +1775,11 @@ const checkField3 = async() =>{
   }
 
   await store.dispatch('userCharacteristic/register', userInfo).then(()=>{
-    ////console.log("dispatch con SUCCESSO")
-    router.push({name : 'email'})
+    if((group_code.value == "ps1ch0") || ( group_code.value == "ps1ch1") || (group_code.value == "ps1ch2")){
+        router.push({name : 'email_psico'})
+    }else{
+        router.push({name : 'email'})
+    }
   })
     }
 
@@ -1767,6 +1880,8 @@ if (locale.value == "en-US"){
   })
 }
 }else{
+
+
   const hobbies = []
   for(let i=0; i<hobbyModel.value.length; i++){
     hobbies.push(hobbyModel.value[i].id)
@@ -1781,6 +1896,7 @@ if (locale.value == "en-US"){
       computer_science_knowledge: computerScienceknowledgeModel.value,
       antiPhishing_course: antiPhisCourseModel.value,
       antiPhishing_course_ever: antiPhisCourseEverModel.value,
+      group_code: group_code.value,
       phishing_attack: victimModel.value,
       time_on_internet: timeModel.value,
       educationLevel_id: eduLevelModel.value.id,
@@ -1826,6 +1942,9 @@ if (locale.value == "en-US"){
 }
 
 return {
+  numMail,
+  mailOptions,
+  group_code,
 checkField1,
 checkField2,
 checkField3,

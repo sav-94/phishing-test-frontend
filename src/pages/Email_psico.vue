@@ -1,25 +1,14 @@
-<template>
-  <q-layout view="lHh lpr lFf">
-    <q-header>
-        <div class="row" style="background-image: url('https://i.ibb.co/KXhNv0W/crossword.png'">
-          <q-toolbar v-if="!persistent" inset class ="shadow-2 bg-blue-10 text-white ">
-            <q-toolbar-title class="q-ml-xl gt-xs q-mb-xs text-justify" v-if="cont < 10">Email {{cont+1}}/10</q-toolbar-title>
-            <q-toolbar-title class="q-ml-xs lt-sm q-mb-xs text-justify"  v-if="cont < 10">Email {{cont+1}}/10</q-toolbar-title>
-          </q-toolbar>
-        </div>
-    </q-header>
+<template  style="background-image: url('https://i.ibb.co/KXhNv0W/crossword.png'">
+  <q-layout view="lHh lpr lFf" style="background-image: url('https://i.ibb.co/KXhNv0W/crossword.png'">
         <q-page-container style="background-image: url('https://i.ibb.co/KXhNv0W/crossword.png'">
       <q-page style="background-image: url('https://i.ibb.co/KXhNv0W/crossword.png'">
 
         <!-- ALERT -->
-
         <q-dialog v-model="persistent" persistent transition-show="scale" transition-hide="scale">
           <q-card  style="width: 750px; max-width: 80vw;">
             <q-card-section class="bg-white-10 text-blue-10">
               <div class="text-h6">{{$t('pop_starting1')}}</div>
             </q-card-section>
-
-
 
             <q-card-section>
               <q-form
@@ -40,15 +29,11 @@
                   lazy-rules
                   :rules="[ val => !!val || $t('pop_starting5'), , isValidEmail]"
                 />
-
                 <div class="text-right">
                   <q-btn flat :label="$t('pop_starting6')" type="submit" color="blue-10"/>
                 </div>
-
               </q-form>
-
             </q-card-section>
-
           </q-card>
         </q-dialog>
 
@@ -58,159 +43,138 @@
             <q-card-section class="bg-blue-10 text-white">
               <div class="text-h6">{{$t('time_alert')}}</div>
             </q-card-section>
-
             <q-card-section class="q-pt-none bg-blue-10 text-white">
               {{$t('time_alert_text')}}
             </q-card-section>
-
             <q-card-section class="q-pt-none q-mt-md">
-
                 <div class="flex flex-center">
                   <q-btn :label="$t('continue')" @click="timeEnd()" color="blue-10"/>
                 </div>
-
             </q-card-section>
-
           </q-card>
         </q-dialog>
-
-
-
 
       <q-dialog persistent v-model="terminate">
       <q-card>
         <q-card-section>
           <div class="text-h6 text-primary">{{$t('nice_job')}}</div>
         </q-card-section>
-
         <q-card-actions align="right">
-          <q-btn v-model="terminate" @click="() => { router.push({ name: 'result' }) }" color="primary" :label="$t('show_results')" v-close-popup />
-
+          <q-btn v-model="terminate" @click="() => { router.push({ name: 'result_psico' }) }" color="primary" :label="$t('show_results')" v-close-popup />
         </q-card-actions>
       </q-card>
     </q-dialog>
-        <!-- COUNT TIME
-        <div v-if="countTime != -1 && cont < 10" class="q-mr-xl q-ma-sm text-right">
-          <q-circular-progress
-            class="text-red q-ma-md"
-            :value="countTime"
-            max="300"
-            size="50px"
-            color="red"
 
-          />
-        </div>
-        -->
         <!-- EMAIL -->
         <transition-group
             appear
             enter-active-class="animated fadeInRight"
           >
-        <div v-if="!persistent && email_info.email[cont] !== undefined" class="row q-ma-sm flex flex-center">
-
-		  <div v-if="email_info.email[cont].contex !== undefined" class="col-md-9 col-xs-12">
-              <q-card v-if="email_info.email[cont].contex !== '' ">
+        <div class="row" v-if="!persistent && email_info.email[cont] !== undefined">
+             <div class="col-md-3">
+               <h6 class="q-ml-xl q-mt-xs text-red-10"><b>{{cont+1}}</b>/20</h6>
+          </div>
+        </div>
+        <div v-if="!persistent && email_info.email[cont] !== undefined" class="row flex flex-center">
+        <!-- dentro questo div con v-if ora devo usare  -->
+            <div v-if="show_contesto" class="col-md-7 col-xs-12">
+              <q-card style="margin-top:15%;">
                 <q-card-section class="bg-indigo-1 text-black text-center" :class="changeColor" >
-                  <div v-if="email_info.email[cont].contex !== '' " class="text-blue-10 text-center text-justify center">
+                  <div class="text-blue-10 text-center text-justify center">
+
+                   <!-- QUI va il v-if = email_info_backup[cont].context !== undefined && email_info_backup[cont].context !== ''" perchè altrimenti
+                  al posto dell h5 va un altro h5 con una croce al centro -->
+
                     <h5 style="font-size:130%; margin: 20px 10px 20px;">{{email_info.email[cont].contex}} </h5>
                   </div>
                 </q-card-section>
+                <q-card-actions align="center">
+                    <q-btn flat @click="hide_contesto()">Avanti</q-btn>
+                </q-card-actions>
+                <!-- QUI va una sezione q-action con i tasti che invocano la funzione avanti() che rende falso la q-card e fa diventare true solo la mail -->
               </q-card>
+            </div>
 
-            <q-card>
-              <q-card-section>
+            <div class="col-md-1" v-if="show_mail"></div>
+            <div class="col-md-9 col-xs-12" v-if="show_mail" style="margin-top:-5%;">
+          <q-list dense bordered padding class="rounded-borders q-mt-sm bg-white">
+              <q-item>
+                <q-item-section>
                 <div class="row">
-
-                  <div class="col-auto">
-                    <q-avatar  color="white" text-color="primary" font-size="100%" icon="account_circle" />
+                  <div class="col-auto q-ml-xs">
+                    <q-avatar color="white" text-color="primary" font-size="100%" icon="account_circle" />
                   </div>
-
-                  <div class="col q-pl-xs">
+                  <div class="col q-pl-md">
                     <div>
-                      <span class="q-ml-md"><b>{{email_info.email[cont].sender_name}}</b></span>
+                      <span><b>{{email_info.email[cont].sender_name}}</b></span>
+                    </div>
+                    <div class="q-mt-md">
+                      <p><b><span style="color:#808080">from:</span></b>{{email_info.email[cont].fromEmail.from_email}}</p>
+                    </div>
+                    <div class="q-mt-xs">
+                      <p><b><span style="color:#808080">to:</span></b> {{form.email}}</p>
                     </div>
                     <div>
-                      <q-btn no-caps size="xs" flat text-color="grey-8" label="to me" style="font-size:80%;"  icon-right="arrow_drop_down">
-                        <q-menu>
-
-                          <q-list dense padding class="rounded-borders q-mt-md q-ml-md q-mr-lg q-mb-md">
-                            <q-item>
-                              <q-item-section><p><span style="color:#808080">{{$t('from')}} </span> {{email_info.email[cont].fromEmail.from_email}}</p></q-item-section>
-                            </q-item>
-
-                            <q-item>
-                              <q-item-section><p><span style="color:#808080">{{$t('to')}} </span> {{form.email}}</p></q-item-section>
-                            </q-item>
-
-                            <q-item>
-                              <q-item-section><p><span style="color:#808080">data:</span> {{email_info.email[cont].data}}</p></q-item-section>
-                            </q-item>
-                          </q-list>
-
-                        </q-menu>
-
-                      </q-btn>
+                      <p><b><span style="color:#808080">data:</span></b> {{email_info.email[cont].data}}</p>
+                    </div>
+                    <div>
+                      <p><b><span class="color:#808080">subject:</span></b> {{email_info.email[cont].subject.subject_email}}</p>
+                    </div>
+                    <div>
+                      <p v-html="email_info.email[cont].body.body_attachment" />
+                    </div>
+                    <div>
                     </div>
                   </div>
-
-
-                  <div class="col-12 q-mt-xl q-ml-xl">
-                    <p><span class="label bg-white text-primary" style="font-size:110%;overflow-wrap:break-word;">{{$t('subject')}}</span> {{email_info.email[cont].subject.subject_email}}</p>
-                  </div>
-                  <div class="q-ml-lg" v-html="email_info.email[cont].body.body_attachment" />
                 </div>
-
-              </q-card-section>
-
-              <q-separator color="grey" inset />
-
-              <q-card-section>
-
+             </q-item-section>
+            </q-item>
+              <q-separator spaced />
+                 <q-item>
+                <q-item-section>
                 <div v-html="email_info.email[cont].body.body_header_img" />
                 <div v-html="email_info.email[cont].body.body_header_text" />
                 <div v-html="email_info.email[cont].body.body_header_title" />
                 <div v-html="email_info.email[cont].body.body_center_img" />
                 <div v-html="email_info.email[cont].body.body_greetings" />
-
                 <div v-html="email_info.email[cont].body.body_center1" />
                 <div v-html="email_info.email[cont].body.body_center2" />
                 <div v-html="email_info.email[cont].body.body_center3" />
                 <div v-html="email_info.email[cont].body.body_table" />
-
                 <div v-if="email_info.email[cont].body.button_name" :class="email_info.email[cont].body.button_class">
-                  <q-btn :color="email_info.email[cont].body.button_color" :label="email_info.email[cont].body.button_name">
-                    <q-tooltip>
-                      <div style="font-size: 14px;"> {{email_info.email[cont].body.button_link}} </div>
-                    </q-tooltip>
+                  <q-btn class="tooltip" :icon="email_info.email[cont].body.button_icon" :color="email_info.email[cont].body.button_color" :label="email_info.email[cont].body.button_name">
+                      <div class="tooltiptext"> {{email_info.email[cont].body.button_link}} </div>
                   </q-btn>
                 </div>
-
                 <div v-html="email_info.email[cont].body.body_bottom" />
                 <div v-html="email_info.email[cont].body.body_signature" />
                 <div v-html="email_info.email[cont].body.body_footer" />
-
-              </q-card-section>
-            </q-card>
-
+                  </q-item-section>
+               </q-item>
+          </q-list>
           </div>
 
+          <div class="col-md-1 q-ml-md" v-if="show_mail">
+              <q-btn @click="go_on()" outline color="primary" label="Avanti" size="md"/>
+          </div>
 
-          <div class="q-mt-lg col-xs-12 flex flex-center">
+          <div class="q-mt-lg col-xs-12 flex flex-center" v-if="show_legittimate_phishing" style="margin-top:15%;" >
             <div class="col-auto q-pr-xl">
-              <q-btn @click="next(true)"  color="negative" label="Phishing" />
+              <q-btn @click="next(true)"  outline color="primary" label="Phishing" size="xl"/>
             </div>
             <div class="col-auto">
-              <q-btn @click="next(false)" :disable="reported_as_spam" color="positive" :label="$t('legitimate')" />
+              <q-btn @click="next(false)" outline :disable="reported_as_spam" color="primary" :label="$t('legitimate')" size="xl"/>
             </div>
           </div>
           <div class="q-mt-lg col-xs-12 flex flex-center">
 
-            <div class="col-medium-3 col-xs-12 q-ma-md">
+            <!--<div class="col-medium-3 col-xs-12 q-ma-md" v-if="show_legittimate_phishing">
                 <div class="q-gutter-sm">
                   <q-checkbox class="disabled" left-label v-model="reported_as_spam" :label="$t('label_suspicious')" />
                 </div>
             </div>
-          </div>
+            -->
+        </div>
         </div>
 
         </transition-group>
@@ -234,6 +198,10 @@ export default defineComponent({
     const { locale } = useI18n({ useScope: 'global' })
 
 
+    const show_contesto = ref(true)
+    const show_mail = ref(false)
+    const show_legittimate_phishing = ref(false)
+
     const form = reactive({
       first_name: '',
       email: ''
@@ -245,32 +213,44 @@ export default defineComponent({
     const cont = ref(0)
     const persistent = ref(true)
     const timeEndPersistent = ref(true)
-
-
+    const timer_mail = ref(null)
     const startTest = async () => {
       persistent.value = false
-
       if(countTime.value === -1){
         countTime.value = 0
         await store.dispatch('email/get_email', form)
-
       }
       setTimeout(() => {
                   countTime.value += 1
-                  startTest()
       }, 900)
     }
+    const hide_contesto = async () => {
+      show_contesto.value = false
+      show_mail.value = true
+      timer_mail.value = setTimeout(() => {
+          show_mail.value= false
+          show_legittimate_phishing.value = true
+       }, 20000)
+   }
 
 
+
+  const go_on = async ()=>{
+    show_mail.value = false
+    show_legittimate_phishing.value = true
+    clearTimeout(timer_mail.value)
+  }
 
     const next = async (answer) => {
       const time_taken_to_answer = countTime.value
-      const temp_spam = reported_as_spam.value
+      const temp_spam = false
       reported_as_spam.value = false
       countTime.value = 0
 
-
-      if(cont.value < 10){
+      if(cont.value < 20){
+	      show_contesto.value = true
+        show_legittimate_phishing.value = false
+        show_mail.value = false
         const userEma= {
           emailId: email_info.value.email[cont.value].id,
           answer: answer,
@@ -285,8 +265,10 @@ export default defineComponent({
         window.scrollTo(0, 0);
 
       }
-      if(cont.value === 10){
+      if(cont.value === 20){
         terminate.value = true
+        show_contesto.value = false
+        persistent.value = false
         countTime.value = -1
         testDelivery()
       }
@@ -317,7 +299,7 @@ export default defineComponent({
       const time_taken_to_answer = 300
       const temp_spam = false
       reported_as_spam.value = false
-      if(cont.value < 10){
+      if(cont.value < 20){
         const userEma= {
           emailId: email_info.value.email[cont.value].id,
           answer: !email_info.value.email[cont.value].phishing_email,
@@ -330,7 +312,7 @@ export default defineComponent({
         cont.value += 1
         countTime.value = 0
 
-        if(cont.value === 9){
+        if(cont.value === 19){
           countTime.value = -1
           //  timeEndPersistent.value = false
         }
@@ -340,6 +322,12 @@ export default defineComponent({
     }
 
     return {
+	    hide_contesto,
+	    show_contesto,
+      timer_mail,
+      go_on,
+      show_mail,
+      show_legittimate_phishing,
       form,
       startTest,
       persistent,
@@ -365,6 +353,7 @@ export default defineComponent({
 .disabled, .disabled *{
 cursor: auto !important;
 }
+
 .tooltip {
   position: relative;
   display: inline-block;
@@ -374,16 +363,22 @@ cursor: auto !important;
 .tooltip .tooltiptext {
   visibility: hidden;
   width: max-content;
-  background-color: rgb(109, 109, 109);
+  background-color: rgba(16, 57, 191, 0.907);
   color: #fff;
   text-align: center;
-  border-radius: 6px;
-  padding: 5px 0;
-  border: 5px solid rgb(109, 109, 109);
-
+  border-radius: 1%;
+  padding: 0;
+  border: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin-right: 2px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  text-transform: lowercase;
 
   /* Position the tooltip */
-  position: absolute;
+
   z-index: 1;
 }
 
